@@ -1,5 +1,5 @@
 require 'rescuetime/version'
-require 'rescuetime/data'
+require 'rescuetime/client'
 
 module Rescuetime
   # Your code goes here...
