@@ -1,8 +1,12 @@
-# Rescuetime
+# rescuetime
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rescuetime`. To experiment with that code, run `bin/console` for an interactive prompt.
+Ruby SDK for RescueTime APIs. Rescuetime provides a simple DSL for interacting
+with you personal or team RescueTime data.
 
-TODO: Delete this and the text above, and describe your gem
+**This code is under active development and is not yet stable.** Use at your own
+risk. Currently, this gem only supports the Data Analytics API.
+
+For more information about RescueTime, visit [the RescueTime homepage](https://www.rescuetime.com).
 
 ## Installation
 
@@ -22,7 +26,19 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Getting Started
+
+Using the rescuetime gem is simple. It requires that you have a RescueTime API
+key, so if you do not yet have one, visit the [API key management page](https://www.rescuetime.com/anapi/manage).
+
+Here is some example code using the rescuetime gem:
+
+    require 'rescuetime'
+
+    @client = Rescuetime::Client.new(api_key: <YOUR_API_KEY>)
+
+    @client.activities
+    # => Returns a list of activities
 
 ## Development
 
