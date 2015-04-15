@@ -1,5 +1,7 @@
 # rescuetime
 
+[![Build Status](http://img.shields.io/travis-ci.org/leesharma/rescuetime.svg?style=flat-square)](https://travis-ci.org/leesharma/rescuetime)
+
 Ruby SDK for RescueTime APIs. Rescuetime provides a simple DSL for interacting
 with you personal or team RescueTime data.
 
