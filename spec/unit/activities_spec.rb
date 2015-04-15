@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe Rescuetime::Activities do
   before do
-    @client = Rescuetime::Client.new do |config|
-      config.api_key = 'AK'
-    end
+    @client = Rescuetime::Client.new(api_key: 'AK')
   end
 
   describe '#activities' do
