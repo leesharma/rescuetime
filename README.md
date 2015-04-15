@@ -1,4 +1,4 @@
-rescuetime
+rescuetime (under development)
 ==========
 
 [![Coverage](http://img.shields.io/codeclimate/coverage/github/leesharma/rescuetime.svg?style=flat-square)](https://codeclimate.com/github/leesharma/rescuetime)
@@ -7,11 +7,12 @@ rescuetime
 [![Dependencies](https://img.shields.io/gemnasium/leesharma/rescuetime.svg?style=flat-square)](https://gemnasium.com/leesharma/rescuetime)
 [![License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 
-Ruby SDK for RescueTime APIs. Rescuetime provides a simple DSL for interacting
-with you personal or team RescueTime data.
+**Warning: This code is under active development and is not yet stable. Use at your own risk.**
 
-**This code is under active development and is not yet stable.** Use at your own
-risk. Currently, this gem only supports the Data Analytics API.
+Ruby SDK for RescueTime APIs. Rescuetime provides a simple DSL for interacting
+with your personal or team RescueTime data.
+
+Currently, this gem only supports the Data Analytics API with API key authorization.
 
 For more information about RescueTime, visit [the RescueTime homepage](https://www.rescuetime.com).
 
