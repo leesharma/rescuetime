@@ -41,12 +41,14 @@ key, so if you do not yet have one, visit the [API key management page](https://
 
 Here is some example code using the rescuetime gem:
 
-    require 'rescuetime'
+```ruby
+require 'rescuetime'
 
-    @client = Rescuetime::Client.new(api_key: <YOUR_API_KEY>)
+@client = Rescuetime::Client.new(api_key: <YOUR_API_KEY>)
 
-    @client.activities
-    # => Returns a list of activities
+@client.activities
+# => Returns a list of activities
+```
 
 ## Development
 
