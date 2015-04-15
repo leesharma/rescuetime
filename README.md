@@ -9,7 +9,7 @@ rescuetime (under development)
 
 **Warning: This code is under active development and is not yet stable. Use at your own risk.**
 
-Ruby SDK for RescueTime APIs. Rescuetime provides a simple DSL for interacting
+A Ruby interface to the RescueTime APIs. Rescuetime provides a simple DSL for interacting
 with your personal or team RescueTime data.
 
 Currently, this gem only supports the Data Analytics API with API key authorization.
@@ -36,10 +36,9 @@ Or install it yourself as:
 
 ### Getting Started
 
-Using the rescuetime gem is simple. It requires that you have a RescueTime API
-key, so if you do not yet have one, visit the [API key management page](https://www.rescuetime.com/anapi/manage).
+In order to use access your RescueTime data, you will need an API key. If you do not already have a key, , visit the [API key management page](https://www.rescuetime.com/anapi/manage).
 
-Here is some example code using the rescuetime gem:
+Using the rescuetime gem is simple. Here is some example code using the rescuetime gem:
 
 ```ruby
 require 'rescuetime'
