@@ -4,14 +4,10 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'rescuetime/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "rescuetime"
+  spec.name          = 'rescuetime'
   spec.version       = Rescuetime::VERSION
-  spec.authors       = ["Lee"]
-  spec.email         = ["lee@leesharma.com"]
-
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com' to prevent pushes to rubygems.org, or delete to allow pushes to any server."
-  end
+  spec.authors       = ['Lee Sharma']
+  spec.email         = ['lee@leesharma.com']
 
   spec.summary       = %q{Simple Ruby SDK for RescueTime}
   spec.description   = %q{rescuetime is a simple ruby SDK for the RescueTime Data Analytics API.}
@@ -32,4 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'vcr'
   spec.add_development_dependency 'webmock'
   spec.add_development_dependency 'codeclimate-test-reporter'
+  spec.add_development_dependency 'simplecov'
 end
