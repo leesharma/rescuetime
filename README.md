@@ -1,15 +1,18 @@
-rescuetime
+rescuetime (under development)
 ==========
 
+[![Coverage](http://img.shields.io/codeclimate/coverage/github/leesharma/rescuetime.svg?style=flat-square)](https://codeclimate.com/github/leesharma/rescuetime)
 [![Quality](http://img.shields.io/codeclimate/github/leesharma/rescuetime.svg?style=flat-square)](https://codeclimate.com/github/leesharma/rescuetime)
 [![Build](https://img.shields.io/travis/leesharma/rescuetime.svg?style=flat-square)](https://travis-ci.org/leesharma/rescuetime)
 [![Dependencies](https://img.shields.io/gemnasium/leesharma/rescuetime.svg?style=flat-square)](https://gemnasium.com/leesharma/rescuetime)
+[![License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](http://opensource.org/licenses/MIT)
+
+**Warning: This code is under active development and is not yet stable. Use at your own risk.**
 
 Ruby SDK for RescueTime APIs. Rescuetime provides a simple DSL for interacting
-with you personal or team RescueTime data.
+with your personal or team RescueTime data.
 
-**This code is under active development and is not yet stable.** Use at your own
-risk. Currently, this gem only supports the Data Analytics API.
+Currently, this gem only supports the Data Analytics API with API key authorization.
 
 For more information about RescueTime, visit [the RescueTime homepage](https://www.rescuetime.com).
 
@@ -38,12 +41,14 @@ key, so if you do not yet have one, visit the [API key management page](https://
 
 Here is some example code using the rescuetime gem:
 
-    require 'rescuetime'
+```ruby
+require 'rescuetime'
 
-    @client = Rescuetime::Client.new(api_key: <YOUR_API_KEY>)
+@client = Rescuetime::Client.new(api_key: <YOUR_API_KEY>)
 
-    @client.activities
-    # => Returns a list of activities
+@client.activities
+# => Returns a list of activities
+```
 
 ## Development
 
