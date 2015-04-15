@@ -1,6 +1,7 @@
 rescuetime (under development)
 ==========
 
+[![Gem](https://img.shields.io/gem/v/rescuetime.svg?style=flat-square)](https://rubygems.org/gems/rescuetime)
 [![Coverage](http://img.shields.io/codeclimate/coverage/github/leesharma/rescuetime.svg?style=flat-square)](https://codeclimate.com/github/leesharma/rescuetime)
 [![Quality](http://img.shields.io/codeclimate/github/leesharma/rescuetime.svg?style=flat-square)](https://codeclimate.com/github/leesharma/rescuetime)
 [![Build](https://img.shields.io/travis/leesharma/rescuetime.svg?style=flat-square)](https://travis-ci.org/leesharma/rescuetime)
@@ -45,8 +46,21 @@ require 'rescuetime'
 
 @client = Rescuetime::Client.new(api_key: <YOUR_API_KEY>)
 
-@client.activities
-# => Returns a list of activities
+@client.activities          # Returns a list of activities, ordered by "rank"
+
+@client.activities.class    # => Array
+@client.activities.count    # => 41
+
+@client.activities[0].class # => Hash
+@client.activities[0]       
+# => {   
+#       :rank=>1, 
+#       :time_spent_seconds=>5307, 
+#       :number_of_people=>1, 
+#       :activity=>"github.com", 
+#       :category=>"General Software Development", 
+#       :productivity=>2
+#    }
 ```
 
 ## Development
