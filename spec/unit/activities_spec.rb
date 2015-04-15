@@ -10,7 +10,7 @@ describe Rescuetime::Activities do
       expect(@client).to respond_to(:activities)
     end
     it 'returns list of activities' do
-      VCR.use_cassette('default activities list') do
+      VCR.use_cassette('default activities list', match_requests_on: [:host, :path]) do
         expect(@client.activities).to be_instance_of(Array)
         expect(@client.activities[0]).to be_instance_of(Hash)
       end

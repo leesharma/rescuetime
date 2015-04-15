@@ -1,5 +1,3 @@
-require 'secret'
-
 module Rescuetime
   module Activities
 
@@ -9,7 +7,7 @@ module Rescuetime
     # @return [Array<Hash>]
     def activities
       connection = Faraday.new(Rescuetime::Activities::BASE_URL)
-      options = { key: Secret::API_KEY,
+      options = { key: @api_key,
                   format: 'csv' }
       response = connection.get '', options
 
