@@ -1,3 +1,4 @@
+# Test coverage reporters
 require 'codeclimate-test-reporter'
 require 'simplecov'
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
@@ -10,10 +11,8 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'rescuetime'
 
 require 'webmock/rspec'
-require 'faraday'
 require 'vcr'
 
-require 'csv'
 
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/cassettes'

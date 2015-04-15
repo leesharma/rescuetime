@@ -1,3 +1,6 @@
+require 'faraday'
+require 'csv'
+
 require 'rescuetime/api'
 
 module Rescuetime
