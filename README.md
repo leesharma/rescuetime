@@ -1,6 +1,8 @@
 rescuetime
 ==========
+
 [![Build](https://img.shields.io/travis/leesharma/rescuetime.svg?style=flat-square)](https://travis-ci.org/leesharma/rescuetime)
+[![Dependencies](https://img.shields.io/gemnasium/leesharma/rescuetime.svg?style=flat-square)](https://gemnasium.com/leesharma/rescuetime)
 
 Ruby SDK for RescueTime APIs. Rescuetime provides a simple DSL for interacting
 with you personal or team RescueTime data.
