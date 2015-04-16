@@ -33,6 +33,16 @@ Or install it yourself as:
 
     $ gem install rescuetime
 
+## Supported Ruby Versions
+
+rescuetime is tested for the following MRI ruby versions:
+
+- ruby-head
+- 2.2
+- 2.1
+- 2.0.0
+- 1.9.3
+
 ## Usage
 
 ### Getting Started
