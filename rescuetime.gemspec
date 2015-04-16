@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['lee@leesharma.com']
 
   spec.summary       = %q{Ruby interface for RescueTime}
-  spec.description   = %q{rescuetime is a simple ruby interface for the RescueTime Data Analytics API.}
+  spec.description   = %q{Ruby interface for the RescueTime Data Analytics API.}
   spec.homepage      = 'https://github.com/leesharma/rescuetime'
   spec.license       = 'MIT'
 
@@ -19,14 +19,16 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'faraday'
+  spec.required_ruby_version = '>= 2.0.0'
 
-  spec.add_development_dependency 'bundler'
-  spec.add_development_dependency 'rake'
+  spec.add_dependency 'faraday', '~> 0.9.1'
 
-  spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'vcr'
-  spec.add_development_dependency 'webmock'
-  spec.add_development_dependency 'codeclimate-test-reporter'
-  spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'bundler', '~> 1.9.4'
+  spec.add_development_dependency 'rake', '~> 10.4.2'
+
+  spec.add_development_dependency 'rspec', '~> 3.2.0'
+  spec.add_development_dependency 'vcr', '~> 2.9.3'
+  spec.add_development_dependency 'webmock', '~> 1.21.0'
+  spec.add_development_dependency 'codeclimate-test-reporter', '~> 0.4.7'
+  spec.add_development_dependency 'simplecov', '~> 0.9.2'
 end
