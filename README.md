@@ -8,7 +8,7 @@ rescuetime
 [![Dependencies](https://img.shields.io/gemnasium/leesharma/rescuetime.svg?style=flat-square)](https://gemnasium.com/leesharma/rescuetime)
 [![License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 
-**This code is under active development to reach v1.0.0, which will allow full access to the Data Analytics API.**
+**This code is under active development to reach v0.2.0, which will allow full access to the Data Analytics API.**
 
 A Ruby interface to the RescueTime APIs. Rescuetime provides a simple DSL for interacting
 with your personal or team RescueTime data.
