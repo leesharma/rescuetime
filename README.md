@@ -54,7 +54,7 @@ rescuetime is tested for the following MRI ruby versions:
 
 ### Getting Started
 
-In order to use access your RescueTime data, you will need an API key. If you do not already have a key, , visit the [API key management page](https://www.rescuetime.com/anapi/manage).
+In order to use access your RescueTime data, you will need an API key. If you do not already have a key, visit the [API key management page](https://www.rescuetime.com/anapi/manage).
 
 Using the rescuetime gem is simple. Here is some example code using the rescuetime gem:
 
