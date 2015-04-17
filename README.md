@@ -17,6 +17,13 @@ Currently, this gem only supports the Data Analytics API with API key authorizat
 
 For more information about RescueTime, visit [the RescueTime homepage](https://www.rescuetime.com).
 
+* [Installation](#installation)
+* [Supported Ruby Versions](#supported-ruby-versions)
+* [Usage](#usage)
+    * [Getting Started](#getting-started)
+* [Development](#development) ([wiki](https://github.com/leesharma/rescuetime/wiki/Development))
+* [Contributing](#contributing) ([wiki](https://github.com/leesharma/rescuetime/wiki/Contributing))
+
 ## Installation
 
 Add this line to your application's Gemfile:
