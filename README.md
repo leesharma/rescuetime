@@ -18,9 +18,9 @@ Currently, this gem only supports the Data Analytics API with API key authorizat
 For more information about RescueTime, visit [the RescueTime homepage](https://www.rescuetime.com).
 
 * [Installation](#installation)
-* [Supported Ruby Versions](#supported-ruby-versions)
 * [Usage](#usage)
-    * [Getting Started](#getting-started)
+   * [Prerequisites](#prerequisites)
+   * [Getting Started](#getting-started)
 * [Development](#development) ([wiki](https://github.com/leesharma/rescuetime/wiki/Development))
 * [Contributing](#contributing) ([wiki](https://github.com/leesharma/rescuetime/wiki/Contributing))
 
@@ -40,21 +40,15 @@ Or install it yourself as:
 
     $ gem install rescuetime
 
-## Supported Ruby Versions
-
-rescuetime is tested for the following MRI ruby versions:
-
-- ruby-head
-- 2.2
-- 2.1
-- 2.0.0
-- 1.9.3
-
 ## Usage
 
-### Getting Started
+### Prerequisites
+
+Ensure that you are using a [supported ruby version](https://github.com/leesharma/rescuetime/wiki/Supported-Rubies) for your project. 
 
 In order to use access your RescueTime data, you will need an API key. If you do not already have a key, visit the [API key management page](https://www.rescuetime.com/anapi/manage).
+
+### Getting Started
 
 Using the rescuetime gem is simple. Here is some example code using the rescuetime gem:
 
