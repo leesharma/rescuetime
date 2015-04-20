@@ -60,9 +60,8 @@ require 'rescuetime'
 @client.activities          # Returns a list of activities, ordered by "rank"
 
 @client.activities.class    # => Array
-@client.activities.count    # => 41
-
 @client.activities[0].class # => Hash
+
 @client.activities[0]       
 # => {   
 #       :rank=>1, 
@@ -72,6 +71,14 @@ require 'rescuetime'
 #       :category=>"General Software Development", 
 #       :productivity=>2
 #    }
+
+# This is not a valid request yet, but it showcases the v0.2.0 features
+# you can expect.
+@client.activities { by: 'time',
+                     time_interval: 'minute',
+                     date: '2015-04-16',
+                     detail: 'activity',
+                     only: 'Software Development' }
 ```
 
 ## Development
