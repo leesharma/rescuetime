@@ -10,7 +10,7 @@ describe Rescuetime::Activities do
       expect(@client).to respond_to(:activities)
     end
     it 'returns list of activities' do
-      VCR.use_cassette('default activities list',
+      VCR.use_cassette('/data?key=AK',
                        match_requests_on: [:host, :path], record: :none) do
         expect(@client.activities).to be_instance_of(Array)
         expect(@client.activities[0]).to be_instance_of(Hash)
@@ -19,7 +19,7 @@ describe Rescuetime::Activities do
     describe 'restrict_kind:' do
       describe "'overview'" do
         it 'restricts activity detail to overview' do
-          VCR.use_cassette('api_client.activities restrict_kind: overview',
+          VCR.use_cassette('/data?key=AK&restrict_kind=overview',
                            match_requests_on: [:host, :path], record: :none) do
             activities = @client.activities restrict_kind: 'overview'
             activity_keys = activities[0].keys
@@ -32,7 +32,7 @@ describe Rescuetime::Activities do
 
       describe "'category'" do
         it 'restricts activity detail to category' do
-          VCR.use_cassette('api_client.activities restrict_kind: category',
+          VCR.use_cassette('/data?key=AK&restrict_kind=category',
                            match_requests_on: [:host, :path], record: :none) do
             activities = @client.activities restrict_kind: 'category'
             activity_keys = activities[0].keys
@@ -45,7 +45,7 @@ describe Rescuetime::Activities do
 
       describe "'activity'" do
         it 'restricts activity detail to activity' do
-          VCR.use_cassette('api_client.activities restrict_kind: activity',
+          VCR.use_cassette('/data?key=AK&restrict_kind=activity',
                            match_requests_on: [:host, :path], record: :none) do
             activities = @client.activities restrict_kind: 'activity'
             activity_keys = activities[0].keys
@@ -56,7 +56,7 @@ describe Rescuetime::Activities do
 
       describe "'productivity'" do
         it 'returns productivity report' do
-          VCR.use_cassette('api_client.activities restrict_kind: productivity',
+          VCR.use_cassette('/data?key=AK&restrict_kind=productivity',
                            match_requests_on: [:host, :path], record: :none) do
             activities = @client.activities restrict_kind: 'productivity'
             activity_keys = activities[0].keys

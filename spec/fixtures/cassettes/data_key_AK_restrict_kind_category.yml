@@ -23,7 +23,7 @@ http_interactions:
       Content-Type:
       - text/csv; charset=utf-8
       Date:
-      - Mon, 20 Apr 2015 16:53:04 GMT
+      - Mon, 20 Apr 2015 19:20:53 GMT
       Expires:
       - Fri, 01 Jan 1990 00:00:00 GMT
       Pragma:
@@ -35,35 +35,36 @@ http_interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - 202ebfaa-4efb-48e9-aae1-a33abc511f7a
+      - a1d8978f-ed5c-489f-9712-4478fd2c88ee
       X-Runtime:
-      - '0.055859'
+      - '0.134992'
       X-Xss-Protection:
       - 1; mode=block
       Content-Length:
-      - '441'
+      - '470'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: |
         Rank,Time Spent (seconds),Number of People,Category
-        1,2722,1,Design & Planning
-        2,2559,1,General News & Opinion
-        3,2341,1,Intelligence
-        4,2237,1,General Software Development
-        5,1740,1,Editing & IDEs
-        6,1104,1,General Social Networking
-        7,118,1,Systems Operations
-        8,93,1,Instant Message
-        9,86,1,Email
-        10,76,1,Comedy
-        11,68,1,Browsers
-        12,50,1,Search
-        13,47,1,Engineering & Technology
-        14,38,1,Uncategorized
-        15,29,1,General Utilities
-        16,1,1,Presentation
+        1,5835,1,Editing & IDEs
+        2,3909,1,General Software Development
+        3,2972,1,Design & Planning
+        4,2559,1,General News & Opinion
+        5,2491,1,Intelligence
+        6,1128,1,General Social Networking
+        7,477,1,Uncategorized
+        8,401,1,Engineering & Technology
+        9,385,1,Systems Operations
+        10,162,1,Search
+        11,97,1,Browsers
+        12,93,1,Instant Message
+        13,86,1,Email
+        14,76,1,Comedy
+        15,39,1,Quality Assurance
+        16,38,1,General Utilities
+        17,1,1,Presentation
     http_version: 
-  recorded_at: Mon, 20 Apr 2015 16:53:04 GMT
+  recorded_at: Mon, 20 Apr 2015 19:20:53 GMT
 recorded_with: VCR 2.9.3

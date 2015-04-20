@@ -23,7 +23,7 @@ http_interactions:
       Content-Type:
       - text/csv; charset=utf-8
       Date:
-      - Mon, 20 Apr 2015 16:54:29 GMT
+      - Mon, 20 Apr 2015 19:20:53 GMT
       Expires:
       - Fri, 01 Jan 1990 00:00:00 GMT
       Pragma:
@@ -35,29 +35,29 @@ http_interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - ebf8fc9d-9043-459c-ac3d-f14b36bbf7ca
+      - 296e343d-ee21-4004-8dad-ffdc02148465
       X-Runtime:
-      - '0.034450'
+      - '0.130792'
       X-Xss-Protection:
       - 1; mode=block
       Content-Length:
-      - '303'
+      - '305'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: |
         Rank,Time Spent (seconds),Number of People,Category
-        1,8479,1,Software Development
+        1,13140,1,Software Development
         2,2559,1,News & Opinion
-        3,2378,1,Business
+        3,2491,1,Business
         4,1128,1,Social Networking
-        5,179,1,Communication & Scheduling
-        6,119,1,Reference & Learning
-        7,100,1,Utilities
-        8,76,1,Entertainment
-        9,38,1,Uncategorized
+        5,563,1,Reference & Learning
+        6,477,1,Uncategorized
+        7,179,1,Communication & Scheduling
+        8,135,1,Utilities
+        9,76,1,Entertainment
         10,1,1,Design & Composition
-    http_version:
-  recorded_at: Mon, 20 Apr 2015 16:54:29 GMT
+    http_version: 
+  recorded_at: Mon, 20 Apr 2015 19:20:53 GMT
 recorded_with: VCR 2.9.3
