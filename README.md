@@ -17,12 +17,15 @@ Currently, this gem only supports the Data Analytics API with API key authorizat
 
 For more information about RescueTime, visit [the RescueTime homepage](https://www.rescuetime.com).
 
+#### README Navigation
+
 * [Installation](#installation)
 * [Usage](#usage)
    * [Prerequisites](#prerequisites)
    * [Getting Started](#getting-started)
-* [Development](#development) ([wiki](https://github.com/leesharma/rescuetime/wiki/Development))
-* [Contributing](#contributing) ([wiki](https://github.com/leesharma/rescuetime/wiki/Contributing))
+   * [Defaults](#defaults)
+* [Development](https://github.com/leesharma/rescuetime/wiki/Development) ([section](#development))
+* [Contributing](CONTRIBUTING.md) ([section](#contributing))
 
 ## Installation
 
@@ -100,4 +103,4 @@ See the [development page](https://github.com/leesharma/rescuetime/wiki/Developm
 
 ## Contributing
 
-See the [contributing page](https://github.com/leesharma/rescuetime/wiki/Contributing) of the wiki.
+See the [contributing page](CONTRIBUTING.md).
