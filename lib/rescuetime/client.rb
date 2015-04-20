@@ -11,6 +11,9 @@ module Rescuetime
   class Client
     include Rescuetime::Api
 
+    # Default options passed in any request
+    DEFAULT_OPTIONS = {format: 'csv', version: 0, operation: 'select' }
+
     # Overwrites the set RescueTime API key
     #
     # @!attribute [w] api_key
@@ -37,6 +40,18 @@ module Rescuetime
     # @since v0.1.0
     def api_key?
       !!@api_key
+    end
+
+    protected
+
+    # Performs an HTTP get request
+    #
+    # @param [String] url request url
+    # @param [Hash] options query params for request
+    def get(url, options={})
+      Faraday.get url, options.
+                         merge(DEFAULT_OPTIONS).
+                         merge({key: @api_key})
     end
   end
 end
