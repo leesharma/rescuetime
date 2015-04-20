@@ -1,7 +1,5 @@
 # Contributing
 
-**Note: See [the Contributing guide on the project wiki](https://github.com/leesharma/rescuetime/wiki/Contributing) for the most up-to-date information**
-
 The contributing guide includes the following sections:
 
 * [Getting Started](#getting-started)
