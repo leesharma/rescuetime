@@ -75,6 +75,17 @@ require 'rescuetime'
 #       :productivity=>2
 #    }
 
+# The :restrict_kind option lets you set the kind and/or detail level of your report.
+#   Possible values: ['overview', 'category', 'activity', 'productivity', 'efficiency']
+@client.activities restrict_kind: 'productivity'
+# =>  [
+#       { :rank=>1, :time_spent_seconds=>6956, :number_of_people=>1, :productivity=>2 },
+#       { :rank=>2, :time_spent_seconds=>2635, :number_of_people=>1, :productivity=>-2 },
+#       { :rank=>3, :time_spent_seconds=>2415, :number_of_people=>1, :productivity=>1 },
+#       { :rank=>4, :time_spent_seconds=>1210, :number_of_people=>1, :productivity=>0 },
+#       { :rank=>5, :time_spent_seconds=>93, :number_of_people=>1, :productivity=>-1 }
+#     ]
+
 # This is not a valid request yet, but it showcases the v0.2.0 features
 # you can expect.
 @client.activities { by: 'time',
@@ -93,7 +104,7 @@ The `Rescuetime::Client#activities` action has the following defaults:
 { by:               'rank'
   time_interval:    'hour'
   date:             <TODAY>
-  detail:           'productivity' }
+  restrict_kind:    'activity' }
 
 ```
 
