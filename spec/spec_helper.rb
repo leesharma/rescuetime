@@ -1,11 +1,10 @@
 # Test coverage reporters
 require 'codeclimate-test-reporter'
-require 'simplecov'
+CodeClimate::TestReporter.start
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
     SimpleCov::Formatter::HTMLFormatter,
     CodeClimate::TestReporter::Formatter
 ]
-SimpleCov.start
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'rescuetime'
