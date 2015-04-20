@@ -12,6 +12,7 @@ module Rescuetime
     include Rescuetime::Api
 
     # Default options passed in any request
+    # @since v0.2.0
     DEFAULT_OPTIONS = {format: 'csv', version: 0, operation: 'select' }
 
     # Overwrites the set RescueTime API key
@@ -26,6 +27,7 @@ module Rescuetime
     #   @client = Rescuetime::Client.new  # options must be set before requests can be made
     # @example
     #   @client = Rescuetime::Client.new(api_key: '1234567890abcdefg')
+    #
     # @param [Hash] options hash of RescueTime client options
     # @option options [String] :api_key RescueTime API key
     # @return [Rescuetime::Client]
@@ -48,6 +50,7 @@ module Rescuetime
     #
     # @param [String] url request url
     # @param [Hash] options query params for request
+    # @since v0.2.0
     def get(url, options={})
       Faraday.get url, options.
                          merge(DEFAULT_OPTIONS).

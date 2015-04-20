@@ -5,10 +5,14 @@ describe Rescuetime::Activities do
     @client = Rescuetime::Client.new(api_key: 'AK')
   end
 
-  describe '#activities' do
-    it 'exists' do
-      expect(@client).to respond_to(:activities)
+  describe '#productivity_levels' do
+    it 'returns map of numeric productivity levels to meaning' do
+      expect(@client.productivity_levels).to be_an_instance_of(Hash)
+      expect(@client.productivity_levels.keys).to eq([-2,-1,0,1,2])
     end
+  end
+
+  describe '#activities' do
     it 'returns list of activities' do
       VCR.use_cassette('/data?key=AK',
                        match_requests_on: [:host, :path], record: :none) do

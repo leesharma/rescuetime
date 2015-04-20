@@ -5,15 +5,24 @@ module Rescuetime
   # @since v0.1.0
   module Activities
     # Base URL for RescueTime Data Analytics API endpoint
+    # @since v0.1.0
     BASE_URL = 'https://www.rescuetime.com/anapi/data'
+    # Map of numeric productivity levels to meaning
+    # @since v0.2.0
+    PRODUCTIVITY_LEVELS = { -2=>'Very Unproductive',
+                            -1=>'Unproductive',
+                            0=>'Neutral',
+                            1=>'Productive',
+                            2=>'Very Productive' }
 
     # Returns array of all activities. The default request is equivalent to @client.activities restrict_kind: 'activity'
     #
-    # @example
-    #   @client.activities.class     # => Array
-    #   @client.acitvities[0].class  # => Hash
+    # @example Basic behavior
+    #   @activities = @client.activities
+    #   @activities.class     # => Array
+    #   @acitvities[0].class  # => Hash
     #
-    #   @client.activities[0]
+    #   @activities[0]
     #   # =>  {
     #   #       :rank=>1,
     #   #       :time_spent_seconds=>5307,
@@ -23,7 +32,22 @@ module Rescuetime
     #   #       :productivity=>2
     #   #     }
     #
-    #   @client.activities({ restrict_kind: 'productivity' })
+    # @example Restrict by kind
+    #   @client.activities(restrict_kind: 'overview')[0]
+    #   # => { :rank=>1, :time_spent_seconds=>13140, :number_of_people=>1, :category=>'Software Development' }
+    #
+    #   @client.activities(restrict_kind: 'category')[0]
+    #   # => { :rank=>1, :time_spent_seconds=>5835, :number_of_people=>1, :category=>'Editing and IDEs' }
+    #
+    #   @client.activities(restrict_kind: 'activity')[0]
+    #   # => { :rank=>1,
+    #   #      :time_spent_seconds=>5835,
+    #   #      :number_of_people=>1,
+    #   #      :category=>'Editing and IDEs',
+    #   #      :activity=>'RubyMine',
+    #   #      :productivity=>2 }
+    #
+    #   @activities = @client.activities(restrict_kind: 'productivity')
     #   # =>  [
     #   #       { :rank=>1, :time_spent_seconds=>6956, :number_of_people=>1, :productivity=>2 },
     #   #       { :rank=>2, :time_spent_seconds=>2635, :number_of_people=>1, :productivity=>-2 },
@@ -31,6 +55,12 @@ module Rescuetime
     #   #       { :rank=>4, :time_spent_seconds=>1210, :number_of_people=>1, :productivity=>0 },
     #   #       { :rank=>5, :time_spent_seconds=>93, :number_of_people=>1, :productivity=>-1 }
     #   #     ]
+    #
+    #   @activity = @activities[0]
+    #
+    #   @primary_productivity = @client.productivity_levels[@activity[:productivity]]
+    #   puts "I have spent most of my time being #{@primary_productivity}."
+    #   # => I have spent most of my time being Very Productive.
     #
     # @param [Hash] options Query parameters to be passed to RescueTime
     # @option options [String] :restrict_kind
@@ -40,11 +70,20 @@ module Rescuetime
     #   3. 'activity': sums statistics for individual applications / web sites / activities
     #   4. 'productivity': productivity calculation
     #   5. 'efficiency': efficiency calculation (not applicable in "rank" perspective)
+    #
     # @return [Array<Hash>]
     # @since v0.1.0
     def activities(options={})
       response = self.get BASE_URL, options
       activities_from_csv response.body
+    end
+
+    # Returns map of numeric productivity levels to meaning
+    #
+    # @return [Hash]
+    # @since v0.2.0
+    def productivity_levels
+      PRODUCTIVITY_LEVELS
     end
 
     private
@@ -53,6 +92,7 @@ module Rescuetime
     #
     # @param body[CSV] the original CSV file
     # @return [Array] an array of hashes, containing keys of the CSV headers
+    # @since v0.1.0
     def activities_from_csv(body)
       activities = CSV.new(body,
                            headers: true,
