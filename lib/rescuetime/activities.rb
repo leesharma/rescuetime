@@ -27,7 +27,9 @@ module Rescuetime
     def activities
       connection = Faraday.new(Rescuetime::Activities::BASE_URL)
       options = { key: @api_key,
-                  format: 'csv' }
+                  format: 'csv',
+                  version: 0,
+                  operation: 'select' }
       response = connection.get '', options
 
       activities_from_csv response.body
