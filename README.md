@@ -81,6 +81,19 @@ require 'rescuetime'
                      only: 'Software Development' }
 ```
 
+### Defaults
+
+The `Rescuetime::Client#activities` action has the following defaults:
+
+```ruby
+
+{ by:               'rank'
+  time_interval:    'hour'
+  date:             <TODAY>
+  detail:           'productivity' }
+
+```
+
 ## Development
 
 See the [development page](https://github.com/leesharma/rescuetime/wiki/Development) of the wiki.
