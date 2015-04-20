@@ -8,7 +8,7 @@ rescuetime v0.2.0 development branch
 [![Release](https://img.shields.io/github/release/leesharma/rescuetime.svg?style=flat-square)](https://github.com/leesharma/rescuetime/releases/tag/v0.1.0)
 [![License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 
-**This is the v0.2.0 development branch, which will allow full access to the RescueTime Data Analytics API. For more information about the progress towards the release, [view the issue tracking for this milestone](https://github.com/leesharma/rescuetime/milestones/v1.0.0%20(Data%20Analytics%20API))**
+**This is the v0.2.0 development branch, which will allow full access to the RescueTime Data Analytics API. For more information about the progress towards the release, [view the issue tracking for this milestone](https://github.com/leesharma/rescuetime/milestones/v0.2.0%20(Data%20Analytics%20API))**
 
 A Ruby interface to the RescueTime APIs. Rescuetime provides a simple DSL for interacting
 with your personal or team RescueTime data.
