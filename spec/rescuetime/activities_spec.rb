@@ -21,6 +21,18 @@ describe Rescuetime::Activities do
       end
     end
 
+    describe 'format:' do
+      describe "'csv'" do
+        it 'returns in csv format' do
+          VCR.use_cassette('/data?key=AK',
+                           match_requests_on: [:host, :path], record: :none) do
+            csv = @client.activities format: 'csv'
+            expect(csv).to be_an_instance_of(CSV)
+          end
+        end
+      end
+    end
+
     describe 'by:' do
       describe "'rank'" do
         it 'is grouped and sorted by rank' do

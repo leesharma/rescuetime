@@ -15,7 +15,7 @@ module Rescuetime
                             1   => 'Productive',
                             2   => 'Very Productive' }
 
-    # Returns array of all activities. The default request is equivalent to @client.activities restrict_kind: 'activity'
+    # Returns array of all activities.
     #
     # @example Basic behavior
     #   @activities = @client.activities
@@ -32,14 +32,14 @@ module Rescuetime
     #   #       :productivity=>2
     #   #     }
     #
-    # @example Restrict by kind
-    #   @client.activities(restrict_kind: 'overview')[0]
+    # @example Set level of detail
+    #   @client.activities(detail: 'overview')[0]
     #   # => { :rank=>1, :time_spent_seconds=>13140, :number_of_people=>1, :category=>'Software Development' }
     #
-    #   @client.activities(restrict_kind: 'category')[0]
+    #   @client.activities(detail: 'category')[0]
     #   # => { :rank=>1, :time_spent_seconds=>5835, :number_of_people=>1, :category=>'Editing and IDEs' }
     #
-    #   @client.activities(restrict_kind: 'activity')[0]
+    #   @client.activities(detail: 'activity')[0]
     #   # => { :rank=>1,
     #   #      :time_spent_seconds=>5835,
     #   #      :number_of_people=>1,
@@ -47,7 +47,7 @@ module Rescuetime
     #   #      :activity=>'RubyMine',
     #   #      :productivity=>2 }
     #
-    #   @activities = @client.activities(restrict_kind: 'productivity')
+    #   @activities = @client.activities(detail: 'productivity')
     #   # =>  [
     #   #       { :rank=>1, :time_spent_seconds=>6956, :number_of_people=>1, :productivity=>2 },
     #   #       { :rank=>2, :time_spent_seconds=>2635, :number_of_people=>1, :productivity=>-2 },
@@ -56,10 +56,14 @@ module Rescuetime
     #   #       { :rank=>5, :time_spent_seconds=>93, :number_of_people=>1, :productivity=>-1 }
     #   #     ]
     #
-    # @example Perspective
-    #   @client.activities(perspective: 'rank')     # Returns activities by rank (time spent per activity)
-    #   @client.activities(perspective: 'interval') # Returns activities chronologically
-    #   @client.activities(perspective: 'member')   # Returns activities grouped by member
+    # @example Set perspective
+    #   @client.activities(by: 'rank')     # Returns activities by rank (time spent per activity)
+    #   @client.activities(by: 'interval') # Returns activities chronologically
+    #   @client.activities(by: 'member')   # Returns activities grouped by member
+    #
+    # @example Format
+    #   @client.activities                # Returns array of hashes
+    #   @client.activities format: 'csv'  # Returns Mime::CSV
     #
     # @param [Hash] options Query parameters to be passed to RescueTime
     # @option options [String] :detail
@@ -74,6 +78,10 @@ module Rescuetime
     #   1. 'rank' (default): returns a ranked report of activities by total time spent
     #   2. 'time': returns a chronological report of activities
     #   3. 'member': returns an activity report grouped by member
+    # @option options [String] :format
+    #   Lets you specify a return type for your report
+    #   1. default: returns an array of hashes with symbolized keys
+    #   2. 'csv': returns a Mime::CSV object
     #
     # @return [Array<Hash>]
     #
@@ -82,7 +90,11 @@ module Rescuetime
     # @since v0.1.0
     def activities(options={})
       response = self.get BASE_URL, options
-      activities_from_csv response.body
+
+      case options[:format]
+        when 'csv' then CSV.new(response.body, headers: true)
+        else array_of_hashes_from_csv(response.body)
+      end
     end
 
     # Returns map of numeric productivity levels to meaning
@@ -94,7 +106,7 @@ module Rescuetime
     #   puts "I have spent most of my time being #{@primary_productivity}."
     #   # => I have spent most of my time being Very Productive.
     #
-    # @return [Hash]
+    # @return [Hash] productivity levels, with integers from -2 to 2 as keys
     # @since v0.2.0
     def productivity_levels
       PRODUCTIVITY_LEVELS
@@ -107,7 +119,7 @@ module Rescuetime
     # @param body[CSV] the original CSV file
     # @return [Array] an array of hashes, containing keys of the CSV headers
     # @since v0.1.0
-    def activities_from_csv(body)
+    def array_of_hashes_from_csv(body)
       activities = CSV.new(body,
                            headers: true,
                            header_converters: :symbol,
