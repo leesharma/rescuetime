@@ -21,3 +21,11 @@ VCR.configure do |config|
   # Put '<RESCUETIME_API_KEY>' so API key is not committed to source control
   config.filter_sensitive_data('<RESCUETIME_API_KEY>') { 'AK' }
 end
+
+
+# Helper methods
+
+def collect_invalid_dates(activities, valid)
+  activities.collect { |activity| activity[:date] }.
+      delete_if { |date| date=~ valid }
+end

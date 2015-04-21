@@ -1,0 +1,548 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.rescuetime.com/anapi/data?format=csv&key=<RESCUETIME_API_KEY>&operation=select&perspective=interval&version=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - text/csv; charset=utf-8
+      Date:
+      - Tue, 21 Apr 2015 19:28:08 GMT
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 4894f815-b6b9-4bc8-9016-5d474c643661
+      X-Runtime:
+      - '0.304146'
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        Date,Time Spent (seconds),Number of People,Activity,Category,Productivity
+        2015-04-21T00:00:00,1185,1,rubymine,Editing & IDEs,2
+        2015-04-21T00:00:00,540,1,Terminal,Systems Operations,2
+        2015-04-21T00:00:00,521,1,waffle.io,Design & Planning,2
+        2015-04-21T00:00:00,363,1,ruby-doc.org,Engineering & Technology,2
+        2015-04-21T00:00:00,223,1,reddit.com,General News & Opinion,-2
+        2015-04-21T00:00:00,138,1,feedly.com,General News & Opinion,-2
+        2015-04-21T00:00:00,114,1,github.com,General Software Development,2
+        2015-04-21T00:00:00,96,1,rescuetime.com,Intelligence,1
+        2015-04-21T00:00:00,87,1,Gmail,Email,2
+        2015-04-21T00:00:00,57,1,girlgeniusonline.com,Comedy,-2
+        2015-04-21T00:00:00,34,1,gunnerkrigg.com,Comedy,-2
+        2015-04-21T00:00:00,34,1,somethingpositive.net,Comedy,-2
+        2015-04-21T00:00:00,33,1,thepunchlineismachismo.com,Comedy,-2
+        2015-04-21T00:00:00,7,1,travis-ci.org,Quality Assurance,2
+        2015-04-21T00:00:00,6,1,Safari,Browsers,0
+        2015-04-21T00:00:00,3,1,stackoverflow.com,General Software Development,2
+        2015-04-21T00:00:00,2,1,google.com,Search,1
+        2015-04-21T00:00:00,1,1,Finder,General Utilities,1
+        2015-04-21T01:00:00,538,1,reddit.com,General News & Opinion,-2
+        2015-04-21T01:00:00,186,1,waffle.io,Design & Planning,2
+        2015-04-21T01:00:00,18,1,loginwindow,General Utilities,1
+        2015-04-21T01:00:00,5,1,Gmail,Email,2
+        2015-04-21T05:00:00,29,1,loginwindow,General Utilities,1
+        2015-04-21T13:00:00,328,1,reddit.com,General News & Opinion,-2
+        2015-04-21T13:00:00,207,1,feedly.com,General News & Opinion,-2
+        2015-04-21T13:00:00,189,1,facebook.com,General Social Networking,0
+        2015-04-21T13:00:00,141,1,gizmodo.com,Science & Technology,-2
+        2015-04-21T13:00:00,91,1,loginwindow,General Utilities,1
+        2015-04-21T13:00:00,43,1,somethingpositive.net,Comedy,-2
+        2015-04-21T13:00:00,14,1,buttersafe.com,Comedy,-2
+        2015-04-21T13:00:00,12,1,Safari,Browsers,0
+        2015-04-21T13:00:00,11,1,imgur.com,Photos,-2
+        2015-04-21T14:00:00,1143,1,rubymine,Editing & IDEs,2
+        2015-04-21T14:00:00,1072,1,reddit.com,General News & Opinion,-2
+        2015-04-21T14:00:00,850,1,github.com,General Software Development,2
+        2015-04-21T14:00:00,51,1,blog.rubygems.org,Engineering & Technology,2
+        2015-04-21T14:00:00,34,1,docs.podigee.com,Uncategorized,0
+        2015-04-21T14:00:00,22,1,waffle.io,Design & Planning,2
+        2015-04-21T14:00:00,20,1,Terminal,Systems Operations,2
+        2015-04-21T14:00:00,20,1,Safari,Browsers,0
+        2015-04-21T14:00:00,17,1,Finder,General Utilities,1
+        2015-04-21T14:00:00,14,1,rubydoc.info,General Software Development,2
+        2015-04-21T14:00:00,7,1,google.com,Search,1
+        2015-04-21T14:00:00,7,1,brandonhilkert.com,Uncategorized,0
+        2015-04-21T14:00:00,5,1,rubygems.org,Engineering & Technology,2
+    http_version: 
+  recorded_at: Tue, 21 Apr 2015 19:28:07 GMT
+- request:
+    method: get
+    uri: https://www.rescuetime.com/anapi/data?format=csv&key=<RESCUETIME_API_KEY>&operation=select&perspective=interval&restrict_begin=2015-04-19&restrict_end=2015-04-21&version=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - text/csv; charset=utf-8
+      Date:
+      - Tue, 21 Apr 2015 19:30:24 GMT
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - f05d376a-8b85-4bc0-b1a2-889cdbf21252
+      X-Runtime:
+      - '0.369263'
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        Date,Time Spent (seconds),Number of People,Activity,Category,Productivity
+        2015-04-19T09:00:00,1302,1,reddit.com,General News & Opinion,-2
+        2015-04-19T09:00:00,418,1,feedly.com,General News & Opinion,-2
+        2015-04-19T09:00:00,150,1,Gmail,Email,2
+        2015-04-19T09:00:00,38,1,loginwindow,General Utilities,1
+        2015-04-19T09:00:00,34,1,twokinds.keenspot.com,Comedy,-2
+        2015-04-19T09:00:00,22,1,github.com,General Software Development,2
+        2015-04-19T09:00:00,7,1,learn.vccs.edu,Homework,2
+        2015-04-19T09:00:00,7,1,trello.com,Project Management,2
+        2015-04-19T09:00:00,3,1,Safari,Browsers,0
+        2015-04-19T09:00:00,3,1,nvcc.edu,General Reference & Learning,2
+        2015-04-19T09:00:00,2,1,pypi.python.org,General Software Development,2
+        2015-04-19T09:00:00,1,1,owl.english.purdue.edu,General Reference & Learning,2
+        2015-04-19T09:00:00,1,1,fiddle.md,Uncategorized,0
+        2015-04-19T10:00:00,1540,1,pages,Presentation,2
+        2015-04-19T10:00:00,278,1,learn.vccs.edu,Homework,2
+        2015-04-19T10:00:00,122,1,google.com,Search,1
+        2015-04-19T10:00:00,75,1,creativebloq.com,General Reference & Learning,2
+        2015-04-19T10:00:00,24,1,Safari,Browsers,0
+        2015-04-19T10:00:00,18,1,justmytype.co,Uncategorized,0
+        2015-04-19T10:00:00,10,1,feedly.com,General News & Opinion,-2
+        2015-04-19T10:00:00,7,1,nvcc.my.vccs.edu,General Reference & Learning,2
+        2015-04-19T10:00:00,6,1,macgetit.com,Uncategorized,0
+        2015-04-19T10:00:00,5,1,Finder,General Utilities,1
+        2015-04-19T10:00:00,5,1,TextEdit,Writing,2
+        2015-04-19T10:00:00,3,1,i.ytimg.com,General Entertainment,-2
+        2015-04-19T10:00:00,3,1,documentsanddesigns.com,Uncategorized,0
+        2015-04-19T10:00:00,2,1,clipartbest.com,Uncategorized,0
+        2015-04-19T11:00:00,1099,1,learn.vccs.edu,Homework,2
+        2015-04-19T11:00:00,618,1,pages,Presentation,2
+        2015-04-19T11:00:00,169,1,go.proctoru.com,Homework,2
+        2015-04-19T11:00:00,109,1,sublime text,Editing & IDEs,2
+        2015-04-19T11:00:00,85,1,Preview,General Reference & Learning,2
+        2015-04-19T11:00:00,60,1,feedly.com,General News & Opinion,-2
+        2015-04-19T11:00:00,56,1,kilohotel.com,Uncategorized,0
+        2015-04-19T11:00:00,43,1,trello.com,Project Management,2
+        2015-04-19T11:00:00,39,1,pypi.python.org,General Software Development,2
+        2015-04-19T11:00:00,27,1,TextEdit,Writing,2
+        2015-04-19T11:00:00,21,1,loginwindow,General Utilities,1
+        2015-04-19T11:00:00,18,1,google.com,Search,1
+        2015-04-19T11:00:00,17,1,Finder,General Utilities,1
+        2015-04-19T11:00:00,15,1,Safari,Browsers,0
+        2015-04-19T11:00:00,4,1,proctoru.com,Homework,2
+        2015-04-19T11:00:00,2,1,printerproxy,General Business,2
+        2015-04-19T11:00:00,2,1,nvcc.edu,General Reference & Learning,2
+        2015-04-19T11:00:00,2,1,nvcc.my.vccs.edu,General Reference & Learning,2
+        2015-04-19T12:00:00,761,1,learn.vccs.edu,Homework,2
+        2015-04-19T12:00:00,267,1,go.proctoru.com,Homework,2
+        2015-04-19T12:00:00,92,1,trello.com,Project Management,2
+        2015-04-19T12:00:00,81,1,logmeinrescue,Homework,2
+        2015-04-19T12:00:00,51,1,proctoru.com:8080,Uncategorized,0
+        2015-04-19T12:00:00,40,1,pages,Presentation,2
+        2015-04-19T12:00:00,37,1,loginwindow,General Utilities,1
+        2015-04-19T12:00:00,32,1,Finder,General Utilities,1
+        2015-04-19T12:00:00,24,1,Preview,General Reference & Learning,2
+        2015-04-19T12:00:00,19,1,evernote,Intelligence,2
+        2015-04-19T12:00:00,14,1,owl.english.purdue.edu,General Reference & Learning,2
+        2015-04-19T12:00:00,12,1,1password mini,Internet Utilities,0
+        2015-04-19T12:00:00,9,1,System Preferences,General Utilities,1
+        2015-04-19T12:00:00,7,1,fiddle.md,Uncategorized,0
+        2015-04-19T12:00:00,5,1,pypi.python.org,General Software Development,2
+        2015-04-19T12:00:00,5,1,coreservicesuiagent,General Utilities,1
+        2015-04-19T12:00:00,3,1,kilohotel.com,Uncategorized,0
+        2015-04-19T12:00:00,2,1,TextEdit,Writing,2
+        2015-04-19T12:00:00,2,1,nvcc.edu,General Reference & Learning,2
+        2015-04-19T12:00:00,2,1,rubymine,Editing & IDEs,2
+        2015-04-19T12:00:00,2,1,Safari,Browsers,0
+        2015-04-19T12:00:00,1,1,sublime text,Editing & IDEs,2
+        2015-04-19T13:00:00,3486,1,pages,Presentation,2
+        2015-04-19T13:00:00,47,1,learn.vccs.edu,Homework,2
+        2015-04-19T13:00:00,29,1,logmeinrescue,Homework,2
+        2015-04-19T13:00:00,11,1,go.proctoru.com,Homework,2
+        2015-04-19T13:00:00,9,1,nvcc.my.vccs.edu,General Reference & Learning,2
+        2015-04-19T13:00:00,7,1,Safari,Browsers,0
+        2015-04-19T13:00:00,5,1,1password mini,Internet Utilities,0
+        2015-04-19T14:00:00,2338,1,pages,Presentation,2
+        2015-04-19T17:00:00,1032,1,smbc-comics.com,Comedy,-2
+        2015-04-19T17:00:00,823,1,pages,Presentation,2
+        2015-04-19T17:00:00,312,1,reddit.com,General News & Opinion,-2
+        2015-04-19T17:00:00,56,1,faculty.wwu.edu,General Reference & Learning,2
+        2015-04-19T17:00:00,37,1,quicktime player,General Entertainment,-2
+        2015-04-19T17:00:00,30,1,hyperphysics.phy-astr.gsu.edu,General Reference & Learning,2
+        2015-04-19T17:00:00,27,1,feedly.com,General News & Opinion,-2
+        2015-04-19T17:00:00,18,1,google.com,Search,1
+        2015-04-19T17:00:00,18,1,loginwindow,General Utilities,1
+        2015-04-19T17:00:00,13,1,Gmail,Email,2
+        2015-04-19T17:00:00,11,1,trello.com,Project Management,2
+        2015-04-19T17:00:00,9,1,Safari,Browsers,0
+        2015-04-19T17:00:00,6,1,Finder,General Utilities,1
+        2015-04-19T17:00:00,5,1,farside.ph.utexas.edu,General Reference & Learning,2
+        2015-04-19T17:00:00,4,1,RescueTime,Intelligence,2
+        2015-04-19T17:00:00,3,1,nvcc.my.vccs.edu,General Reference & Learning,2
+        2015-04-19T17:00:00,2,1,learn.vccs.edu,Homework,2
+        2015-04-19T20:00:00,1840,1,pages,Presentation,2
+        2015-04-19T20:00:00,618,1,logger pro,Health & Medicine,2
+        2015-04-19T20:00:00,234,1,google.com,Search,1
+        2015-04-19T20:00:00,157,1,dev.physicslab.org,Uncategorized,0
+        2015-04-19T20:00:00,150,1,csun.edu,General Reference & Learning,2
+        2015-04-19T20:00:00,108,1,physics.stackexchange.com,Engineering & Technology,2
+        2015-04-19T20:00:00,85,1,en.wikipedia.org,General Reference & Learning,2
+        2015-04-19T20:00:00,73,1,iWork Numbers,General Business,2
+        2015-04-19T20:00:00,62,1,quicktime player,General Entertainment,-2
+        2015-04-19T20:00:00,60,1,physicsclassroom.com,General Reference & Learning,2
+        2015-04-19T20:00:00,33,1,Finder,General Utilities,1
+        2015-04-19T20:00:00,24,1,allaboutcircuits.com,General Reference & Learning,2
+        2015-04-19T20:00:00,14,1,trello.com,Project Management,2
+        2015-04-19T20:00:00,10,1,Safari,Browsers,0
+        2015-04-19T20:00:00,6,1,loginwindow,General Utilities,1
+        2015-04-19T20:00:00,6,1,farside.ph.utexas.edu,General Reference & Learning,2
+        2015-04-19T20:00:00,3,1,Calculator,General Utilities,1
+        2015-04-19T21:00:00,1446,1,pages,Presentation,2
+        2015-04-19T21:00:00,431,1,google.com,Search,1
+        2015-04-19T21:00:00,408,1,learn.vccs.edu,Homework,2
+        2015-04-19T21:00:00,89,1,electronics-tutorials.ws,Engineering & Technology,2
+        2015-04-19T21:00:00,37,1,electronics.stackexchange.com,General Software Development,2
+        2015-04-19T21:00:00,25,1,trello.com,Project Management,2
+        2015-04-19T21:00:00,14,1,answers.yahoo.com,Search,2
+        2015-04-19T21:00:00,10,1,en.wikipedia.org,General Reference & Learning,2
+        2015-04-19T21:00:00,10,1,logger pro,Health & Medicine,2
+        2015-04-19T21:00:00,9,1,Gmail,Email,2
+        2015-04-19T21:00:00,6,1,iWork Numbers,General Business,2
+        2015-04-19T21:00:00,5,1,Finder,General Utilities,1
+        2015-04-19T21:00:00,5,1,quicktime player,General Entertainment,-2
+        2015-04-19T21:00:00,2,1,Calculator,General Utilities,1
+        2015-04-19T21:00:00,2,1,monte.k12.co.us,Uncategorized,0
+        2015-04-19T21:00:00,2,1,webphysics.davidson.edu,General Reference & Learning,2
+        2015-04-19T21:00:00,1,1,java applet - webphysics.davidson.edu,Uncategorized,0
+        2015-04-19T22:00:00,241,1,learn.vccs.edu,Homework,2
+        2015-04-19T22:00:00,199,1,np.reddit.com,General News & Opinion,-2
+        2015-04-19T22:00:00,146,1,pages,Presentation,2
+        2015-04-19T22:00:00,40,1,google.com,Search,1
+        2015-04-19T22:00:00,32,1,reddit.com,General News & Opinion,-2
+        2015-04-19T22:00:00,26,1,quicktime player,General Entertainment,-2
+        2015-04-19T22:00:00,18,1,loginwindow,General Utilities,1
+        2015-04-19T22:00:00,12,1,Safari,Browsers,0
+        2015-04-19T22:00:00,9,1,applications,General Business,2
+        2015-04-19T22:00:00,6,1,nvcc.my.vccs.edu,General Reference & Learning,2
+        2015-04-19T22:00:00,4,1,Finder,General Utilities,1
+        2015-04-19T22:00:00,3,1,trello.com,Project Management,2
+        2015-04-19T22:00:00,2,1,vccs.edu,General Reference & Learning,2
+        2015-04-19T23:00:00,587,1,codeclimate.com,Quality Assurance,2
+        2015-04-19T23:00:00,480,1,facebook.com,General Social Networking,0
+        2015-04-19T23:00:00,440,1,reddit.com,General News & Opinion,-2
+        2015-04-19T23:00:00,339,1,github.com,General Software Development,2
+        2015-04-19T23:00:00,267,1,colloquy,General Communication & Scheduling,-2
+        2015-04-19T23:00:00,258,1,stumbleupon.com,General News & Opinion,-2
+        2015-04-19T23:00:00,200,1,stackoverflow.com,General Software Development,2
+        2015-04-19T23:00:00,170,1,nerdist.com,General News & Opinion,-2
+        2015-04-19T23:00:00,161,1,travis-ci.org,Quality Assurance,2
+        2015-04-19T23:00:00,130,1,diy-lego.diply.com,General Entertainment,-2
+        2015-04-19T23:00:00,111,1,gocomics.com,Comedy,-2
+        2015-04-19T23:00:00,90,1,airmail,Email,1
+        2015-04-19T23:00:00,56,1,loginwindow,General Utilities,1
+        2015-04-19T23:00:00,39,1,np.reddit.com,General News & Opinion,-2
+        2015-04-19T23:00:00,19,1,kiba-etl.org,Uncategorized,0
+        2015-04-19T23:00:00,13,1,Safari,Browsers,0
+        2015-04-19T23:00:00,11,1,docs.travis-ci.com,Engineering & Technology,2
+        2015-04-19T23:00:00,6,1,SecurityAgent,Systems Operations,2
+        2015-04-19T23:00:00,3,1,google.com,Search,1
+        2015-04-19T23:00:00,3,1,coreservicesuiagent,General Utilities,1
+        2015-04-20T00:00:00,1762,1,reddit.com,General News & Opinion,-2
+        2015-04-20T00:00:00,519,1,rubymine,Editing & IDEs,2
+        2015-04-20T00:00:00,480,1,github.com,General Software Development,2
+        2015-04-20T00:00:00,320,1,rescuetime.com,Intelligence,1
+        2015-04-20T00:00:00,87,1,stackoverflow.com,General Software Development,2
+        2015-04-20T00:00:00,82,1,waffle.io,Design & Planning,2
+        2015-04-20T00:00:00,76,1,gocomics.com,Comedy,-2
+        2015-04-20T00:00:00,70,1,Terminal,Systems Operations,2
+        2015-04-20T00:00:00,43,1,Safari,Browsers,0
+        2015-04-20T00:00:00,38,1,distilnetworks.com,Uncategorized,0
+        2015-04-20T00:00:00,38,1,Gmail,Email,2
+        2015-04-20T00:00:00,21,1,google.com,Search,1
+        2015-04-20T00:00:00,15,1,ruby-doc.org,Engineering & Technology,2
+        2015-04-20T00:00:00,9,1,Finder,General Utilities,1
+        2015-04-20T00:00:00,5,1,jetbrains.com,Search,2
+        2015-04-20T00:00:00,1,1,pages,Presentation,2
+        2015-04-20T01:00:00,1649,1,waffle.io,Design & Planning,2
+        2015-04-20T01:00:00,1629,1,rescuetime.com,Intelligence,1
+        2015-04-20T01:00:00,107,1,rubymine,Editing & IDEs,2
+        2015-04-20T01:00:00,72,1,github.com,General Software Development,2
+        2015-04-20T01:00:00,24,1,ruby-doc.org,Engineering & Technology,2
+        2015-04-20T01:00:00,24,1,help.github.com,Systems Operations,2
+        2015-04-20T01:00:00,8,1,Gmail,Email,2
+        2015-04-20T01:00:00,7,1,Safari,Browsers,0
+        2015-04-20T01:00:00,5,1,google.com,Search,1
+        2015-04-20T02:00:00,1304,1,github.com,General Software Development,2
+        2015-04-20T02:00:00,946,1,waffle.io,Design & Planning,2
+        2015-04-20T02:00:00,756,1,rubymine,Editing & IDEs,2
+        2015-04-20T02:00:00,362,1,rescuetime.com,Intelligence,1
+        2015-04-20T02:00:00,79,1,reddit.com,General News & Opinion,-2
+        2015-04-20T02:00:00,24,1,help.github.com,Systems Operations,2
+        2015-04-20T02:00:00,18,1,loginwindow,General Utilities,1
+        2015-04-20T02:00:00,4,1,ruby-doc.org,Engineering & Technology,2
+        2015-04-20T02:00:00,3,1,Gmail,Email,2
+        2015-04-20T02:00:00,3,1,google.com,Search,1
+        2015-04-20T02:00:00,2,1,Safari,Browsers,0
+        2015-04-20T02:00:00,2,1,Finder,General Utilities,1
+        2015-04-20T11:00:00,687,1,reddit.com,General News & Opinion,-2
+        2015-04-20T11:00:00,545,1,facebook.com,General Social Networking,0
+        2015-04-20T11:00:00,93,1,messages,Instant Message,-1
+        2015-04-20T11:00:00,44,1,stackoverflow.com,General Software Development,2
+        2015-04-20T11:00:00,35,1,Gmail,Email,2
+        2015-04-20T11:00:00,15,1,rescuetime.com,Intelligence,1
+        2015-04-20T11:00:00,3,1,ruby-doc.org,Engineering & Technology,2
+        2015-04-20T11:00:00,3,1,github.com,General Software Development,2
+        2015-04-20T11:00:00,2,1,Safari,Browsers,0
+        2015-04-20T12:00:00,2332,1,rubymine,Editing & IDEs,2
+        2015-04-20T12:00:00,583,1,facebook.com,General Social Networking,0
+        2015-04-20T12:00:00,225,1,github.com,General Software Development,2
+        2015-04-20T12:00:00,65,1,rescuetime.com,Intelligence,1
+        2015-04-20T12:00:00,63,1,Terminal,Systems Operations,2
+        2015-04-20T12:00:00,51,1,stackoverflow.com,General Software Development,2
+        2015-04-20T12:00:00,46,1,waffle.io,Design & Planning,2
+        2015-04-20T12:00:00,31,1,endofline.wordpress.com,General News & Opinion,-2
+        2015-04-20T12:00:00,19,1,google.com,Search,1
+        2015-04-20T12:00:00,16,1,relishapp.com,Engineering & Technology,2
+        2015-04-20T12:00:00,14,1,Safari,Browsers,0
+        2015-04-20T12:00:00,4,1,ruby-doc.org,Engineering & Technology,2
+        2015-04-20T12:00:00,3,1,Finder,General Utilities,1
+        2015-04-20T12:00:00,2,1,Gmail,Email,2
+        2015-04-20T13:00:00,1105,1,rubymine,Editing & IDEs,2
+        2015-04-20T13:00:00,723,1,github.com,General Software Development,2
+        2015-04-20T13:00:00,250,1,localhost:63342,General Software Development,2
+        2015-04-20T13:00:00,211,1,waffle.io,Design & Planning,2
+        2015-04-20T13:00:00,61,1,stackoverflow.com,General Software Development,2
+        2015-04-20T13:00:00,54,1,api.rubyonrails.org,Engineering & Technology,2
+        2015-04-20T13:00:00,53,1,ruby-doc.org,Engineering & Technology,2
+        2015-04-20T13:00:00,51,1,google.com,Search,1
+        2015-04-20T13:00:00,50,1,Terminal,Systems Operations,2
+        2015-04-20T13:00:00,39,1,travis-ci.org,Quality Assurance,2
+        2015-04-20T13:00:00,34,1,rescuetime.com,Intelligence,1
+        2015-04-20T13:00:00,25,1,rubygems.org,Engineering & Technology,2
+        2015-04-20T13:00:00,16,1,Safari,Browsers,0
+        2015-04-20T13:00:00,6,1,rails.lighthouseapp.com,General Software Development,2
+        2015-04-20T13:00:00,4,1,relishapp.com,Engineering & Technology,2
+        2015-04-20T13:00:00,1,1,Finder,General Utilities,1
+        2015-04-20T14:00:00,1016,1,rubymine,Editing & IDEs,2
+        2015-04-20T14:00:00,566,1,github.com,General Software Development,2
+        2015-04-20T14:00:00,439,1,schneems.com,Uncategorized,0
+        2015-04-20T14:00:00,154,1,Terminal,Systems Operations,2
+        2015-04-20T14:00:00,93,1,railscasts.com,Engineering & Technology,2
+        2015-04-20T14:00:00,84,1,codeschool.com,Engineering & Technology,2
+        2015-04-20T14:00:00,66,1,rescuetime.com,Intelligence,1
+        2015-04-20T14:00:00,58,1,google.com,Search,1
+        2015-04-20T14:00:00,38,1,waffle.io,Design & Planning,2
+        2015-04-20T14:00:00,27,1,rubylearning.com,General Software Development,2
+        2015-04-20T14:00:00,20,1,ruby-doc.org,Engineering & Technology,2
+        2015-04-20T14:00:00,13,1,Safari,Browsers,0
+        2015-04-20T14:00:00,8,1,stackoverflow.com,General Software Development,2
+        2015-04-20T14:00:00,5,1,Finder,General Utilities,1
+        2015-04-20T14:00:00,3,1,rubybits2.codeschool.com,Engineering & Technology,2
+        2015-04-20T14:00:00,2,1,localhost:63342,General Software Development,2
+        2015-04-20T14:00:00,2,1,api.rubyonrails.org,Engineering & Technology,2
+        2015-04-20T15:00:00,1756,1,rubymine,Editing & IDEs,2
+        2015-04-20T15:00:00,984,1,github.com,General Software Development,2
+        2015-04-20T15:00:00,24,1,google.com,Search,1
+        2015-04-20T15:00:00,24,1,localhost:63342,General Software Development,2
+        2015-04-20T15:00:00,21,1,stackoverflow.com,General Software Development,2
+        2015-04-20T15:00:00,6,1,Safari,Browsers,0
+        2015-04-20T15:00:00,1,1,rescuetime.com,Intelligence,1
+        2015-04-20T15:00:00,1,1,rubybits2.codeschool.com,Engineering & Technology,2
+        2015-04-20T16:00:00,2762,1,rubymine,Editing & IDEs,2
+        2015-04-20T16:00:00,521,1,localhost:63342,General Software Development,2
+        2015-04-20T16:00:00,251,1,github.com,General Software Development,2
+        2015-04-20T16:00:00,20,1,relishapp.com,Engineering & Technology,2
+        2015-04-20T16:00:00,15,1,google.com,Search,1
+        2015-04-20T16:00:00,10,1,Safari,Browsers,0
+        2015-04-20T16:00:00,6,1,stackoverflow.com,General Software Development,2
+        2015-04-20T16:00:00,2,1,rescuetime.com,Intelligence,1
+        2015-04-20T17:00:00,2053,1,facebook.com,General Social Networking,0
+        2015-04-20T17:00:00,674,1,rubymine,Editing & IDEs,2
+        2015-04-20T17:00:00,247,1,Gmail,Email,2
+        2015-04-20T17:00:00,128,1,google.com,Search,1
+        2015-04-20T17:00:00,104,1,stackoverflow.com,General Software Development,2
+        2015-04-20T17:00:00,95,1,github.com,General Software Development,2
+        2015-04-20T17:00:00,54,1,opencongress.org,Legal & Gov't,2
+        2015-04-20T17:00:00,36,1,blog.law.cornell.edu,General Reference & Learning,2
+        2015-04-20T17:00:00,34,1,travis-ci.org,Quality Assurance,2
+        2015-04-20T17:00:00,30,1,sunlightlabs.github.io,Uncategorized,0
+        2015-04-20T17:00:00,25,1,techpresident.com,Intelligence,2
+        2015-04-20T17:00:00,18,1,Safari,Browsers,0
+        2015-04-20T17:00:00,16,1,readme.io,Uncategorized,0
+        2015-04-20T17:00:00,12,1,localhost:63342,General Software Development,2
+        2015-04-20T17:00:00,11,1,keepthewebopen.com,Uncategorized,0
+        2015-04-20T17:00:00,9,1,legalinformatics.wordpress.com,General News & Opinion,-2
+        2015-04-20T17:00:00,8,1,hobnobblog.com,Uncategorized,0
+        2015-04-20T17:00:00,6,1,en.wikipedia.org,General Reference & Learning,2
+        2015-04-20T17:00:00,3,1,demos.ithemes.com,General Business,2
+        2015-04-20T17:00:00,2,1,rubyforge.org,General Software Development,2
+        2015-04-20T17:00:00,1,1,messages,Instant Message,-1
+        2015-04-20T18:00:00,553,1,facebook.com,General Social Networking,0
+        2015-04-20T18:00:00,92,1,addresspicker.io,Uncategorized,0
+        2015-04-20T18:00:00,45,1,readme.io,Uncategorized,0
+        2015-04-20T18:00:00,43,1,dash.readme.io,Uncategorized,0
+        2015-04-20T18:00:00,27,1,sample-solid.readme.io,Uncategorized,0
+        2015-04-20T18:00:00,19,1,loginwindow,General Utilities,1
+        2015-04-20T18:00:00,7,1,google.com,Search,1
+        2015-04-20T18:00:00,5,1,Safari,Browsers,0
+        2015-04-20T18:00:00,1,1,github.com,General Software Development,2
+        2015-04-20T19:00:00,1172,1,rubymine,Editing & IDEs,2
+        2015-04-20T19:00:00,614,1,github.com,General Software Development,2
+        2015-04-20T19:00:00,563,1,stackoverflow.com,General Software Development,2
+        2015-04-20T19:00:00,500,1,facebook.com,General Social Networking,0
+        2015-04-20T19:00:00,183,1,cloudflare.com,Systems Operations,2
+        2015-04-20T19:00:00,145,1,Gmail,Email,2
+        2015-04-20T19:00:00,69,1,travis-ci.org,Quality Assurance,2
+        2015-04-20T19:00:00,64,1,dash.readme.io,Uncategorized,0
+        2015-04-20T19:00:00,40,1,nationbuilder.com,Uncategorized,0
+        2015-04-20T19:00:00,32,1,nicereply.com,Uncategorized,0
+        2015-04-20T19:00:00,24,1,projectnexus.us,Uncategorized,0
+        2015-04-20T19:00:00,24,1,troy-city-council.readme.io,Uncategorized,0
+        2015-04-20T19:00:00,15,1,Safari,Browsers,0
+        2015-04-20T19:00:00,7,1,troyplan.org,Uncategorized,0
+        2015-04-20T19:00:00,5,1,google.com,Search,1
+        2015-04-20T19:00:00,3,1,legislation.anashaest.com,Uncategorized,0
+        2015-04-20T19:00:00,1,1,l.facebook.com,General Social Networking,-2
+        2015-04-20T19:00:00,1,1,rubybits2.codeschool.com,Engineering & Technology,2
+        2015-04-20T19:00:00,1,1,rescuetime.com,Intelligence,1
+        2015-04-20T20:00:00,1745,1,rubymine,Editing & IDEs,2
+        2015-04-20T20:00:00,850,1,github.com,General Software Development,2
+        2015-04-20T20:00:00,416,1,localhost:63342,General Software Development,2
+        2015-04-20T20:00:00,194,1,rubydoc.info,General Software Development,2
+        2015-04-20T20:00:00,96,1,facebook.com,General Social Networking,0
+        2015-04-20T20:00:00,78,1,waffle.io,Design & Planning,2
+        2015-04-20T20:00:00,47,1,stackoverflow.com,General Software Development,2
+        2015-04-20T20:00:00,32,1,google.com,Search,1
+        2015-04-20T20:00:00,31,1,travis-ci.org,Quality Assurance,2
+        2015-04-20T20:00:00,29,1,Safari,Browsers,0
+        2015-04-20T20:00:00,29,1,rescuetime.com,Intelligence,1
+        2015-04-20T20:00:00,16,1,rubygems.org,Engineering & Technology,2
+        2015-04-20T20:00:00,4,1,ruby-doc.org,Engineering & Technology,2
+        2015-04-20T20:00:00,2,1,Finder,General Utilities,1
+        2015-04-20T21:00:00,2291,1,rubymine,Editing & IDEs,2
+        2015-04-20T21:00:00,557,1,waffle.io,Design & Planning,2
+        2015-04-20T21:00:00,19,1,loginwindow,General Utilities,1
+        2015-04-20T21:00:00,1,1,Finder,General Utilities,1
+        2015-04-20T22:00:00,2633,1,rubymine,Editing & IDEs,2
+        2015-04-20T22:00:00,336,1,github.com,General Software Development,2
+        2015-04-20T22:00:00,207,1,waffle.io,Design & Planning,2
+        2015-04-20T22:00:00,9,1,travis-ci.org,Quality Assurance,2
+        2015-04-20T22:00:00,7,1,localhost:63342,General Software Development,2
+        2015-04-20T22:00:00,5,1,rescuetime.com,Intelligence,1
+        2015-04-20T22:00:00,2,1,ruby-doc.org,Engineering & Technology,2
+        2015-04-20T22:00:00,2,1,dailydot.com,General News & Opinion,-2
+        2015-04-20T22:00:00,2,1,Finder,General Utilities,1
+        2015-04-20T22:00:00,1,1,rubydoc.info,General Software Development,2
+        2015-04-20T23:00:00,590,1,rubymine,Editing & IDEs,2
+        2015-04-20T23:00:00,490,1,Terminal,Systems Operations,2
+        2015-04-20T23:00:00,452,1,github.com,General Software Development,2
+        2015-04-20T23:00:00,126,1,waffle.io,Design & Planning,2
+        2015-04-20T23:00:00,60,1,rescuetime.com,Intelligence,1
+        2015-04-20T23:00:00,23,1,Finder,General Utilities,1
+        2015-04-20T23:00:00,7,1,travis-ci.org,Quality Assurance,2
+        2015-04-20T23:00:00,6,1,Safari,Browsers,0
+        2015-04-20T23:00:00,5,1,Xcode,Editing & IDEs,2
+        2015-04-20T23:00:00,4,1,ruby-doc.org,Engineering & Technology,2
+        2015-04-21T00:00:00,1185,1,rubymine,Editing & IDEs,2
+        2015-04-21T00:00:00,540,1,Terminal,Systems Operations,2
+        2015-04-21T00:00:00,521,1,waffle.io,Design & Planning,2
+        2015-04-21T00:00:00,363,1,ruby-doc.org,Engineering & Technology,2
+        2015-04-21T00:00:00,223,1,reddit.com,General News & Opinion,-2
+        2015-04-21T00:00:00,138,1,feedly.com,General News & Opinion,-2
+        2015-04-21T00:00:00,114,1,github.com,General Software Development,2
+        2015-04-21T00:00:00,96,1,rescuetime.com,Intelligence,1
+        2015-04-21T00:00:00,87,1,Gmail,Email,2
+        2015-04-21T00:00:00,57,1,girlgeniusonline.com,Comedy,-2
+        2015-04-21T00:00:00,34,1,gunnerkrigg.com,Comedy,-2
+        2015-04-21T00:00:00,34,1,somethingpositive.net,Comedy,-2
+        2015-04-21T00:00:00,33,1,thepunchlineismachismo.com,Comedy,-2
+        2015-04-21T00:00:00,7,1,travis-ci.org,Quality Assurance,2
+        2015-04-21T00:00:00,6,1,Safari,Browsers,0
+        2015-04-21T00:00:00,3,1,stackoverflow.com,General Software Development,2
+        2015-04-21T00:00:00,2,1,google.com,Search,1
+        2015-04-21T00:00:00,1,1,Finder,General Utilities,1
+        2015-04-21T01:00:00,538,1,reddit.com,General News & Opinion,-2
+        2015-04-21T01:00:00,186,1,waffle.io,Design & Planning,2
+        2015-04-21T01:00:00,18,1,loginwindow,General Utilities,1
+        2015-04-21T01:00:00,5,1,Gmail,Email,2
+        2015-04-21T05:00:00,29,1,loginwindow,General Utilities,1
+        2015-04-21T13:00:00,328,1,reddit.com,General News & Opinion,-2
+        2015-04-21T13:00:00,207,1,feedly.com,General News & Opinion,-2
+        2015-04-21T13:00:00,189,1,facebook.com,General Social Networking,0
+        2015-04-21T13:00:00,141,1,gizmodo.com,Science & Technology,-2
+        2015-04-21T13:00:00,91,1,loginwindow,General Utilities,1
+        2015-04-21T13:00:00,43,1,somethingpositive.net,Comedy,-2
+        2015-04-21T13:00:00,14,1,buttersafe.com,Comedy,-2
+        2015-04-21T13:00:00,12,1,Safari,Browsers,0
+        2015-04-21T13:00:00,11,1,imgur.com,Photos,-2
+        2015-04-21T14:00:00,1143,1,rubymine,Editing & IDEs,2
+        2015-04-21T14:00:00,1072,1,reddit.com,General News & Opinion,-2
+        2015-04-21T14:00:00,850,1,github.com,General Software Development,2
+        2015-04-21T14:00:00,51,1,blog.rubygems.org,Engineering & Technology,2
+        2015-04-21T14:00:00,34,1,docs.podigee.com,Uncategorized,0
+        2015-04-21T14:00:00,22,1,waffle.io,Design & Planning,2
+        2015-04-21T14:00:00,20,1,Terminal,Systems Operations,2
+        2015-04-21T14:00:00,20,1,Safari,Browsers,0
+        2015-04-21T14:00:00,17,1,Finder,General Utilities,1
+        2015-04-21T14:00:00,14,1,rubydoc.info,General Software Development,2
+        2015-04-21T14:00:00,7,1,google.com,Search,1
+        2015-04-21T14:00:00,7,1,brandonhilkert.com,Uncategorized,0
+        2015-04-21T14:00:00,5,1,rubygems.org,Engineering & Technology,2
+    http_version: 
+  recorded_at: Tue, 21 Apr 2015 19:30:23 GMT
+recorded_with: VCR 2.9.3

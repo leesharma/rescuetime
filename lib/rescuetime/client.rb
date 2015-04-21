@@ -79,7 +79,16 @@ module Rescuetime
         params[server] = options[local] if options[local]
       end
 
+      # Special Cases
       params[:perspective] = 'interval' if params[:perspective] == 'time'
+      if options[:date]
+        params[:restrict_begin] = options[:date]
+        params[:restrict_end] = params[:restrict_begin]
+      end
+      if options[:from]
+        params[:restrict_begin] = options[:from]
+        params[:restrict_end] = options[:to] || Time.now.strftime('%Y-%m-%d')
+      end
       params
     end
   end

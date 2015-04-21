@@ -21,6 +21,51 @@ describe Rescuetime::Activities do
       end
     end
 
+    describe 'date:' do
+      describe "'YYYY-MM-DD'" do
+        it 'sets the date for the report data' do
+          VCR.use_cassette('/data?key=AK&perspective=interval&restrict_begin=2015-04-20&restrict_end=2015-04-20',
+                           match_requests_on: [:host, :path], record: :none) do
+            activities = @client.activities by: 'time', date: '2015-04-20'
+            valid = /2015-04-20/
+
+            invalid_dates = collect_invalid_dates(activities, valid)
+            expect(invalid_dates.count).to eq(0)
+          end
+        end
+      end
+    end
+
+    describe 'from:' do
+      describe "and to: 'YYYY-MM-DD'" do
+        it 'sets the start and end date for the report data' do
+          VCR.use_cassette('/data?key=AK&perspective=interval&restrict_begin=2015-04-15&restrict_end=2015-04-17',
+                           match_requests_on: [:host, :path], record: :none) do
+            activities = @client.activities by: 'time', from: '2015-04-15', to: '2015-04-17'
+            valid = /(2015-04-15|2015-04-16|2015-04-17)/
+
+            invalid_dates = collect_invalid_dates(activities, valid)
+            expect(invalid_dates.count).to eq(0)
+          end
+        end
+      end
+      describe "'YYYY-MM-DD' (:to not set)" do
+        it 'sets the start date for the report data with the end date being today' do
+          VCR.use_cassette('/data?key=AK&perspective=interval&restrict_begin=2015-04-19&restrict_end=2015-04-21',
+                           match_requests_on: [:host, :path], record: :none) do
+            # Note: this cassette was recorded on 2015-04-21. If you wish to
+            #   record it again, be sure to adjust 'valid', options[:from], and
+            #   the cassette title to something reasonable.
+            activities = @client.activities by: 'time', from: '2015-04-19'
+            valid = /(2015-04-19|2015-04-20|2015-04-21)/
+
+            invalid_dates = collect_invalid_dates(activities, valid)
+            expect(invalid_dates.count).to eq(0)
+          end
+        end
+      end
+    end
+
     describe 'format:' do
       describe "'csv'" do
         it 'returns in csv format' do

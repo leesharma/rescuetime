@@ -61,6 +61,11 @@ module Rescuetime
     #   @client.activities(by: 'interval') # Returns activities chronologically
     #   @client.activities(by: 'member')   # Returns activities grouped by member
     #
+    # @example Set date range (note: no time constraints are allowed)
+    #   @client.activities(date: '2014-05-06')                      # Returns report for May 6, 2014
+    #   @client.activities(from: '2014-05-06', to: '2014-06-06')    # Returns report for May 6 to June 6, 2014
+    #   @client.activities(from: '2015-04-10')                      # Returns report for April 10, 2015 to today
+    #
     # @example Format
     #   @client.activities                # Returns array of hashes
     #   @client.activities format: 'csv'  # Returns Mime::CSV
@@ -78,6 +83,17 @@ module Rescuetime
     #   1. 'rank' (default): returns a ranked report of activities by total time spent
     #   2. 'time': returns a chronological report of activities
     #   3. 'member': returns an activity report grouped by member
+    # @option options [String] :date
+    #   Lets you set a single date for your report in a 'YYYY-MM-DD' format. Not
+    #   valid with :to or :from. Cannot be a future date.
+    # @option options [String] :from
+    #   Lets you set a start date for your report in a 'YYYY-MM-DD' format. Valid
+    #   with the :to option or alone (:to defaults to current date). Cannot be a
+    #   future date or after the :to date (if supplied).
+    # @option options [String] :to
+    #   Lets you set an end date for your report in a 'YYYY-MM-DD' format. If a
+    #   :to is supplied, :from must be supplied as well. Cannot be a future date or
+    #   before the :from date.
     # @option options [String] :format
     #   Lets you specify a return type for your report
     #   1. default: returns an array of hashes with symbolized keys
