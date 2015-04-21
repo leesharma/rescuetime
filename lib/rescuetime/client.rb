@@ -44,6 +44,27 @@ module Rescuetime
       !!@api_key
     end
 
+    # Checks whether client credentials are valid. If credentials are present, this
+    # action involves an HTTP request.
+    #
+    # @example Three cases of checking credentials (missing, invalid, and valid)
+    #   @client = Rescuetime::Client.new
+    #   @client.valid_credentials?        # => false
+    #
+    #   # Note: The following scenarios involve an HTTP request.
+    #   @client.api_key = 'Invalid Key'
+    #   @client.valid_credentials?        # => false
+    #
+    #   @client.api_key = VALID_API_KEY
+    #   @client.valid_credentials?        # => true
+    #
+    # @return [Boolean]
+    # @since v0.2.0
+    def valid_credentials?
+      return false unless api_key?
+      !!self.activities rescue false
+    end
+
     protected
 
     # Performs an HTTP get request
