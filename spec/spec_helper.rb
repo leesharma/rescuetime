@@ -23,9 +23,24 @@ VCR.configure do |config|
 end
 
 
-# Helper methods
-
-def collect_invalid_dates(activities, valid)
+# HELPER METHODS
+# --------------
+#
+# Collects invalid dates (determined by 'valid' regex) in a report by time and
+# returns invalid date count
+#
+# @param [Array<Hash>] activities array of activity hashes, each with key :date
+# @param [Regexp] valid regexp of valid dates ('YYYY-MM-DD' format)
+# @return [Integer] invalid date count
+def count_invalid_dates(activities, valid)
   activities.collect { |activity| activity[:date] }.
-      delete_if { |date| date=~ valid }
+      delete_if { |date| date=~ valid }.count
+end
+#
+# Returns activity keys from an activities array
+#
+# @param[Array<Hash>] activities
+# @return[Array] activity keys
+def collect_keys(activities)
+  activities.first.keys
 end
