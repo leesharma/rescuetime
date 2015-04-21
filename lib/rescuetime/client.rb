@@ -52,9 +52,15 @@ module Rescuetime
     # @param [Hash] options query params for request
     # @since v0.2.0
     def get(url, options={})
-      Faraday.get url, options.
-                         merge(DEFAULT_OPTIONS).
-                         merge({key: @api_key})
+      raise Rescuetime::MissingCredentials unless api_key?
+      response = Faraday.get url, options.
+                                    merge(DEFAULT_OPTIONS).
+                                    merge({key: @api_key})
+
+      invalid_credentials_body = '{"error":"# key not found","messages":"key not found"}'
+      raise Rescuetime::InvalidCredentials if response.body == invalid_credentials_body
+
+      response
     end
   end
 end
