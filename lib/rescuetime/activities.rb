@@ -47,14 +47,8 @@ module Rescuetime
     #   #      :activity=>'RubyMine',
     #   #      :productivity=>2 }
     #
-    #   @activities = @client.activities(detail: 'productivity')
-    #   # =>  [
-    #   #       { :rank=>1, :time_spent_seconds=>6956, :number_of_people=>1, :productivity=>2 },
-    #   #       { :rank=>2, :time_spent_seconds=>2635, :number_of_people=>1, :productivity=>-2 },
-    #   #       { :rank=>3, :time_spent_seconds=>2415, :number_of_people=>1, :productivity=>1 },
-    #   #       { :rank=>4, :time_spent_seconds=>1210, :number_of_people=>1, :productivity=>0 },
-    #   #       { :rank=>5, :time_spent_seconds=>93, :number_of_people=>1, :productivity=>-1 }
-    #   #     ]
+    #   @client.activities(detail: 'productivity')              # Equivalent to @client.productivity
+    #   @client.activities(detail: 'efficiency', by: 'time')    # Equivalent to @client.efficiency
     #
     # @example Set perspective
     #   @client.activities(by: 'rank')     # Returns activities by rank (time spent per activity)
@@ -111,6 +105,34 @@ module Rescuetime
         when 'csv' then CSV.new(response.body, headers: true)
         else array_of_hashes_from_csv(response.body)
       end
+    end
+
+    # Returns efficiency report. Equivalent to #activities(by: time, detail: efficiency)
+    # @see #activities valid options
+    #
+    # @param [Hash] options options hash (same as #activities)
+    # @return [Array<Hash>]
+    def efficiency(options={})
+      self.activities(options.merge(by: 'time', detail: 'efficiency'))
+    end
+
+    # Returns productivity report. Equivalent to #activities(detail: productivity)
+    # @see #activities valid options
+    #
+    # @example
+    #   @client.productivity    # Equivalent to @client.activities(detail: 'productivity')
+    #   # =>  [
+    #   #       { :rank=>1, :time_spent_seconds=>6956, :number_of_people=>1, :productivity=>2 },
+    #   #       { :rank=>2, :time_spent_seconds=>2635, :number_of_people=>1, :productivity=>-2 },
+    #   #       { :rank=>3, :time_spent_seconds=>2415, :number_of_people=>1, :productivity=>1 },
+    #   #       { :rank=>4, :time_spent_seconds=>1210, :number_of_people=>1, :productivity=>0 },
+    #   #       { :rank=>5, :time_spent_seconds=>93, :number_of_people=>1, :productivity=>-1 }
+    #   #     ]
+    #
+    # @param [Hash] options options hash (same as #activities)
+    # @return [Array<Hash>]
+    def productivity(options={})
+      self.activities(options.merge(detail: 'productivity'))
     end
 
     # Returns map of numeric productivity levels to meaning

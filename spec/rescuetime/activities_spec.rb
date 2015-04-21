@@ -12,6 +12,33 @@ describe Rescuetime::Activities do
     end
   end
 
+  describe '#productivity' do
+    it 'returns productivity report' do
+      VCR.use_cassette('/data?key=AK&restrict_kind=productivity',
+                       match_requests_on: [:host, :path], record: :none) do
+        activity_keys = collect_keys @client.productivity
+
+        expect(activity_keys).to include(:productivity)
+        expect(activity_keys).not_to include(:activity)
+        expect(activity_keys).not_to include(:category)
+      end
+    end
+    it 'responds to options'
+  end
+
+  describe '#efficiency' do
+    it 'returns efficiency report' do
+      VCR.use_cassette('/data?key=AK&restrict_kind=efficiency&perspective=interval',
+                       match_requests_on: [:host, :path], record: :none) do
+        activity_keys = collect_keys @client.efficiency
+
+        expect(activity_keys).to include(:efficiency_22)
+        expect(activity_keys).to include(:efficiency_percent)
+      end
+    end
+    it 'responds to options'
+  end
+
   describe '#activities' do
     it 'returns list of activities' do
       VCR.use_cassette('/data?key=AK',
@@ -23,7 +50,7 @@ describe Rescuetime::Activities do
 
     describe 'date:' do
       describe "'YYYY-MM-DD'" do
-        it 'sets the date for the report data' do
+        it 'sets the date for the report data (accepts a valid String object)' do
           VCR.use_cassette('/data?key=AK&perspective=interval&restrict_begin=2015-04-20&restrict_end=2015-04-20',
                            match_requests_on: [:host, :path], record: :none) do
             activities = @client.activities by: 'time', date: '2015-04-20'
@@ -34,10 +61,34 @@ describe Rescuetime::Activities do
           end
         end
       end
+      describe '<Time>' do
+        it 'sets the date for the report data (accepts a valid Time object)' do
+          VCR.use_cassette('/data?key=AK&perspective=interval&restrict_begin=2015-04-20&restrict_end=2015-04-20',
+                           match_requests_on: [:host, :path], record: :none) do
+            activities = @client.activities by: 'time', date: Time.new(2015,04,20)
+            valid = /2015-04-20/
+
+            invalid_date_count = count_invalid_dates(activities, valid)
+            expect(invalid_date_count).to eq(0)
+          end
+        end
+      end
     end
 
     describe 'from:' do
-      describe "and to: 'YYYY-MM-DD'" do
+      describe '<Time>' do
+        it 'accepts a valid Time object' do
+          VCR.use_cassette('/data?key=AK&perspective=interval&restrict_begin=2015-04-19&restrict_end=2015-04-21',
+                           match_requests_on: [:host, :path], record: :none) do
+            activities = @client.activities by: 'time', from: Time.new(2015,04,19)
+            valid = /(2015-04-19|2015-04-20|2015-04-21)/
+
+            invalid_date_count = count_invalid_dates(activities, valid)
+            expect(invalid_date_count).to eq(0)
+          end
+        end
+      end
+      describe 'with to: "YYYY-MM-DD"' do
         it 'sets the start and end date for the report data' do
           VCR.use_cassette('/data?key=AK&perspective=interval&restrict_begin=2015-04-15&restrict_end=2015-04-17',
                            match_requests_on: [:host, :path], record: :none) do
@@ -49,7 +100,7 @@ describe Rescuetime::Activities do
           end
         end
       end
-      describe "'YYYY-MM-DD' (:to not set)" do
+      describe 'with :to not set' do
         it 'sets the start date for the report data with the end date being today' do
           VCR.use_cassette('/data?key=AK&perspective=interval&restrict_begin=2015-04-19&restrict_end=2015-04-21',
                            match_requests_on: [:host, :path], record: :none) do
@@ -162,9 +213,10 @@ describe Rescuetime::Activities do
         it 'returns efficiency report (only valid with by: \'time\')' do
           VCR.use_cassette('/data?key=AK&restrict_kind=efficiency&perspective=interval',
                            match_requests_on: [:host, :path], record: :none) do
-            activity_keys = collect_keys @client.activities(detail: 'efficiency')
+            activity_keys = collect_keys @client.activities(detail: 'efficiency', by: 'time')
 
-            expect(activity_keys).to include(:efficiency)
+            expect(activity_keys).to include(:efficiency_22)
+            expect(activity_keys).to include(:efficiency_percent)
           end
         end
       end

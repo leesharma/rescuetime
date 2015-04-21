@@ -103,14 +103,21 @@ module Rescuetime
       # Special Cases
       params[:perspective] = 'interval' if params[:perspective] == 'time'
       if options[:date]
-        params[:restrict_begin] = options[:date]
+        params[:restrict_begin] = date_string options[:date]
         params[:restrict_end] = params[:restrict_begin]
       end
       if options[:from]
-        params[:restrict_begin] = options[:from]
-        params[:restrict_end] = options[:to] || Time.now.strftime('%Y-%m-%d')
+        params[:restrict_begin] = date_string options[:from]
+        params[:restrict_end] = date_string(options[:to] || Time.now)
       end
       params
+    end
+
+    # Takes a date in either "YYYY-MM-DD" format or as a Time object and
+    # returns a date string in "YYYY-MM-DD" format
+    def date_string(date)
+      return date if date.is_a? String
+      date.strftime('%Y-%m-%d')
     end
   end
 end
