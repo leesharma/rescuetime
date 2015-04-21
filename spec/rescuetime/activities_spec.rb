@@ -20,6 +20,36 @@ describe Rescuetime::Activities do
         expect(@client.activities[0]).to be_instance_of(Hash)
       end
     end
+
+    describe 'perspective' do
+      describe "'rank'" do
+        it 'is grouped and sorted by rank' do
+          VCR.use_cassette('/data?key=AK&perspective=rank',
+                           match_requests_on: [:host, :path], record: :none) do
+            activity_keys = @client.activities(perspective: 'rank')[0].keys
+            expect(activity_keys).to include(:rank)
+          end
+        end
+      end
+      describe "'interval'" do
+        it 'is returned chronologically' do
+          VCR.use_cassette('/data?key=AK&perspective=interval',
+                           match_requests_on: [:host, :path], record: :none) do
+            activity_keys = @client.activities(perspective: 'interval')[0].keys
+            expect(activity_keys).to include(:date)
+          end
+        end
+      end
+      describe "'member'" do
+        it 'is grouped and sorted by member' do
+          VCR.use_cassette('/data?key=AK&perspective=member',
+                           match_requests_on: [:host, :path], record: :none) do
+            activity_keys = @client.activities(perspective: 'member')[0].keys
+            expect(activity_keys).to include(:person)
+          end
+        end
+      end
+    end
     describe 'restrict_kind:' do
       describe "'overview'" do
         it 'restricts activity detail to overview' do

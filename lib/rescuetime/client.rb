@@ -50,6 +50,9 @@ module Rescuetime
     #
     # @param [String] url request url
     # @param [Hash] options query params for request
+    #
+    # @raise [Rescuetime::MissingCredentials] if the Rescuetime::Client has no set api key
+    # @raise [Rescuetime::InvalidCredentials] if the provided api key is rejected by RescueTime
     # @since v0.2.0
     def get(url, options={})
       raise Rescuetime::MissingCredentials unless api_key?

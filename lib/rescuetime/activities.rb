@@ -9,11 +9,11 @@ module Rescuetime
     BASE_URL = 'https://www.rescuetime.com/anapi/data'
     # Map of numeric productivity levels to meaning
     # @since v0.2.0
-    PRODUCTIVITY_LEVELS = { -2=>'Very Unproductive',
-                            -1=>'Unproductive',
-                            0=>'Neutral',
-                            1=>'Productive',
-                            2=>'Very Productive' }
+    PRODUCTIVITY_LEVELS = { -2  => 'Very Unproductive',
+                            -1  => 'Unproductive',
+                            0   => 'Neutral',
+                            1   => 'Productive',
+                            2   => 'Very Productive' }
 
     # Returns array of all activities. The default request is equivalent to @client.activities restrict_kind: 'activity'
     #
@@ -56,11 +56,10 @@ module Rescuetime
     #   #       { :rank=>5, :time_spent_seconds=>93, :number_of_people=>1, :productivity=>-1 }
     #   #     ]
     #
-    #   @activity = @activities[0]
-    #
-    #   @primary_productivity = @client.productivity_levels[@activity[:productivity]]
-    #   puts "I have spent most of my time being #{@primary_productivity}."
-    #   # => I have spent most of my time being Very Productive.
+    # @example Perspective
+    #   @client.activities(perspective: 'rank')     # Returns activities by rank (time spent per activity)
+    #   @client.activities(perspective: 'interval') # Returns activities chronologically
+    #   @client.activities(perspective: 'member')   # Returns activities grouped by member
     #
     # @param [Hash] options Query parameters to be passed to RescueTime
     # @option options [String] :restrict_kind
@@ -72,6 +71,9 @@ module Rescuetime
     #   5. 'efficiency': efficiency calculation (not applicable in "rank" perspective)
     #
     # @return [Array<Hash>]
+    #
+    # @raise [Rescuetime::MissingCredentials] if the Rescuetime::Client has no set api key
+    # @raise [Rescuetime::InvalidCredentials] if the provided api key is rejected by RescueTime
     # @since v0.1.0
     def activities(options={})
       response = self.get BASE_URL, options
@@ -79,6 +81,13 @@ module Rescuetime
     end
 
     # Returns map of numeric productivity levels to meaning
+    #
+    # @example
+    #   @activity = @client.activities(restrict_kind: 'productivity')[0]
+    #   @primary_productivity = @client.productivity_levels[@activity[:productivity]]
+    #
+    #   puts "I have spent most of my time being #{@primary_productivity}."
+    #   # => I have spent most of my time being Very Productive.
     #
     # @return [Hash]
     # @since v0.2.0
