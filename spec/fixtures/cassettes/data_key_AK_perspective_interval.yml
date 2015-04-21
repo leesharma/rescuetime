@@ -23,7 +23,7 @@ http_interactions:
       Content-Type:
       - text/csv; charset=utf-8
       Date:
-      - Tue, 21 Apr 2015 01:14:05 GMT
+      - Tue, 21 Apr 2015 02:52:57 GMT
       Expires:
       - Fri, 01 Jan 1990 00:00:00 GMT
       Pragma:
@@ -35,9 +35,9 @@ http_interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - 852decb0-21dd-4b20-b367-afbf9c21526a
+      - 54a98ae5-4930-45da-8ac2-cb4974faf39d
       X-Runtime:
-      - '0.190074'
+      - '0.145270'
       X-Xss-Protection:
       - 1; mode=block
       Transfer-Encoding:
@@ -203,9 +203,9 @@ http_interactions:
         2015-04-20T19:00:00,7,1,troyplan.org,Uncategorized,0
         2015-04-20T19:00:00,5,1,google.com,Search,1
         2015-04-20T19:00:00,3,1,legislation.anashaest.com,Uncategorized,0
-        2015-04-20T19:00:00,1,1,l.facebook.com,General Social Networking,-2
         2015-04-20T19:00:00,1,1,rubybits2.codeschool.com,Engineering & Technology,2
         2015-04-20T19:00:00,1,1,rescuetime.com,Intelligence,1
+        2015-04-20T19:00:00,1,1,l.facebook.com,General Social Networking,-2
         2015-04-20T20:00:00,1745,1,rubymine,Editing & IDEs,2
         2015-04-20T20:00:00,850,1,github.com,General Software Development,2
         2015-04-20T20:00:00,416,1,localhost:63342,General Software Development,2
@@ -220,7 +220,20 @@ http_interactions:
         2015-04-20T20:00:00,16,1,rubygems.org,Engineering & Technology,2
         2015-04-20T20:00:00,4,1,ruby-doc.org,Engineering & Technology,2
         2015-04-20T20:00:00,2,1,Finder,General Utilities,1
-        2015-04-20T21:00:00,683,1,rubymine,Editing & IDEs,2
+        2015-04-20T21:00:00,2291,1,rubymine,Editing & IDEs,2
+        2015-04-20T21:00:00,557,1,waffle.io,Design & Planning,2
+        2015-04-20T21:00:00,19,1,loginwindow,General Utilities,1
+        2015-04-20T21:00:00,1,1,Finder,General Utilities,1
+        2015-04-20T22:00:00,1654,1,rubymine,Editing & IDEs,2
+        2015-04-20T22:00:00,336,1,github.com,General Software Development,2
+        2015-04-20T22:00:00,207,1,waffle.io,Design & Planning,2
+        2015-04-20T22:00:00,9,1,travis-ci.org,Quality Assurance,2
+        2015-04-20T22:00:00,7,1,localhost:63342,General Software Development,2
+        2015-04-20T22:00:00,5,1,rescuetime.com,Intelligence,1
+        2015-04-20T22:00:00,2,1,dailydot.com,General News & Opinion,-2
+        2015-04-20T22:00:00,2,1,Finder,General Utilities,1
+        2015-04-20T22:00:00,2,1,ruby-doc.org,Engineering & Technology,2
+        2015-04-20T22:00:00,1,1,rubydoc.info,General Software Development,2
     http_version: 
-  recorded_at: Tue, 21 Apr 2015 01:14:05 GMT
+  recorded_at: Tue, 21 Apr 2015 02:52:58 GMT
 recorded_with: VCR 2.9.3

@@ -21,21 +21,21 @@ describe Rescuetime::Activities do
       end
     end
 
-    describe 'perspective' do
+    describe 'by:' do
       describe "'rank'" do
         it 'is grouped and sorted by rank' do
           VCR.use_cassette('/data?key=AK&perspective=rank',
                            match_requests_on: [:host, :path], record: :none) do
-            activity_keys = @client.activities(perspective: 'rank')[0].keys
+            activity_keys = @client.activities(by: 'rank')[0].keys
             expect(activity_keys).to include(:rank)
           end
         end
       end
-      describe "'interval'" do
+      describe "'time'" do
         it 'is returned chronologically' do
           VCR.use_cassette('/data?key=AK&perspective=interval',
                            match_requests_on: [:host, :path], record: :none) do
-            activity_keys = @client.activities(perspective: 'interval')[0].keys
+            activity_keys = @client.activities(by: 'time')[0].keys
             expect(activity_keys).to include(:date)
           end
         end
@@ -44,18 +44,18 @@ describe Rescuetime::Activities do
         it 'is grouped and sorted by member' do
           VCR.use_cassette('/data?key=AK&perspective=member',
                            match_requests_on: [:host, :path], record: :none) do
-            activity_keys = @client.activities(perspective: 'member')[0].keys
+            activity_keys = @client.activities(by: 'member')[0].keys
             expect(activity_keys).to include(:person)
           end
         end
       end
     end
-    describe 'restrict_kind:' do
+    describe 'detail:' do
       describe "'overview'" do
         it 'restricts activity detail to overview' do
           VCR.use_cassette('/data?key=AK&restrict_kind=overview',
                            match_requests_on: [:host, :path], record: :none) do
-            activities = @client.activities restrict_kind: 'overview'
+            activities = @client.activities detail: 'overview'
             activity_keys = activities[0].keys
             expect(activity_keys).to include(:category)
             expect(activity_keys).not_to include(:activity)
@@ -68,7 +68,7 @@ describe Rescuetime::Activities do
         it 'restricts activity detail to category' do
           VCR.use_cassette('/data?key=AK&restrict_kind=category',
                            match_requests_on: [:host, :path], record: :none) do
-            activities = @client.activities restrict_kind: 'category'
+            activities = @client.activities detail: 'category'
             activity_keys = activities[0].keys
             expect(activity_keys).to include(:category)
             expect(activity_keys).not_to include(:activity)
@@ -81,7 +81,7 @@ describe Rescuetime::Activities do
         it 'restricts activity detail to activity' do
           VCR.use_cassette('/data?key=AK&restrict_kind=activity',
                            match_requests_on: [:host, :path], record: :none) do
-            activities = @client.activities restrict_kind: 'activity'
+            activities = @client.activities detail: 'activity'
             activity_keys = activities[0].keys
             expect(activity_keys).to include(:activity)
           end
@@ -92,7 +92,7 @@ describe Rescuetime::Activities do
         it 'returns productivity report' do
           VCR.use_cassette('/data?key=AK&restrict_kind=productivity',
                            match_requests_on: [:host, :path], record: :none) do
-            activities = @client.activities restrict_kind: 'productivity'
+            activities = @client.activities detail: 'productivity'
             activity_keys = activities[0].keys
             expect(activity_keys).to include(:productivity)
             expect(activity_keys).not_to include(:activity)

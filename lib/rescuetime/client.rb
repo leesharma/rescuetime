@@ -56,7 +56,7 @@ module Rescuetime
     # @since v0.2.0
     def get(url, options={})
       raise Rescuetime::MissingCredentials unless api_key?
-      response = Faraday.get url, options.
+      response = Faraday.get url, query_params(options).
                                     merge(DEFAULT_OPTIONS).
                                     merge({key: @api_key})
 
@@ -64,6 +64,23 @@ module Rescuetime
       raise Rescuetime::InvalidCredentials if response.body == invalid_credentials_body
 
       response
+    end
+
+    # Takes client request options hash and returns correct key/value pairs for HTTP request
+    #
+    # @param [Hash] options options hash of client request
+    # @return [Hash]
+    # @since v0.2.0
+    def query_params(options)
+      params = {}
+      params_mapping = { detail: :restrict_kind, by: :perspective }
+
+      params_mapping.each do |local, server|
+        params[server] = options[local] if options[local]
+      end
+
+      params[:perspective] = 'interval' if params[:perspective] == 'time'
+      params
     end
   end
 end

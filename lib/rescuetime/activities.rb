@@ -62,13 +62,18 @@ module Rescuetime
     #   @client.activities(perspective: 'member')   # Returns activities grouped by member
     #
     # @param [Hash] options Query parameters to be passed to RescueTime
-    # @option options [String] :restrict_kind
-    #   Restricts the level of detail and/or kind of report returned
+    # @option options [String] :detail
+    #   Restricts the level of detail of report returned
     #   1. 'overview': sums statistics for all activities into their top level category
     #   2. 'category': sums statistics for all activities into their sub category
-    #   3. 'activity': sums statistics for individual applications / web sites / activities
+    #   3. 'activity' (default): sums statistics for individual applications / web sites / activities
     #   4. 'productivity': productivity calculation
     #   5. 'efficiency': efficiency calculation (not applicable in "rank" perspective)
+    # @option options [String] :by
+    #   Lets you set the perspective of your report
+    #   1. 'rank' (default): returns a ranked report of activities by total time spent
+    #   2. 'time': returns a chronological report of activities
+    #   3. 'member': returns an activity report grouped by member
     #
     # @return [Array<Hash>]
     #

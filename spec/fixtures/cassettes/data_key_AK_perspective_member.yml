@@ -23,7 +23,7 @@ http_interactions:
       Content-Type:
       - text/csv; charset=utf-8
       Date:
-      - Tue, 21 Apr 2015 01:13:27 GMT
+      - Tue, 21 Apr 2015 02:52:58 GMT
       Expires:
       - Fri, 01 Jan 1990 00:00:00 GMT
       Pragma:
@@ -35,9 +35,9 @@ http_interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - ea5ae963-648a-49a6-9b67-0230019acaa1
+      - 2b1f296c-cd21-45cf-9213-3401480d8402
       X-Runtime:
-      - '0.115818'
+      - '0.124511'
       X-Xss-Protection:
       - 1; mode=block
       Transfer-Encoding:
@@ -48,23 +48,23 @@ http_interactions:
       encoding: UTF-8
       string: |
         Person,Time Spent (seconds),Activity,Category,Productivity
-        Randompedestrian201,14627,rubymine,Editing & IDEs,2
-        Randompedestrian201,6168,github.com,General Software Development,2
+        Randompedestrian201,17889,rubymine,Editing & IDEs,2
+        Randompedestrian201,6504,github.com,General Software Development,2
         Randompedestrian201,4330,facebook.com,General Social Networking,0
-        Randompedestrian201,3050,waffle.io,Design & Planning,2
+        Randompedestrian201,3814,waffle.io,Design & Planning,2
+        Randompedestrian201,2529,rescuetime.com,Intelligence,1
         Randompedestrian201,2528,reddit.com,General News & Opinion,-2
-        Randompedestrian201,2524,rescuetime.com,Intelligence,1
-        Randompedestrian201,1225,localhost:63342,General Software Development,2
+        Randompedestrian201,1232,localhost:63342,General Software Development,2
         Randompedestrian201,992,stackoverflow.com,General Software Development,2
         Randompedestrian201,478,Gmail,Email,2
         Randompedestrian201,439,schneems.com,Uncategorized,0
         Randompedestrian201,368,google.com,Search,1
         Randompedestrian201,337,Terminal,Systems Operations,2
-        Randompedestrian201,194,rubydoc.info,General Software Development,2
+        Randompedestrian201,195,rubydoc.info,General Software Development,2
         Randompedestrian201,183,cloudflare.com,Systems Operations,2
+        Randompedestrian201,182,travis-ci.org,Quality Assurance,2
         Randompedestrian201,180,Safari,Browsers,0
-        Randompedestrian201,173,travis-ci.org,Quality Assurance,2
-        Randompedestrian201,127,ruby-doc.org,Engineering & Technology,2
+        Randompedestrian201,129,ruby-doc.org,Engineering & Technology,2
         Randompedestrian201,107,dash.readme.io,Uncategorized,0
         Randompedestrian201,94,messages,Instant Message,-1
         Randompedestrian201,93,railscasts.com,Engineering & Technology,2
@@ -72,37 +72,38 @@ http_interactions:
         Randompedestrian201,84,codeschool.com,Engineering & Technology,2
         Randompedestrian201,76,gocomics.com,Comedy,-2
         Randompedestrian201,61,readme.io,Uncategorized,0
+        Randompedestrian201,56,loginwindow,General Utilities,1
         Randompedestrian201,56,api.rubyonrails.org,Engineering & Technology,2
         Randompedestrian201,54,opencongress.org,Legal & Gov't,2
         Randompedestrian201,48,help.github.com,Systems Operations,2
         Randompedestrian201,41,rubygems.org,Engineering & Technology,2
-        Randompedestrian201,40,nationbuilder.com,Uncategorized,0
         Randompedestrian201,40,relishapp.com,Engineering & Technology,2
+        Randompedestrian201,40,nationbuilder.com,Uncategorized,0
         Randompedestrian201,38,distilnetworks.com,Uncategorized,0
-        Randompedestrian201,37,loginwindow,General Utilities,1
         Randompedestrian201,36,blog.law.cornell.edu,General Reference & Learning,2
         Randompedestrian201,32,nicereply.com,Uncategorized,0
         Randompedestrian201,31,endofline.wordpress.com,General News & Opinion,-2
         Randompedestrian201,30,sunlightlabs.github.io,Uncategorized,0
         Randompedestrian201,27,sample-solid.readme.io,Uncategorized,0
         Randompedestrian201,27,rubylearning.com,General Software Development,2
+        Randompedestrian201,25,Finder,General Utilities,1
         Randompedestrian201,25,techpresident.com,Intelligence,2
         Randompedestrian201,24,projectnexus.us,Uncategorized,0
         Randompedestrian201,24,troy-city-council.readme.io,Uncategorized,0
-        Randompedestrian201,22,Finder,General Utilities,1
         Randompedestrian201,11,keepthewebopen.com,Uncategorized,0
         Randompedestrian201,9,legalinformatics.wordpress.com,General News & Opinion,-2
         Randompedestrian201,8,hobnobblog.com,Uncategorized,0
         Randompedestrian201,7,troyplan.org,Uncategorized,0
-        Randompedestrian201,6,en.wikipedia.org,General Reference & Learning,2
         Randompedestrian201,6,rails.lighthouseapp.com,General Software Development,2
-        Randompedestrian201,5,jetbrains.com,Search,2
+        Randompedestrian201,6,en.wikipedia.org,General Reference & Learning,2
         Randompedestrian201,5,rubybits2.codeschool.com,Engineering & Technology,2
+        Randompedestrian201,5,jetbrains.com,Search,2
         Randompedestrian201,3,legislation.anashaest.com,Uncategorized,0
         Randompedestrian201,3,demos.ithemes.com,General Business,2
+        Randompedestrian201,2,dailydot.com,General News & Opinion,-2
         Randompedestrian201,2,rubyforge.org,General Software Development,2
         Randompedestrian201,1,l.facebook.com,General Social Networking,-2
         Randompedestrian201,1,pages,Presentation,2
     http_version: 
-  recorded_at: Tue, 21 Apr 2015 01:13:27 GMT
+  recorded_at: Tue, 21 Apr 2015 02:52:58 GMT
 recorded_with: VCR 2.9.3

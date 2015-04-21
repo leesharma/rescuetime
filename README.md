@@ -78,10 +78,15 @@ require 'rescuetime'
 #       :productivity=>2
 #    }
 
-# The :restrict_kind option lets you set the kind and/or detail level of your report.
-#   Possible values: ['overview', 'category', 'activity', 'productivity', 'efficiency']
-@client.activities restrict_kind: 'productivity'  # Returns time in each productivity level
-@client.activities restrict_kind: 'overview'      # Returns a top-level catagorization of activity
+# The :detail option lets you set the detail level of your report.
+#   Possible values: ['overview', 'category', 'activity' (default), 'productivity', 'efficiency']
+@client.activities detail: 'productivity'  # Returns time in each productivity level
+@client.activities detail: 'overview'      # Returns a top-level catagorization of activity
+
+# The :by option lets you set the perspective of your report
+#   Possible values: ['rank' (default), 'time', 'member']
+@client.activities by: 'time'   # Returns a chronological report of activities
+@client.activities by: 'rank'   # Returns a ranked report of activities by total time spent
 
 # Returns a map of RescueTime productivity level integers to text equivalents
 @client.productivity_levels
