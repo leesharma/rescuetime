@@ -13,9 +13,7 @@ rescuetime v0.2.0 development branch
 **This is the v0.2.0 development branch, which will allow full access to the RescueTime Data Analytics API. For more information about the progress towards the release, [view the issue tracking for this milestone](https://github.com/leesharma/rescuetime/milestones/v0.2.0%20(Data%20Analytics%20API))**
 
 A Ruby interface to the RescueTime APIs. Rescuetime provides a simple DSL for interacting
-with your personal or team RescueTime data.
-
-Currently, this gem only supports the Data Analytics API with API key authorization.
+with your personal or team RescueTime data. Currently, this gem only supports the Data Analytics API with API key authorization.
 
 For more information about RescueTime, visit [the RescueTime homepage](https://www.rescuetime.com).
 
@@ -29,6 +27,10 @@ For more information about RescueTime, visit [the RescueTime homepage](https://w
    * [Rescuetime Exceptions](#rescuetime-exceptions)
 * [Development](https://github.com/leesharma/rescuetime/wiki/Development) ([section](#development))
 * [Contributing](CONTRIBUTING.md) ([section](#contributing))
+
+#### Useful Links
+* [RDoc](http://www.rubydoc.info/gems/rescuetime)
+* [Wiki](https://github.com/leesharma/rescuetime/wiki)
 
 ## Installation
 
