@@ -26,6 +26,7 @@ For more information about RescueTime, visit [the RescueTime homepage](https://w
    * [Prerequisites](#prerequisites)
    * [Getting Started](#getting-started)
    * [Defaults](#defaults)
+   * [Rescuetime Exceptions](#rescuetime-exceptions)
 * [Development](https://github.com/leesharma/rescuetime/wiki/Development) ([section](#development))
 * [Contributing](CONTRIBUTING.md) ([section](#contributing))
 
@@ -79,14 +80,12 @@ require 'rescuetime'
 
 # The :restrict_kind option lets you set the kind and/or detail level of your report.
 #   Possible values: ['overview', 'category', 'activity', 'productivity', 'efficiency']
-@client.activities restrict_kind: 'productivity'
-# =>  [
-#       { :rank=>1, :time_spent_seconds=>6956, :number_of_people=>1, :productivity=>2 },
-#       { :rank=>2, :time_spent_seconds=>2635, :number_of_people=>1, :productivity=>-2 },
-#       { :rank=>3, :time_spent_seconds=>2415, :number_of_people=>1, :productivity=>1 },
-#       { :rank=>4, :time_spent_seconds=>1210, :number_of_people=>1, :productivity=>0 },
-#       { :rank=>5, :time_spent_seconds=>93, :number_of_people=>1, :productivity=>-1 }
-#     ]
+@client.activities restrict_kind: 'productivity'  # Returns time in each productivity level
+@client.activities restrict_kind: 'overview'      # Returns a top-level catagorization of activity
+
+# Returns a map of RescueTime productivity level integers to text equivalents
+@client.productivity_levels
+# => { -2=>'Very Unproductive', -1=>'Unproductive', 0=>'Neutral', 1=>'Productive', 2=>'Very Productive' }
 
 # This is not a valid request yet, but it showcases the v0.2.0 features
 # you can expect.
@@ -96,6 +95,8 @@ require 'rescuetime'
                      detail: 'activity',
                      only: 'Software Development' }
 ```
+
+For more details, please see [official gem documentation](http://www.rubydoc.info/gems/rescuetime/0.1.0) or [read the wiki](https://github.com/leesharma/rescuetime/wiki). 
 
 ### Defaults
 
@@ -109,6 +110,13 @@ The `Rescuetime::Client#activities` action has the following defaults:
   restrict_kind:    'activity' }
 
 ```
+
+### Rescuetime Exceptions
+
+There are a number of exceptions that extend from the custom Rescuetime::Error class:
+
+* **Rescuetime::MissingCredentials** is raised when a request is attempted by a client with no credentials. Try setting credentials with `@client.api_key=<YOUR_API_KEY>`.
+* **Rescuetime::InvalidCredentials** is raised when a request is attempted by a client with invalid credentials. Double-check your API key and fix your client with `@client.api_key=<VALID_API_KEY>`.
 
 ## Development
 
