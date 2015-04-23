@@ -11,6 +11,7 @@ require 'rescuetime'
 
 require 'webmock/rspec'
 require 'vcr'
+require 'time'
 
 
 VCR.configure do |config|
@@ -43,4 +44,9 @@ end
 # @return[Array] activity keys
 def collect_keys(activities)
   activities.first.keys
+end
+#
+# Collects unique dates from an activities array where activities have a :date
+def unique_dates(activities)
+  activities.collect{|activity| Time.parse(activity[:date])}.uniq
 end

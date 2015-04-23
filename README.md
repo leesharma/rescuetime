@@ -96,10 +96,10 @@ require 'rescuetime'
 
 # This is not a valid request yet, but it showcases the v0.2.0 features
 # you can expect.
-@client.activities { by: 'time',
+@client.activities { by:            'time',
                      time_interval: 'minute',
-                     date: '2015-04-16',
-                     detail: 'activity',
+                     date:          Time.now,
+                     detail:        'activity',
                      only: 'Software Development' }
 ```
 
@@ -114,7 +114,7 @@ The `Rescuetime::Client#activities` action has the following defaults:
 { by:               'rank'
   time_interval:    'hour'
   date:             <TODAY>
-  restrict_kind:    'activity' }
+  detail:           'activity' }
 
 ```
 

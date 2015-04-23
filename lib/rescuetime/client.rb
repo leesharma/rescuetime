@@ -94,7 +94,7 @@ module Rescuetime
     # @since v0.2.0
     def query_params(options)
       params = {}
-      params_mapping = { detail: :restrict_kind, by: :perspective }
+      params_mapping = { detail: :restrict_kind, by: :perspective, interval: :resolution_time }
 
       params_mapping.each do |local, server|
         params[server] = options[local] if options[local]
@@ -115,6 +115,8 @@ module Rescuetime
 
     # Takes a date in either "YYYY-MM-DD" format or as a Time object and
     # returns a date string in "YYYY-MM-DD" format
+    #
+    # @return [String]
     def date_string(date)
       return date if date.is_a? String
       date.strftime('%Y-%m-%d')

@@ -1,0 +1,106 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.rescuetime.com/anapi/data?format=csv&key=<RESCUETIME_API_KEY>&operation=select&perspective=interval&resolution_time=week&restrict_begin=2015-03-20&restrict_end=2015-04-20&restrict_kind=overview&version=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - text/csv; charset=utf-8
+      Date:
+      - Thu, 23 Apr 2015 14:37:59 GMT
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - fe083e1c-d577-48e6-a954-4dcbb325e435
+      X-Runtime:
+      - '1.515532'
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        Date,Time Spent (seconds),Number of People,Category
+        2015-03-22T00:00:00,51650,1,Software Development
+        2015-03-22T00:00:00,47407,1,Reference & Learning
+        2015-03-22T00:00:00,26532,1,Entertainment
+        2015-03-22T00:00:00,19886,1,Social Networking
+        2015-03-22T00:00:00,14347,1,News & Opinion
+        2015-03-22T00:00:00,8642,1,Business
+        2015-03-22T00:00:00,6932,1,Uncategorized
+        2015-03-22T00:00:00,2676,1,Utilities
+        2015-03-22T00:00:00,940,1,Communication & Scheduling
+        2015-03-22T00:00:00,11,1,Design & Composition
+        2015-03-22T00:00:00,2,1,Shopping
+        2015-03-29T00:00:00,70727,1,Software Development
+        2015-03-29T00:00:00,31151,1,News & Opinion
+        2015-03-29T00:00:00,26761,1,Uncategorized
+        2015-03-29T00:00:00,24829,1,Reference & Learning
+        2015-03-29T00:00:00,21435,1,Social Networking
+        2015-03-29T00:00:00,21363,1,Design & Composition
+        2015-03-29T00:00:00,9673,1,Utilities
+        2015-03-29T00:00:00,8256,1,Entertainment
+        2015-03-29T00:00:00,2409,1,Business
+        2015-03-29T00:00:00,2356,1,Communication & Scheduling
+        2015-03-29T00:00:00,1076,1,Shopping
+        2015-04-05T00:00:00,82115,1,Software Development
+        2015-04-05T00:00:00,75030,1,Reference & Learning
+        2015-04-05T00:00:00,34271,1,News & Opinion
+        2015-04-05T00:00:00,16652,1,Uncategorized
+        2015-04-05T00:00:00,11458,1,Design & Composition
+        2015-04-05T00:00:00,8170,1,Social Networking
+        2015-04-05T00:00:00,3390,1,Utilities
+        2015-04-05T00:00:00,3080,1,Entertainment
+        2015-04-05T00:00:00,1021,1,Communication & Scheduling
+        2015-04-05T00:00:00,309,1,Business
+        2015-04-05T00:00:00,10,1,Shopping
+        2015-04-12T00:00:00,111646,1,Software Development
+        2015-04-12T00:00:00,23688,1,Reference & Learning
+        2015-04-12T00:00:00,16041,1,Design & Composition
+        2015-04-12T00:00:00,12537,1,News & Opinion
+        2015-04-12T00:00:00,7519,1,Uncategorized
+        2015-04-12T00:00:00,4192,1,Utilities
+        2015-04-12T00:00:00,3708,1,Social Networking
+        2015-04-12T00:00:00,3543,1,Business
+        2015-04-12T00:00:00,1559,1,Entertainment
+        2015-04-12T00:00:00,1434,1,Communication & Scheduling
+        2015-04-19T00:00:00,35570,1,Software Development
+        2015-04-19T00:00:00,12312,1,Design & Composition
+        2015-04-19T00:00:00,6704,1,Reference & Learning
+        2015-04-19T00:00:00,5837,1,News & Opinion
+        2015-04-19T00:00:00,4811,1,Social Networking
+        2015-04-19T00:00:00,2925,1,Business
+        2015-04-19T00:00:00,1516,1,Entertainment
+        2015-04-19T00:00:00,1269,1,Uncategorized
+        2015-04-19T00:00:00,1101,1,Communication & Scheduling
+        2015-04-19T00:00:00,720,1,Utilities
+    http_version: 
+  recorded_at: Thu, 23 Apr 2015 14:37:59 GMT
+recorded_with: VCR 2.9.3

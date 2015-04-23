@@ -23,7 +23,13 @@ describe Rescuetime::Activities do
         expect(activity_keys).not_to include(:category)
       end
     end
-    it 'responds to options'
+    it 'responds to options' do
+      VCR.use_cassette('/data?key=AK&restrict_kind=productivity&perspective=member',
+                       match_requests_on: [:host, :path], record: :none) do
+        activity_keys = collect_keys @client.productivity(by: 'member')
+        expect(activity_keys).to include(:person)
+      end
+    end
   end
 
   describe '#efficiency' do
@@ -36,7 +42,13 @@ describe Rescuetime::Activities do
         expect(activity_keys).to include(:efficiency_percent)
       end
     end
-    it 'responds to options'
+    it 'responds to options' do
+      VCR.use_cassette('/data?key=AK&restrict_kind=efficiency&perspective=member',
+                       match_requests_on: [:host, :path], record: :none) do
+        activity_keys = collect_keys @client.efficiency(by: 'member')
+        expect(activity_keys).to include(:person)
+      end
+    end
   end
 
   describe '#activities' do
@@ -45,6 +57,81 @@ describe Rescuetime::Activities do
                        match_requests_on: [:host, :path], record: :none) do
         expect(@client.activities).to be_instance_of(Array)
         expect(@client.activities[0]).to be_instance_of(Hash)
+      end
+    end
+
+    describe 'time_interval:' do
+      describe "'minute'" do
+        it 'returns report data in 5-minute chunks' do
+          VCR.use_cassette('/data?key=AK&perspective=interval&resolution_time=minute',
+                           match_requests_on: [:host, :path], record: :none) do
+            dates = unique_dates @client.activities(by: 'time',
+                                                    date: '2015-04-20',
+                                                    interval: 'minute')
+            minutes = dates.collect(&:min)
+
+            expect(minutes[0]+5).to eq(minutes[1])
+          end
+        end
+      end
+      describe "'hour'" do
+        it 'returns report data in 1-hour chunks' do
+          VCR.use_cassette('/data?key=AK&perspective=interval&resolution_time=hour',
+                           match_requests_on: [:host, :path], record: :none) do
+            dates = unique_dates @client.activities(by: 'time',
+                                                    detail: 'overview',
+                                                    date: '2015-04-20',
+                                                    interval: 'hour')
+            hours = dates.collect(&:hour)
+
+            expect(hours[0]+1).to eq(hours[1])
+          end
+        end
+      end
+      describe "'day'" do
+        it 'returns report data in 1-day chunks' do
+          VCR.use_cassette('/data?key=AK&perspective=interval&resolution_time=day',
+                           match_requests_on: [:host, :path], record: :none) do
+            dates = unique_dates @client.activities(by: 'time',
+                                                    detail: 'overview',
+                                                    from: '2015-03-20',
+                                                    to: '2015-04-20',
+                                                    interval: 'day')
+            days = dates.collect(&:day)
+
+            expect(days[0]+1).to eq(days[1])
+          end
+        end
+      end
+      describe "'week'" do
+        it 'returns report data in 1-week chunks' do
+          VCR.use_cassette('/data?key=AK&perspective=interval&resolution_time=week',
+                           match_requests_on: [:host, :path], record: :none) do
+            dates = unique_dates @client.activities(by: 'time',
+                                                    detail: 'overview',
+                                                    from: '2015-03-20',
+                                                    to: '2015-04-20',
+                                                    interval: 'week')
+            days = dates.collect(&:day)
+
+            expect(days[0]+7).to eq(days[1])
+          end
+        end
+      end
+      describe "'month'" do
+        it 'returns report data in 1-month chunks' do
+          VCR.use_cassette('/data?key=AK&perspective=interval&resolution_time=month',
+                           match_requests_on: [:host, :path], record: :none) do
+            dates = unique_dates @client.activities(by: 'time',
+                                                    detail: 'overview',
+                                                    from: '2015-01-20',
+                                                    to: '2015-04-20',
+                                                    interval: 'month')
+            months = dates.collect(&:month)
+
+            expect(months[0]+1).to eq(months[1])
+          end
+        end
       end
     end
 

@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.rescuetime.com/anapi/data?format=csv&key=<RESCUETIME_API_KEY>&operation=select&perspective=member&restrict_kind=productivity&version=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - text/csv; charset=utf-8
+      Date:
+      - Tue, 21 Apr 2015 23:03:16 GMT
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 075580d5-ce2f-470e-8c1f-a425b015d95a
+      X-Runtime:
+      - '0.033262'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '149'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        Person,Time Spent (seconds),Productivity
+        Randompedestrian201,17237,2
+        Randompedestrian201,2873,-2
+        Randompedestrian201,809,0
+        Randompedestrian201,373,1
+    http_version: 
+  recorded_at: Tue, 21 Apr 2015 23:03:15 GMT
+recorded_with: VCR 2.9.3

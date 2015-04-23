@@ -60,6 +60,11 @@ module Rescuetime
     #   @client.activities(from: '2014-05-06', to: '2014-06-06')    # Returns report for May 6 to June 6, 2014
     #   @client.activities(from: '2015-04-10')                      # Returns report for April 10, 2015 to today
     #
+    # @example Set time interval
+    #   @client.efficiency( from: '2015-01-01',    # Returns an efficiency report by
+    #                       to: Time.now,          # week from the Jan 1, 2015 through
+    #                       interval: 'week')      # today.
+    #
     # @example Format
     #   @client.activities                # Returns array of hashes
     #   @client.activities format: 'csv'  # Returns Mime::CSV
@@ -70,8 +75,8 @@ module Rescuetime
     #   1. 'overview': sums statistics for all activities into their top level category
     #   2. 'category': sums statistics for all activities into their sub category
     #   3. 'activity' (default): sums statistics for individual applications / web sites / activities
-    #   4. 'productivity': productivity calculation
-    #   5. 'efficiency': efficiency calculation (not applicable in "rank" perspective)
+    #   4. 'productivity': productivity calculation (@see #productivity)
+    #   5. 'efficiency': efficiency calculation (not applicable in "rank" perspective, @see #efficiency)
     # @option options [String] :by
     #   Lets you set the perspective of your report
     #   1. 'rank' (default): returns a ranked report of activities by total time spent
@@ -88,6 +93,14 @@ module Rescuetime
     #   Lets you set an end date for your report in a 'YYYY-MM-DD' format. If a
     #   :to is supplied, :from must be supplied as well. Cannot be a future date or
     #   before the :from date.
+    # @option options [String] :interval
+    #   Lets you set the time interval for your report (ie. client.efficiency(interval:'day')
+    #   returns the efficiency report by day.) Possible values include:
+    #   1. 'minute': returns data in 5-minute increments
+    #   2. 'hour' (default): returns data in 1-hour increments
+    #   3. 'day': returns data in 1-day increments
+    #   4. 'week': returns data in 1-week increments
+    #   5. 'month': returns data in 1-month increments
     # @option options [String] :format
     #   Lets you specify a return type for your report
     #   1. default: returns an array of hashes with symbolized keys
@@ -113,7 +126,7 @@ module Rescuetime
     # @param [Hash] options options hash (same as #activities)
     # @return [Array<Hash>]
     def efficiency(options={})
-      self.activities(options.merge(by: 'time', detail: 'efficiency'))
+      self.activities({by: 'time'}.merge(options.merge(detail: 'efficiency')))
     end
 
     # Returns productivity report. Equivalent to #activities(detail: productivity)
