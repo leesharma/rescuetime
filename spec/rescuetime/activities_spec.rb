@@ -60,7 +60,7 @@ describe Rescuetime::Activities do
       end
     end
 
-    describe 'time_interval:' do
+    describe 'interval:' do
       describe "'minute'" do
         it 'returns report data in 5-minute chunks' do
           VCR.use_cassette('/data?key=AK&perspective=interval&resolution_time=minute',
