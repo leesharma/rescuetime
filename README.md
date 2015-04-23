@@ -1,4 +1,4 @@
-rescuetime v0.2.0 development branch
+rescuetime
 ==========
 
 [![Quality](http://img.shields.io/codeclimate/github/leesharma/rescuetime.svg?style=flat-square)](https://codeclimate.com/github/leesharma/rescuetime)
@@ -56,49 +56,26 @@ In order to use access your RescueTime data, you will need an API key. If you do
 
 ### Getting Started
 
-Using the rescuetime gem is simple. Here is some example code using the rescuetime gem:
+Using the rescuetime gem is simple. Here is some example code using the rescuetime gem (a full feature list can be found [here](https://github.com/leesharma/rescuetime/wiki#full-specs):
 
 ```ruby
 require 'rescuetime'
 
 @client = Rescuetime::Client.new(api_key: <YOUR_API_KEY>)
+@client.api_key?            #=> true
+@client.valid_credentials?  #=> true
 
 @client.activities          # Returns a list of activities, ordered by "rank"
+@client.productivity        # Returns a productivity report
+@client.efficiency          # Returns an efficiency report, ordered by "time"
 
 @client.activities.class    # => Array
 @client.activities[0].class # => Hash
 
-@client.activities[0]       
-# => {   
-#       :rank=>1, 
-#       :time_spent_seconds=>5307, 
-#       :number_of_people=>1, 
-#       :activity=>"github.com", 
-#       :category=>"General Software Development", 
-#       :productivity=>2
-#    }
-
-# The :detail option lets you set the detail level of your report.
-#   Possible values: ['overview', 'category', 'activity' (default), 'productivity', 'efficiency']
-@client.activities detail: 'productivity'  # Returns time in each productivity level
-@client.activities detail: 'overview'      # Returns a top-level catagorization of activity
-
-# The :by option lets you set the perspective of your report
-#   Possible values: ['rank' (default), 'time', 'member']
-@client.activities by: 'time'   # Returns a chronological report of activities
-@client.activities by: 'rank'   # Returns a ranked report of activities by total time spent
-
-# Returns a map of RescueTime productivity level integers to text equivalents
-@client.productivity_levels
-# => { -2=>'Very Unproductive', -1=>'Unproductive', 0=>'Neutral', 1=>'Productive', 2=>'Very Productive' }
-
-# This is not a valid request yet, but it showcases the v0.2.0 features
-# you can expect.
-@client.activities { by:            'time',
-                     time_interval: 'minute',
-                     date:          Time.now,
-                     detail:        'activity',
-                     only: 'Software Development' }
+@client.efficiency( from: '2015-03-20',     # returns weekly efficiency report between March 20th and 
+                    to: '2015-04-20' ,      #   April 20th of 2015 by member in csv format
+                    interval: 'week', 
+                    format: 'csv' )
 ```
 
 For more details, please see [official gem documentation](http://www.rubydoc.info/gems/rescuetime/0.1.0) or [read the wiki](https://github.com/leesharma/rescuetime/wiki). 
