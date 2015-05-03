@@ -65,17 +65,67 @@ require 'rescuetime'
 @client.api_key?            #=> true
 @client.valid_credentials?  #=> true
 
-@client.activities          # Returns a list of activities, ordered by "rank"
-@client.productivity        # Returns a productivity report
-@client.efficiency          # Returns an efficiency report, ordered by "time"
+@client.overview.fetch      # Returns an overview report, defaulting to "rank" order
+@client.categories.fetch    # Returns a catigorical report, defaulting to "rank" order
+@client.activities.fetch    # Returns a list of activities, defaulting to "rank" order
+@client.productivity.fetch  # Returns a productivity report, defaulting to "rank" order
+@client.efficiency.fetch    # Returns an efficiency report, defaulting to "time order"
 
-@client.activities.class    # => Array
-@client.activities[0].class # => Hash
+##
+# Date Range (:date, :frome, :to)
+# -------------------------------
+@client.overview.fetch            # Defaults to current day (since midnight)
+@client.overview                  # Fetches results from Dec 31, 2014. Valid date formats:
+  .date('2014-12-31').fetch       #   - "YYYY-MM-DD"    - "MM-DD-YYYY"    - "DD/MM"
+@client.overview                  #   - "YYYY/MM/DD"    - "MM/DD/YYYY"    - "DD-MM"
+  .from('2015-01-01')             #   - Object#strftime
+  .to('2015-02-01').fetch         #
+@client.overview                  # If :from is provided but :to is not, :to defaults to 
+       .from('2015-04-01')        #   current day
+       .fetch
 
-@client.efficiency( from: '2015-03-20',     # returns weekly efficiency report between March 20th and 
-                    to: '2015-04-20' ,      #   April 20th of 2015 by member in csv format
-                    interval: 'week', 
-                    format: 'csv' )
+##
+# Report Order (:order_by)
+# ------------------------
+@client.efficiency.fetch                        # Efficiency defaults to chronological order
+@client.productivity.fetch                      # Everything else defaults to "rank" order
+                                                #
+@client.productivity.order_by(:rank).fetch      # You can order_by: 
+@client.productivity.order_by(:time).fetch      #   :rank, :time, or :member
+@client.productivity.order_by(:member).fetch    #   (note: efficiency can't be sorted by :rank)
+                                                #
+@client.productivity.order_by(:time).fetch      # When ordering by time, default interval is 1 hour
+@client.productivity                            # Options include:
+  .order_by(:time, interval: :minute).fetch     #   :minute (5-minute chunks)
+@client.productivity                            #   :hour
+  .order_by(:time, interval: :hour).fetch       #   :day
+@client.productivity                            #   :week
+  .order_by(:time, interval: :day).fetch        #   :month
+@client.productivity.order_by(:time, interval: :week).fetch
+@client.productivity.order_by(:time, interval: :month).fetch
+
+##
+# Name Restrictions (:where)
+# --------------------------
+@client.activities.where(name: 'github.com').fetch    # Fetches results where name is an exact match
+@client.categories.where(name: 'Intelligence').fetch  # The following reports can be limited by name
+@client.overview.where(name: 'Utilities').fetch       #   :activities, :categories, :overview
+@client.activities                                    # 
+  .where(name: 'github.com', document: 'vcr/vcr')     # For activities, you can also limit by
+                                                      #   specific document title (try querying)
+                                                      #   without document title to see a list of
+                                                      #   valid options
+                                                      #
+                                                      # Names must be exact, so if you don't know 
+                                                      #   the exact name, see what is returned in
+                                                      #   a query
+
+##
+# Formatting options (:csv, :array)
+# ---------------------------------
+@client.efficiency                  # Default return type is Array<Hash>
+@client.efficiency.format(:cvs)     # Returns a CSV
+@client.efficiency.format(:array)   # Returns Array<Hash>
 ```
 
 For more details, please see [official gem documentation](http://www.rubydoc.info/gems/rescuetime/0.1.0) or [read the wiki](https://github.com/leesharma/rescuetime/wiki). 
@@ -86,10 +136,9 @@ The `Rescuetime::Client#activities` action has the following defaults:
 
 ```ruby
 
-{ by:               'rank'
-  time_interval:    'hour'
-  date:             <TODAY>
-  detail:           'activity' }
+{ order_by:         'rank'
+  interval:         'hour'
+  date:             <TODAY> }
 
 ```
 

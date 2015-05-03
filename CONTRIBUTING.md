@@ -29,13 +29,7 @@ You should be able to run the test specs now:
 bundle exec rake
 ```
 
-Some great ways to contribute include:
-- fixing [bugs](https://github.com/leesharma/rescuetime/issues?q=is%3Aopen+is%3Aissue+-label%3A%22in+progress%22+label%3Abug)
-- adding [features listed in our current milestone](https://github.com/leesharma/rescuetime/issues?q=is%3Aopen+is%3Aissue+-label%3A%22in+progress%22) (filter by milestone)
-- adding/improving documentation, comments, etc.
-- refactoring existing code
-
-Check our [issue tracker](https://github.com/leesharma/rescuetime/issues) for more ideas.
+This is a very small project, so if you are interested in contributing, it will be easiest if you contact me first.
 
 ## Standards
 
@@ -43,6 +37,13 @@ rescuetime uses RSpec for testing along with VCR and WebMock for mocking HTTP re
 
 Be careful not to commit sensitive information (API keys, OAuth credentials, etc.) to public repositories!
 
+### Comment Tags
+
+* TODO
+* FIXME
+* OPTIMIZE
+* REVIEW
+
 ## Questions
 
-Have any questions? Feel free to send me (@leesharma) a message!
+Have any questions? Post on the github repo at leesharma/rescuetime.
