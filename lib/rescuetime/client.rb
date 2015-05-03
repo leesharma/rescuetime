@@ -1,7 +1,7 @@
 require 'faraday'
 require 'csv'
 
-require 'rescuetime/api'
+require 'rescuetime/reportable'
 
 module Rescuetime
   # Rescuetime::Client makes HTTP requests to the RescueTime API and returns
@@ -9,17 +9,15 @@ module Rescuetime
   #
   # @since v0.1.0
   class Client
-    include Rescuetime::Api
+    include Reportable
 
     # Default options passed in any request
     # @since v0.2.0
     DEFAULT_OPTIONS = { format: 'csv', version: 0, operation: 'select' }
 
-    # Overwrites the set RescueTime API key
-    #
-    # @!attribute [w] api_key
+    # @!attribute [rw] api_key
     # @since v0.1.0
-    attr_writer :api_key
+    attr_accessor :api_key
 
     # Initializes a new Client object
     #
@@ -41,7 +39,7 @@ module Rescuetime
     # @return [Boolean]
     # @since v0.1.0
     def api_key?
-      !!@api_key
+      !!@api_key && !@api_key.empty?
     end
 
     # Checks whether client credentials are valid. If credentials are present, this

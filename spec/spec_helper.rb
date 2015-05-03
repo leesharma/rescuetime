@@ -9,6 +9,8 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'rescuetime'
 
+require 'rspec'
+# require 'rspec/its'
 require 'webmock/rspec'
 require 'vcr'
 require 'time'

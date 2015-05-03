@@ -1,15 +1,8 @@
 require 'spec_helper'
 
-describe Rescuetime::Activities do
+describe Rescuetime::Reportable do
   before do
     @client = Rescuetime::Client.new(api_key: 'AK')
-  end
-
-  describe '#productivity_levels' do
-    it 'returns map of numeric productivity levels to meaning' do
-      expect(@client.productivity_levels).to be_an_instance_of(Hash)
-      expect(@client.productivity_levels.keys).to eq([-2, -1, 0, 1, 2])
-    end
   end
 
   describe '#productivity' do
@@ -47,6 +40,32 @@ describe Rescuetime::Activities do
                        match_requests_on: [:host, :path], record: :none) do
         activity_keys = collect_keys @client.efficiency(by: 'member')
         expect(activity_keys).to include(:person)
+      end
+    end
+  end
+
+  describe '#overviews' do
+    it 'returns overview report' do
+      VCR.use_cassette('/data?key=AK&restrict_kind=overview',
+                       match_requests_on: [:host, :path], record: :none) do
+        activity_keys = collect_keys @client.overviews
+
+        expect(activity_keys).to include(:category)
+        expect(activity_keys).not_to include(:activity)
+        expect(activity_keys).not_to include(:productivity)
+      end
+    end
+  end
+
+  describe '#categories' do
+    it 'returns category report' do
+      VCR.use_cassette('/data?key=AK&restrict_kind=category',
+                       match_requests_on: [:host, :path], record: :none) do
+        activity_keys = collect_keys @client.categories
+
+        expect(activity_keys).to include(:category)
+        expect(activity_keys).not_to include(:activity)
+        expect(activity_keys).not_to include(:productivity)
       end
     end
   end
@@ -241,69 +260,6 @@ describe Rescuetime::Activities do
                            match_requests_on: [:host, :path], record: :none) do
             activity_keys = collect_keys @client.activities(by: 'member')
             expect(activity_keys).to include(:person)
-          end
-        end
-      end
-    end
-    describe 'detail:' do
-      describe "'overview'" do
-        it 'restricts activity detail to overview' do
-          VCR.use_cassette('/data?key=AK&restrict_kind=overview',
-                           match_requests_on: [:host, :path], record: :none) do
-            activity_keys = collect_keys @client.activities(detail: 'overview')
-
-            expect(activity_keys).to include(:category)
-            expect(activity_keys).not_to include(:activity)
-            expect(activity_keys).not_to include(:productivity)
-          end
-        end
-      end
-
-      describe "'category'" do
-        it 'restricts activity detail to category' do
-          VCR.use_cassette('/data?key=AK&restrict_kind=category',
-                           match_requests_on: [:host, :path], record: :none) do
-            activity_keys = collect_keys @client.activities(detail: 'category')
-
-            expect(activity_keys).to include(:category)
-            expect(activity_keys).not_to include(:activity)
-            expect(activity_keys).not_to include(:productivity)
-          end
-        end
-      end
-
-      describe "'activity'" do
-        it 'restricts activity detail to activity' do
-          VCR.use_cassette('/data?key=AK&restrict_kind=activity',
-                           match_requests_on: [:host, :path], record: :none) do
-            activity_keys = collect_keys @client.activities(detail: 'activity')
-
-            expect(activity_keys).to include(:activity)
-          end
-        end
-      end
-
-      describe "'productivity'" do
-        it 'returns productivity report' do
-          VCR.use_cassette('/data?key=AK&restrict_kind=productivity',
-                           match_requests_on: [:host, :path], record: :none) do
-            activity_keys = collect_keys @client.activities(detail: 'productivity')
-
-            expect(activity_keys).to include(:productivity)
-            expect(activity_keys).not_to include(:activity)
-            expect(activity_keys).not_to include(:category)
-          end
-        end
-      end
-
-      describe "'efficiency'" do
-        it 'returns efficiency report (only valid with by: \'time\')' do
-          VCR.use_cassette('/data?key=AK&restrict_kind=efficiency&perspective=interval',
-                           match_requests_on: [:host, :path], record: :none) do
-            activity_keys = collect_keys @client.activities(detail: 'efficiency', by: 'time')
-
-            expect(activity_keys).to include(:efficiency_22)
-            expect(activity_keys).to include(:efficiency_percent)
           end
         end
       end
