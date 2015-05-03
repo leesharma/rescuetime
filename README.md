@@ -54,9 +54,7 @@ Ensure that you are using a [supported ruby version](https://github.com/leesharm
 
 In order to use access your RescueTime data, you will need an API key. If you do not already have a key, visit the [API key management page](https://www.rescuetime.com/anapi/manage).
 
-### Getting Started
-
-Using the rescuetime gem is simple. Here is some example code using the rescuetime gem (a full feature list can be found [here](https://github.com/leesharma/rescuetime/wiki#full-specs):
+### In a Nutshell
 
 ```ruby
 require 'rescuetime'
@@ -112,7 +110,7 @@ require 'rescuetime'
 @client.overview.where(name: 'Utilities').fetch       #   :activities, :categories, :overview
 @client.activities                                    # 
   .where(name: 'github.com', document: 'vcr/vcr')     # For activities, you can also limit by
-                                                      #   specific document title (try querying)
+  .fetch                                              #   specific document title (try querying)
                                                       #   without document title to see a list of
                                                       #   valid options
                                                       #
@@ -123,10 +121,12 @@ require 'rescuetime'
 ##
 # Formatting options (:csv, :array)
 # ---------------------------------
-@client.efficiency                  # Default return type is Array<Hash>
-@client.efficiency.format(:cvs)     # Returns a CSV
-@client.efficiency.format(:array)   # Returns Array<Hash>
+@client.efficiency.fetch                  # Default return type is Array<Hash>
+@client.efficiency.format(:cvs).fetch     # Returns a CSV
+@client.efficiency.format(:array).fetch   # Returns Array<Hash>
 ```
+
+### Finding Answers (Documentation)
 
 For more details, please see [official gem documentation](http://www.rubydoc.info/gems/rescuetime/0.1.0) or [read the wiki](https://github.com/leesharma/rescuetime/wiki). 
 
@@ -146,8 +146,26 @@ The `Rescuetime::Client#activities` action has the following defaults:
 
 There are a number of exceptions that extend from the custom Rescuetime::Error class:
 
-* **Rescuetime::MissingCredentials** is raised when a request is attempted by a client with no credentials. Try setting credentials with `@client.api_key=<YOUR_API_KEY>`.
-* **Rescuetime::InvalidCredentials** is raised when a request is attempted by a client with invalid credentials. Double-check your API key and fix your client with `@client.api_key=<VALID_API_KEY>`.
+* Credentials Errors
+  * **Rescuetime::MissingCredentialsError** is raised when a request is attempted by a client with no credentials. Try setting credentials with `@client.api_key = <YOUR_API_KEY>`.
+  * **Rescuetime::InvalidCredentialsError** is raised when a request is attempted by a client with invalid credentials. Double-check your API key and fix your client with `@client.api_key = <VALID_API_KEY>`.
+* **Rescuetime::InvalidQueryError** is raised if you enter an invalid value for any of the RescueTime query methods (or if the server returns a bad query error)
+* **Rescuetime::InvalidFormatError** is raised if you pass a disallowed format to the client
+* HTTP Response Errors:
+  * **4xx => Rescuetime:: ClientError**
+  * 400 => Rescuetime::BadRequest
+  * 401 => Rescuetime::Unauthorized
+  * 403 => Rescuetime::Forbidden
+  * 404 => Rescuetime::NotFound
+  * 406 => Rescuetime::NotAcceptable
+  * 422 => Rescuetime::UnprocessableEntity
+  * 429 => Rescuetime::TooManyRequests
+  * **5xx => Rescuetime:: ServerError**
+  * 500 => Rescuetime::InternalServerError
+  * 501 => Rescuetime::NotImplemented
+  * 502 => Rescuetime::BadGateway
+  * 503 => Rescuetime::ServiceUnavailable
+  * 504 => Rescuetime::GatewayTimeout
 
 ## Development
 
