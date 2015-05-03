@@ -18,10 +18,10 @@ module Rescuetime
     def get
       fail(Rescuetime::MissingCredentialsError) unless api_key?
 
-      query = @query.to_h.delete_if { |_, v| !v || v.empty? }
-      response = @connection.get '', query.to_h
-                                          .merge(DEFAULT_OPTIONS)
-                                          .merge(key: @api_key)
+      query = Hash[@query.each_pair.to_a].delete_if { |_, v| !v || v.empty? }
+      response = @connection.get('', query
+                                     .merge(DEFAULT_OPTIONS)
+                                     .merge(key: @api_key))
 
       case
       when response.body =~ INVALID[:key_not_found]
