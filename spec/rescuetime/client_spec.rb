@@ -1,18 +1,16 @@
 require 'spec_helper'
 
 describe Rescuetime::Client do
-  it 'exists' do
-    expect(subject).not_to be_nil
-  end
+  it { is_expected.not_to be_nil }
 
   describe '#api_key?' do
-    it 'returns true if the api key is present' do
-      client = Rescuetime::Client.new(api_key: 'AK')
-      expect(client.api_key?).to be true
+    describe 'when a key is present' do
+      subject { Rescuetime::Client.new(api_key: 'AK').api_key? }
+      it { is_expected.to be true }
     end
-    it 'returns false if the api key is not present' do
-      client = Rescuetime::Client.new
-      expect(client.api_key?).to be false
+    describe 'when a key is not present' do
+      subject { Rescuetime::Client.new.api_key? }
+      it { is_expected.to be false }
     end
   end
 
@@ -24,8 +22,9 @@ describe Rescuetime::Client do
   end
 
   describe '#valid_credentials?' do
-    it 'returns false if credentials are not present' do
-      expect(subject.valid_credentials?).to eq(false)
+    describe 'if credentials are not present' do
+      subject { Rescuetime::Client.new.valid_credentials? }
+      it { is_expected.to be false }
     end
     it 'returns false if credentials are invalid' do
       VCR.use_cassette('invalid_credentials',

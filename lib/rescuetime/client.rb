@@ -13,7 +13,7 @@ module Rescuetime
 
     # Default options passed in any request
     # @since v0.2.0
-    DEFAULT_OPTIONS = {format: 'csv', version: 0, operation: 'select' }
+    DEFAULT_OPTIONS = { format: 'csv', version: 0, operation: 'select' }
 
     # Overwrites the set RescueTime API key
     #
@@ -32,7 +32,7 @@ module Rescuetime
     # @option options [String] :api_key RescueTime API key
     # @return [Rescuetime::Client]
     # @since v0.1.0
-    def initialize(options={})
+    def initialize(options = {})
       @api_key = options[:api_key]
     end
 
@@ -62,7 +62,7 @@ module Rescuetime
     # @since v0.2.0
     def valid_credentials?
       return false unless api_key?
-      !!self.activities rescue false
+      !!activities rescue false
     end
 
     protected
@@ -72,29 +72,35 @@ module Rescuetime
     # @param [String] url request url
     # @param [Hash] options query params for request
     #
-    # @raise [Rescuetime::MissingCredentials] if the Rescuetime::Client has no set api key
-    # @raise [Rescuetime::InvalidCredentials] if the provided api key is rejected by RescueTime
+    # @raise [Rescuetime::MissingCredentials] if the Rescuetime::Client has no
+    #   set api key
+    # @raise [Rescuetime::InvalidCredentials] if the provided api key is
+    #   rejected by RescueTime
     # @since v0.2.0
-    def get(url, options={})
-      raise Rescuetime::MissingCredentials unless api_key?
-      response = Faraday.get url, query_params(options).
-                                    merge(DEFAULT_OPTIONS).
-                                    merge({key: @api_key})
+    def get(url, options = {})
+      fail Rescuetime::MissingCredentials unless api_key?
+      response = Faraday.get(url, query_params(options)
+                                  .merge(DEFAULT_OPTIONS)
+                                  .merge(key: @api_key))
 
       invalid_credentials_body = '{"error":"# key not found","messages":"key not found"}'
-      raise Rescuetime::InvalidCredentials if response.body == invalid_credentials_body
+      fail Rescuetime::InvalidCredentials if
+        response.body == invalid_credentials_body
 
       response
     end
 
-    # Takes client request options hash and returns correct key/value pairs for HTTP request
+    # Takes client request options hash and returns correct key/value pairs
+    # for HTTP request
     #
     # @param [Hash] options options hash of client request
     # @return [Hash]
     # @since v0.2.0
     def query_params(options)
       params = {}
-      params_mapping = { detail: :restrict_kind, by: :perspective, interval: :resolution_time }
+      params_mapping = { detail:    :restrict_kind,
+                         by:        :perspective,
+                         interval:  :resolution_time }
 
       params_mapping.each do |local, server|
         params[server] = options[local] if options[local]

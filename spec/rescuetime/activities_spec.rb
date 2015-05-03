@@ -8,7 +8,7 @@ describe Rescuetime::Activities do
   describe '#productivity_levels' do
     it 'returns map of numeric productivity levels to meaning' do
       expect(@client.productivity_levels).to be_an_instance_of(Hash)
-      expect(@client.productivity_levels.keys).to eq([-2,-1,0,1,2])
+      expect(@client.productivity_levels.keys).to eq([-2, -1, 0, 1, 2])
     end
   end
 
@@ -70,7 +70,7 @@ describe Rescuetime::Activities do
                                                     interval: 'minute')
             minutes = dates.collect(&:min)
 
-            expect(minutes[0]+5).to eq(minutes[1])
+            expect(minutes[0] + 5).to eq(minutes[1])
           end
         end
       end
@@ -84,7 +84,7 @@ describe Rescuetime::Activities do
                                                     interval: 'hour')
             hours = dates.collect(&:hour)
 
-            expect(hours[0]+1).to eq(hours[1])
+            expect(hours[0] + 1).to eq(hours[1])
           end
         end
       end
@@ -99,7 +99,7 @@ describe Rescuetime::Activities do
                                                     interval: 'day')
             days = dates.collect(&:day)
 
-            expect(days[0]+1).to eq(days[1])
+            expect(days[0] + 1).to eq(days[1])
           end
         end
       end
@@ -114,7 +114,7 @@ describe Rescuetime::Activities do
                                                     interval: 'week')
             days = dates.collect(&:day)
 
-            expect(days[0]+7).to eq(days[1])
+            expect(days[0] + 7).to eq(days[1])
           end
         end
       end
@@ -129,7 +129,7 @@ describe Rescuetime::Activities do
                                                     interval: 'month')
             months = dates.collect(&:month)
 
-            expect(months[0]+1).to eq(months[1])
+            expect(months[0] + 1).to eq(months[1])
           end
         end
       end
@@ -152,7 +152,7 @@ describe Rescuetime::Activities do
         it 'sets the date for the report data (accepts a valid Time object)' do
           VCR.use_cassette('/data?key=AK&perspective=interval&restrict_begin=2015-04-20&restrict_end=2015-04-20',
                            match_requests_on: [:host, :path], record: :none) do
-            activities = @client.activities by: 'time', date: Time.new(2015,04,20)
+            activities = @client.activities by: 'time', date: Time.new(2015, 04, 20)
             valid = /2015-04-20/
 
             invalid_date_count = count_invalid_dates(activities, valid)
@@ -167,7 +167,7 @@ describe Rescuetime::Activities do
         it 'accepts a valid Time object' do
           VCR.use_cassette('/data?key=AK&perspective=interval&restrict_begin=2015-04-19&restrict_end=2015-04-21',
                            match_requests_on: [:host, :path], record: :none) do
-            activities = @client.activities by: 'time', from: Time.new(2015,04,19)
+            activities = @client.activities by: 'time', from: Time.new(2015, 04, 19)
             valid = /(2015-04-19|2015-04-20|2015-04-21)/
 
             invalid_date_count = count_invalid_dates(activities, valid)

@@ -72,11 +72,15 @@ module Rescuetime
     # @param [Hash] options Query parameters to be passed to RescueTime
     # @option options [String] :detail
     #   Restricts the level of detail of report returned
-    #   1. 'overview': sums statistics for all activities into their top level category
-    #   2. 'category': sums statistics for all activities into their sub category
-    #   3. 'activity' (default): sums statistics for individual applications / web sites / activities
+    #   1. 'overview': sums statistics for all activities into their top level
+    #         category
+    #   2. 'category': sums statistics for all activities into their sub
+    #         category
+    #   3. 'activity' (default): sums statistics for individual applications /
+    #         web sites / activities
     #   4. 'productivity': productivity calculation (@see #productivity)
-    #   5. 'efficiency': efficiency calculation (not applicable in "rank" perspective, @see #efficiency)
+    #   5. 'efficiency': efficiency calculation (not applicable in "rank"
+    #         perspective, @see #efficiency)
     # @option options [String] :by
     #   Lets you set the perspective of your report
     #   1. 'rank' (default): returns a ranked report of activities by total time spent
@@ -94,8 +98,9 @@ module Rescuetime
     #   :to is supplied, :from must be supplied as well. Cannot be a future date or
     #   before the :from date.
     # @option options [String] :interval
-    #   Lets you set the time interval for your report (ie. client.efficiency(interval:'day')
-    #   returns the efficiency report by day.) Possible values include:
+    #   Lets you set the time interval for your report
+    #   (ie. client.efficiency(interval:'day') returns the efficiency
+    #   report by day.) Possible values include:
     #   1. 'minute': returns data in 5-minute increments
     #   2. 'hour' (default): returns data in 1-hour increments
     #   3. 'day': returns data in 1-day increments
@@ -108,24 +113,27 @@ module Rescuetime
     #
     # @return [Array<Hash>]
     #
-    # @raise [Rescuetime::MissingCredentials] if the Rescuetime::Client has no set api key
-    # @raise [Rescuetime::InvalidCredentials] if the provided api key is rejected by RescueTime
+    # @raise [Rescuetime::MissingCredentials] if the Rescuetime::Client has
+    #   no set api key
+    # @raise [Rescuetime::InvalidCredentials] if the provided api key is
+    #   rejected by RescueTime
     # @since v0.1.0
-    def activities(options={})
+    def activities(options = {})
       response = self.get BASE_URL, options
 
       case options[:format]
-        when 'csv' then CSV.new(response.body, headers: true)
-        else array_of_hashes_from_csv(response.body)
+      when 'csv' then CSV.new(response.body, headers: true)
+      else array_of_hashes_from_csv(response.body)
       end
     end
 
-    # Returns efficiency report. Equivalent to #activities(by: time, detail: efficiency)
+    # Returns efficiency report. Equivalent to
+    #   #activities(by: time, detail: efficiency)
     # @see #activities valid options
     #
     # @param [Hash] options options hash (same as #activities)
     # @return [Array<Hash>]
-    def efficiency(options={})
+    def efficiency(options = {})
       self.activities({by: 'time'}.merge(options.merge(detail: 'efficiency')))
     end
 
@@ -144,7 +152,7 @@ module Rescuetime
     #
     # @param [Hash] options options hash (same as #activities)
     # @return [Array<Hash>]
-    def productivity(options={})
+    def productivity(options = {})
       self.activities(options.merge(detail: 'productivity'))
     end
 

@@ -5,6 +5,6 @@ module Rescuetime
   # Raised when a method requires credentials but none are provided
   class MissingCredentials < Error; end
 
-  # Raised when a method requires credentials but provided credentials are invalid
+  # Raised when a method requires credentials but credentials are invalid
   class InvalidCredentials < Error; end
 end

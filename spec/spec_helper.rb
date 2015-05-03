@@ -13,7 +13,6 @@ require 'webmock/rspec'
 require 'vcr'
 require 'time'
 
-
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/cassettes'
   config.hook_into :webmock
@@ -22,7 +21,6 @@ VCR.configure do |config|
   # Put '<RESCUETIME_API_KEY>' so API key is not committed to source control
   config.filter_sensitive_data('<RESCUETIME_API_KEY>') { 'AK' }
 end
-
 
 # HELPER METHODS
 # --------------
@@ -34,8 +32,8 @@ end
 # @param [Regexp] valid regexp of valid dates ('YYYY-MM-DD' format)
 # @return [Integer] invalid date count
 def count_invalid_dates(activities, valid)
-  activities.collect { |activity| activity[:date] }.
-      delete_if { |date| date=~ valid }.count
+  activities.collect { |activity| activity[:date] }
+    .delete_if { |date| date =~ valid }.count
 end
 #
 # Returns activity keys from an activities array
@@ -48,5 +46,5 @@ end
 #
 # Collects unique dates from an activities array where activities have a :date
 def unique_dates(activities)
-  activities.collect{|activity| Time.parse(activity[:date])}.uniq
+  activities.collect { |activity| Time.parse(activity[:date]) }.uniq
 end
