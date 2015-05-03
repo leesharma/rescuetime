@@ -20,7 +20,6 @@ describe Rescuetime::Client do
       its(:api_key?) { is_expected.to be true }
     end
     describe 'when key is nil' do
-      subject { Rescuetime::Client.new }
       its(:api_key?) { is_expected.to be false }
     end
     describe 'when key is blank' do
@@ -51,9 +50,8 @@ describe Rescuetime::Client do
     describe 'when credentials are invalid' do
       subject { Rescuetime::Client.new(api_key: 'invalid_key') }
       it 'returns false' do
-        VCR.use_cassette('invalid_credentials',
-                         match_requests_on: [:host, :path], record: :none) do
-          expect(subject.valid_credentials?).to be(false)
+        VCR.use_cassette('analytic data responses (no dates)') do
+          expect(subject.valid_credentials?).to be false
         end
       end
     end
@@ -61,11 +59,12 @@ describe Rescuetime::Client do
     describe 'when credentials are valid' do
       subject { Rescuetime::Client.new(api_key: 'AK') }
       it 'returns true' do
-        VCR.use_cassette('/data?key=AK',
-                         match_requests_on: [:host, :path], record: :none) do
-          expect(subject.valid_credentials?).to be(true)
+        VCR.use_cassette('analytic data responses (no dates)') do
+          expect(subject.valid_credentials?).to be true
         end
       end
     end
   end
+
+  describe '#fetch'
 end

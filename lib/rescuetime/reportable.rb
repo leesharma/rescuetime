@@ -5,80 +5,103 @@ module Rescuetime
   #
   # @since v0.1.0
   module Reportable
-    # Base URL for RescueTime Data Analytics API endpoint
+    # @since v0.3.0
+    def overview
+      @query.restrict_kind = 'overview'
+      self
+    end
+
+    # @since v0.3.0
+    def categories
+      @query.restrict_kind = 'category'
+      self
+    end
+
     # @since v0.1.0
-    BASE_HOST = 'https://www.rescuetime.com/anapi/data'
-
-    # Returns array of all activities.
-    #
-    # @return [Array<Hash>]
-    #
-    # @raise [Rescuetime::MissingCredentials] if the Rescuetime::Client has
-    #   no set api key
-    # @raise [Rescuetime::InvalidCredentials] if the provided api key is
-    #   rejected by RescueTime
-    # @since v0.1.0
-    def activities(options = {})
-      response = self.get BASE_HOST, options.merge(detail: 'activity')
-
-      case options[:format]
-      when 'csv' then CSV.new(response.body, headers: true)
-      else array_of_hashes_from_csv(response.body)
-      end
+    def activities
+      @query.restrict_kind = 'activity'
+      self
     end
 
-    # Returns efficiency report. Equivalent to
-    #   #activities(by: time, detail: efficiency)
-    # @see #activities valid options
-    #
-    # @param [Hash] options options hash (same as #activities)
-    # @return [Array<Hash>]
-    def efficiency(options = {})
-      self.activities({by: 'time'}.merge(options.merge(detail: 'efficiency')))
+    # @since v0.2.0
+    def productivity
+      @query.restrict_kind = 'productivity'
+      self
     end
 
-    # Returns overview report.
-    #
-    # @see #activities valid options
-    #
-    # @param [Hash] options options hash (same as #activities)
-    # @return [Array<Hash>]
-    def overviews(options = {})
-      self.activities(options.merge(detail: 'overview'))
+    # @since v0.2.0
+    def efficiency
+      @query.restrict_kind = 'efficiency'
+      @query.perspective = 'interval'
+      self
     end
 
-    # Returns categories report.
-    #
-    # @see #activities valid options
-    #
-    # @param [Hash] options options hash (same as #activities)
-    # @return [Array<Hash>]
-    def categories(options = {})
-      self.activities(options.merge(detail: 'category'))
+    # @since v0.3.0
+    def order_by(type, options = {})
+      fail(InvalidQueryError, "valid values: #{QUERY_VALS[:order_by]} /(#{type} submitted)") unless
+          QUERY_VALS[:order_by].include? type
+      fail(InvalidQueryError, "valid values: #{QUERY_VALS[:interval]} /(#{options[:interval]} submitted)") if
+          options[:interval] && ! QUERY_VALS[:interval].include?(options[:interval])
+      @query.perspective = type.to_s == 'time' ? 'interval' : type.to_s
+      @query.resolution_time = options[:interval] || options['interval']
+      self
     end
 
-    # Returns productivity report.
-    #
-    # @param [Hash] options options hash (same as #activities)
-    # @return [Array<Hash>]
-    def productivity(options = {})
-      self.activities(options.merge(detail: 'productivity'))
+    # @since v0.3.0
+    def date(date)
+      @query.restrict_begin = to_formatted_s date
+      @query.restrict_end   = to_formatted_s date
+      self
+    end
+
+    # @since v0.3.0
+    def from(date)
+      @query.restrict_begin = to_formatted_s date
+      self
+    end
+
+    # @since v0.3.0
+    def to(date)
+      @query.restrict_end   = to_formatted_s date
+      self
+    end
+
+    # @since v0.3.0
+    def where(options)
+      @query.restrict_thing = options[:name]
+      @query.restrict_thingy = options[:document]
+      self
+    end
+
+    # @since v0.3.0
+    def format(format)
+      @format = format
+      self
     end
 
     private
 
-    # Takes a CSV with headers and returns an array of hashes
-    #
-    # @param body[CSV] the original CSV file
-    # @return [Array] an array of hashes, containing keys of the CSV headers
-    # @since v0.1.0
-    def array_of_hashes_from_csv(body)
-      activities = CSV.new(body,
-                           headers: true,
-                           header_converters: :symbol,
-                           converters: :all)
+    QUERY_VALS = {
+      order_by: [:time, :rank, :member],
+      interval: [:minute, :hour, :day, :week, :month]
+    }
 
-      activities.to_a.map(&:to_hash)
+    # @since v0.3.0
+    def to_formatted_s(date)
+      case
+        when date.respond_to?(:strftime)    then date.strftime('%Y-%m-%d')
+        when date =~ /\d{4}-\d{2}-\d{2}/    then date
+        when date =~ /\d{4}\/\d{2}\/\d{2}/  then date.gsub '/', '-'
+        when date =~ /\d{2}[-\/]\d{2}[-\/]\d{4}/
+          date_chunks = date.scan(/\d+/)
+          "#{ date_chunks[2] }-#{ date_chunks[0] }-#{ date_chunks[1] }"
+        when date =~ /\d{2}[-\/]\d{2}/
+          date_chunks = date.scan(/\d+/)
+          "#{ Time.now.year }-#{ date_chunks[0] }-#{ date_chunks[1] }"
+        else
+          fail InvalidQueryError,
+               'invalid date format (see documentaiton for valid formats)'
+      end
     end
   end
 end
