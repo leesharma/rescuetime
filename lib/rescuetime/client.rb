@@ -15,20 +15,19 @@ module Rescuetime
     include QueryBuildable
 
     # @!attribute [rw] api_key
-    # @since v0.1.0
     attr_accessor :api_key
 
-    # @since v0.1.0
+    # @return [Resucetime::Client]
     def initialize(key = nil, **opts)
       @api_key    = key || opts[:api_key]
     end
 
-    # @since v0.1.0
+    # @return [Boolean]
     def api_key?
       !!@api_key && !@api_key.empty?
     end
 
-    # @since v0.2.0
+    # @return [Boolean]
     def valid_credentials?
       return false unless api_key?
       !!activities.all rescue false
@@ -36,7 +35,7 @@ module Rescuetime
 
     private
 
-    # @since v0.3.0
+    # @return [Hash]
     def state
       { key: @api_key }
     end

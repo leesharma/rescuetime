@@ -3,9 +3,18 @@
 require 'bundler/gem_tasks'
 require 'rspec/core/rake_task'
 
-desc 'Run all the tests in spec'
 RSpec::Core::RakeTask.new(:spec)
 task test: :spec
 
-desc 'Default: run specs'
-task default: :spec
+defaults = [:spec]
+
+begin
+  require 'rubocop/rake_task'
+  RuboCop::RakeTask.new(:rubocop)
+  defaults << :rubocop
+rescue LoadError
+  puts 'Rubocop is not installed; please install it for code quality checks.'
+end
+
+desc "Run default actions: #{defaults}"
+task default: defaults

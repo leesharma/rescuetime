@@ -10,37 +10,32 @@ module Rescuetime
                     version:    0 }
 
     # @return [Rescuetime::Collection]
-    # @since v0.3.0
     def overview
       add_to_query restrict_kind: 'overview'
     end
 
     # @return [Rescuetime::Collection]
-    # @since v0.3.0
     def categories
       add_to_query restrict_kind: 'category'
     end
 
     # @return [Rescuetime::Collection]
-    # @since v0.1.0
     def activities
       add_to_query restrict_kind: 'activity'
     end
 
     # @return [Rescuetime::Collection]
-    # @since v0.2.0
     def productivity
       add_to_query restrict_kind: 'productivity'
     end
 
     # @return [Rescuetime::Collection]
-    # @since v0.2.0
     def efficiency
-      add_to_query restrict_kind: 'efficiency', perspective: 'interval'
+      add_to_query restrict_kind: 'efficiency',
+                   perspective: 'interval'
     end
 
-    # @return [Rescuetime::Collection]
-    # @since v0.3.0
+    # @return [Rescuetime::Collection]=
     def order_by(order, opts = {})
       fail(InvalidQueryError, "#{order} is not a valid order") unless
           VALID[:order_by].include? order
