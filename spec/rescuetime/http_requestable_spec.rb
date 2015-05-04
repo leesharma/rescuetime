@@ -1,3 +1,3 @@
 require 'spec_helper'
 
-describe Rescuetime::HTTPRequestable
+describe Rescuetime::Requester

@@ -23,7 +23,7 @@ http_interactions:
       Content-Type:
       - text/csv; charset=utf-8
       Date:
-      - Mon, 04 May 2015 08:42:16 GMT
+      - Mon, 04 May 2015 08:42:18 GMT
       Expires:
       - Fri, 01 Jan 1990 00:00:00 GMT
       Pragma:
@@ -35,9 +35,9 @@ http_interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - 0a415675-4ec1-43b7-b5f4-eac54fa26809
+      - 432be70e-717a-4059-b5b8-51ef9266c23f
       X-Runtime:
-      - '0.055942'
+      - '0.041082'
       X-Xss-Protection:
       - 1; mode=block
       Transfer-Encoding:
@@ -72,5 +72,5 @@ http_interactions:
         22,1,1,rescuetime.com,Intelligence,1
         23,1,1,betterspecs.org,Engineering & Technology,2
     http_version: 
-  recorded_at: Mon, 04 May 2015 08:42:16 GMT
+  recorded_at: Mon, 04 May 2015 08:42:18 GMT
 recorded_with: VCR 2.9.3

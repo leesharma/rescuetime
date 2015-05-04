@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://www.rescuetime.com/anapi/data?format=csv&key=invalid_key&operation=select&restrict_kind=activity&version=0
+    uri: https://www.rescuetime.com/anapi/data?format=csv&key=<RESCUETIME_API_KEY>&operation=select&restrict_kind=overview&version=0
     body:
       encoding: US-ASCII
       string: ''
@@ -19,32 +19,42 @@ http_interactions:
       message: OK
     headers:
       Cache-Control:
-      - max-age=0, private, must-revalidate
+      - no-cache, no-store, max-age=0, must-revalidate
       Content-Type:
-      - application/json; charset=utf-8
+      - text/csv; charset=utf-8
       Date:
       - Mon, 04 May 2015 08:42:17 GMT
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Pragma:
+      - no-cache
       Server:
       - nginx
-      Vary:
-      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - d6b7034c-3711-487e-bbfb-9fe8a48d3066
+      - 59069763-c460-4ce4-be36-5cc490bc4e69
       X-Runtime:
-      - '0.004503'
+      - '0.027966'
       X-Xss-Protection:
       - 1; mode=block
       Content-Length:
-      - '61'
+      - '213'
       Connection:
       - keep-alive
     body:
-      encoding: ASCII-8BIT
-      string: '{"error":"# key not found","messages":"key not found"}'
+      encoding: UTF-8
+      string: |
+        Rank,Time Spent (seconds),Number of People,Category
+        1,12022,1,Software Development
+        2,277,1,Reference & Learning
+        3,135,1,News & Opinion
+        4,34,1,Utilities
+        5,14,1,Uncategorized
+        6,13,1,Social Networking
+        7,1,1,Business
     http_version: 
   recorded_at: Mon, 04 May 2015 08:42:17 GMT
 recorded_with: VCR 2.9.3
