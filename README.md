@@ -80,33 +80,42 @@ require 'rescuetime'
 ##
 # Date Range (:date, :frome, :to)
 # -------------------------------
-@client.overview                  # Defaults to current day (since midnight)
-@client.overview                  # Fetches results from Dec 31, 2014. Valid date formats:
-  .date('2014-12-31')             #   - "YYYY-MM-DD"    - "MM-DD-YYYY"    - "DD/MM"
-@client.overview                  #   - "YYYY/MM/DD"    - "MM/DD/YYYY"    - "DD-MM"
-  .from('2015-01-01')             #   - Object#strftime
-  .to('2015-02-01')               #
-@client.overview                  # If :from is provided but :to is not, :to defaults to 
-  .from('2015-04-01')             #   current day
+# Defaults:
+#   If nothing is provided, defaults to current day (since 00:00)
+#   If :from is provided, defaults :to to current day
+#
+# Valid date formats:
+#   - "YYYY-MM-DD"    - "MM-DD-YYYY"    - "DD/MM"
+#   - Object#strftime
+@client.overview                      # Fetches results from today
+@client.overview.date('2014-12-31')   # Fetches results from Dec 31, 2014.
+@client.overview.from('2015-01-01').to('2015-02-01)         
+@client.overview.from('2015-04-01')            
        
 
 ##
 # Report Order (:order_by)
 # ------------------------
-@client.efficiency                        # Efficiency defaults to chronological order
-@client.productivity                      # Everything else defaults to "rank" order
-                                          #
-@client.productivity.order_by(:rank)      # You can order_by: 
-@client.productivity.order_by(:time)      #   :rank, :time, or :member
-@client.productivity.order_by(:member)    #   (note: efficiency can't be sorted by :rank)
-                                          #
-@client.productivity.order_by(:time)      # When ordering by time, default interval is 1 hour
-@client.productivity                      # Options include:
-  .order_by(:time, interval: :minute)     #   :minute (5-minute chunks)
-@client.productivity                      #   :hour
-  .order_by(:time, interval: :hour)       #   :day
-@client.productivity                      #   :week
-  .order_by(:time, interval: :day)        #   :month
+# Defaults:
+#   Efficiency defaults to chronological order; everything else defaults to "rank" order
+#
+# You can order_by: 
+#   :rank, :time, or :member (note: efficiency can't be sorted by :rank)
+#
+# When ordering by time, default interval is 1 hour.
+# Options include:
+#   :minute (5-minute chunks), :hour, :day, :week, :month
+@client.efficiency    # Defaults to :time
+@client.productivity  # Defaults to :rank
+                                          
+@client.productivity.order_by(:rank)       
+@client.productivity.order_by(:time)      
+@client.productivity.order_by(:member)    
+                                          
+@client.productivity.order_by(:time)  # Defaults to :hour
+@client.productivity.order_by(:time, interval: :minute)     
+@client.productivity.order_by(:time, interval: :hour)       
+@client.productivity.order_by(:time, interval: :day)        
 @client.productivity.order_by(:time, interval: :week)
 @client.productivity.order_by(:time, interval: :month)
 
