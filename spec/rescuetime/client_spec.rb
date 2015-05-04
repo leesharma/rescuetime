@@ -1,15 +1,13 @@
 require 'spec_helper'
-require 'rspec/its'
 
 describe Rescuetime::Client do
   it { is_expected.not_to be_nil }
 
   describe '#initialize' do
-    describe 'when arguments are blank ()' do
+    describe Rescuetime::Client.new do
       its(:api_key) { is_expected.to be nil }
     end
-    describe 'when initialized with options (api_key: \'AK\')' do
-      subject { Rescuetime::Client.new(api_key: 'AK') }
+    describe Rescuetime::Client.new(api_key: 'AK') do
       its(:api_key) { is_expected.to eq('AK') }
     end
   end
@@ -20,6 +18,7 @@ describe Rescuetime::Client do
       its(:api_key?) { is_expected.to be true }
     end
     describe 'when key is nil' do
+      subject { Rescuetime::Client.new(api_key: nil) }
       its(:api_key?) { is_expected.to be false }
     end
     describe 'when key is blank' do
@@ -30,41 +29,29 @@ describe Rescuetime::Client do
 
   describe '#api_key=' do
     before { subject.api_key = 'new api key' }
-    it 'overwrites api key' do
-      expect(subject.api_key).to eq('new api key')
-    end
+    it { is_expected.to respond_to :api_key= }
+    it { is_expected.to have_attributes(api_key: 'new api key') }
   end
-
   describe '#api_key' do
-    it 'fetches api key' do
-      subject.api_key = 'new api key'
-      expect(subject.api_key).to eq('new api key')
-    end
+    it { is_expected.to respond_to :api_key }
   end
 
-  describe '#valid_credentials?' do
-    describe 'when credentials are not present' do
+  describe '#valid_credentials?', vcr: true do
+    let(:missing_key) { Rescuetime::Client.new }
+    let(:invalid_key) { Rescuetime::Client.new(api_key: 'invalid_key') }
+    let(:valid_key)   { Rescuetime::Client.new(api_key: Secret::API_KEY) }
+
+    context 'with no credentials' do
+      subject { missing_key }
       its(:valid_credentials?) { is_expected.to be false }
     end
-
-    describe 'when credentials are invalid' do
-      subject { Rescuetime::Client.new(api_key: 'invalid_key') }
-      it 'returns false' do
-        VCR.use_cassette('analytic data responses (no dates)') do
-          expect(subject.valid_credentials?).to be false
-        end
-      end
+    context 'with invalid credentials' do
+      subject { invalid_key }
+      its(:valid_credentials?) { is_expected.to be false }
     end
-
-    describe 'when credentials are valid' do
-      subject { Rescuetime::Client.new(api_key: 'AK') }
-      it 'returns true' do
-        VCR.use_cassette('analytic data responses (no dates)') do
-          expect(subject.valid_credentials?).to be true
-        end
-      end
+    context 'with valid credentials' do
+      subject { valid_key }
+      its(:valid_credentials?) { is_expected.to be true }
     end
   end
-
-  describe '#fetch'
 end

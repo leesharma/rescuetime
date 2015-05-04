@@ -1,0 +1,158 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.rescuetime.com/anapi/data?format=csv&key=<RESCUETIME_API_KEY>&operation=select&perspective=interval&restrict_begin=2015-05-03&restrict_kind=overview&version=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - text/csv; charset=utf-8
+      Date:
+      - Mon, 04 May 2015 06:11:17 GMT
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 4d714b8b-001c-4e6c-8b48-3f54bb619870
+      X-Runtime:
+      - '0.105167'
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        Date,Time Spent (seconds),Number of People,Category
+        2015-05-03T00:00:00,3329,1,Software Development
+        2015-05-03T00:00:00,191,1,Reference & Learning
+        2015-05-03T00:00:00,38,1,Uncategorized
+        2015-05-03T00:00:00,28,1,Utilities
+        2015-05-03T01:00:00,2802,1,Software Development
+        2015-05-03T01:00:00,114,1,Reference & Learning
+        2015-05-03T01:00:00,87,1,Uncategorized
+        2015-05-03T01:00:00,7,1,Utilities
+        2015-05-03T02:00:00,3499,1,Software Development
+        2015-05-03T02:00:00,50,1,Business
+        2015-05-03T02:00:00,46,1,Reference & Learning
+        2015-05-03T03:00:00,3445,1,Software Development
+        2015-05-03T03:00:00,98,1,Reference & Learning
+        2015-05-03T03:00:00,52,1,Business
+        2015-05-03T03:00:00,3,1,Utilities
+        2015-05-03T04:00:00,3507,1,Software Development
+        2015-05-03T04:00:00,43,1,Reference & Learning
+        2015-05-03T04:00:00,24,1,Business
+        2015-05-03T04:00:00,11,1,Utilities
+        2015-05-03T05:00:00,3307,1,Software Development
+        2015-05-03T05:00:00,271,1,Business
+        2015-05-03T05:00:00,8,1,Utilities
+        2015-05-03T05:00:00,7,1,Reference & Learning
+        2015-05-03T05:00:00,2,1,News & Opinion
+        2015-05-03T05:00:00,1,1,Communication & Scheduling
+        2015-05-03T06:00:00,3411,1,Software Development
+        2015-05-03T06:00:00,163,1,Business
+        2015-05-03T06:00:00,19,1,News & Opinion
+        2015-05-03T06:00:00,5,1,Reference & Learning
+        2015-05-03T07:00:00,3293,1,Software Development
+        2015-05-03T07:00:00,269,1,Reference & Learning
+        2015-05-03T07:00:00,23,1,Utilities
+        2015-05-03T07:00:00,11,1,News & Opinion
+        2015-05-03T07:00:00,1,1,Business
+        2015-05-03T08:00:00,3359,1,Software Development
+        2015-05-03T08:00:00,212,1,Reference & Learning
+        2015-05-03T08:00:00,14,1,Utilities
+        2015-05-03T08:00:00,9,1,Business
+        2015-05-03T09:00:00,110,1,Software Development
+        2015-05-03T09:00:00,63,1,Uncategorized
+        2015-05-03T09:00:00,26,1,Utilities
+        2015-05-03T09:00:00,4,1,Reference & Learning
+        2015-05-03T14:00:00,1231,1,News & Opinion
+        2015-05-03T14:00:00,368,1,Software Development
+        2015-05-03T14:00:00,175,1,Social Networking
+        2015-05-03T14:00:00,81,1,Uncategorized
+        2015-05-03T14:00:00,32,1,Utilities
+        2015-05-03T14:00:00,31,1,Entertainment
+        2015-05-03T14:00:00,16,1,Reference & Learning
+        2015-05-03T14:00:00,7,1,Communication & Scheduling
+        2015-05-03T14:00:00,4,1,Business
+        2015-05-03T15:00:00,3503,1,Software Development
+        2015-05-03T15:00:00,6,1,News & Opinion
+        2015-05-03T15:00:00,4,1,Utilities
+        2015-05-03T15:00:00,1,1,Social Networking
+        2015-05-03T15:00:00,1,1,Reference & Learning
+        2015-05-03T16:00:00,1282,1,Social Networking
+        2015-05-03T16:00:00,784,1,Uncategorized
+        2015-05-03T16:00:00,142,1,Software Development
+        2015-05-03T16:00:00,38,1,Utilities
+        2015-05-03T16:00:00,18,1,Reference & Learning
+        2015-05-03T17:00:00,685,1,Software Development
+        2015-05-03T17:00:00,583,1,Uncategorized
+        2015-05-03T17:00:00,313,1,Social Networking
+        2015-05-03T17:00:00,40,1,Utilities
+        2015-05-03T17:00:00,29,1,News & Opinion
+        2015-05-03T17:00:00,25,1,Reference & Learning
+        2015-05-03T18:00:00,1339,1,Software Development
+        2015-05-03T18:00:00,500,1,Social Networking
+        2015-05-03T18:00:00,264,1,Reference & Learning
+        2015-05-03T18:00:00,36,1,News & Opinion
+        2015-05-03T18:00:00,13,1,Utilities
+        2015-05-03T18:00:00,2,1,Uncategorized
+        2015-05-03T19:00:00,1227,1,Software Development
+        2015-05-03T19:00:00,423,1,Social Networking
+        2015-05-03T19:00:00,416,1,News & Opinion
+        2015-05-03T19:00:00,251,1,Uncategorized
+        2015-05-03T19:00:00,167,1,Reference & Learning
+        2015-05-03T19:00:00,54,1,Utilities
+        2015-05-03T20:00:00,2245,1,Software Development
+        2015-05-03T20:00:00,451,1,News & Opinion
+        2015-05-03T20:00:00,255,1,Reference & Learning
+        2015-05-03T20:00:00,59,1,Social Networking
+        2015-05-03T20:00:00,20,1,Utilities
+        2015-05-03T20:00:00,2,1,Uncategorized
+        2015-05-03T21:00:00,3086,1,Software Development
+        2015-05-03T21:00:00,69,1,News & Opinion
+        2015-05-03T21:00:00,41,1,Utilities
+        2015-05-03T21:00:00,35,1,Reference & Learning
+        2015-05-03T21:00:00,11,1,Uncategorized
+        2015-05-03T22:00:00,3465,1,Software Development
+        2015-05-03T22:00:00,135,1,Reference & Learning
+        2015-05-03T23:00:00,3105,1,Software Development
+        2015-05-03T23:00:00,474,1,Reference & Learning
+        2015-05-03T23:00:00,8,1,Utilities
+        2015-05-03T23:00:00,7,1,Uncategorized
+        2015-05-04T00:00:00,2154,1,Software Development
+        2015-05-04T00:00:00,135,1,News & Opinion
+        2015-05-04T00:00:00,58,1,Reference & Learning
+        2015-05-04T00:00:00,27,1,Utilities
+        2015-05-04T00:00:00,13,1,Social Networking
+        2015-05-04T00:00:00,1,1,Business
+        2015-05-04T01:00:00,685,1,Software Development
+        2015-05-04T02:00:00,415,1,Software Development
+        2015-05-04T02:00:00,7,1,Utilities
+    http_version: 
+  recorded_at: Mon, 04 May 2015 06:11:17 GMT
+recorded_with: VCR 2.9.3

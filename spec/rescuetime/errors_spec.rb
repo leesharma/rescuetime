@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe 'Error handling' do
-  let(:client) { Rescuetime::Client.new(api_key: 'AK') }
-  describe 'for HTTP response status' do
+  let(:client) { Rescuetime::Client.new(api_key: Secret::API_KEY) }
+
+  context 'for HTTP response status' do
     describe Rescuetime::BadRequest do
       it 'is returned for response status 400' do
         stub_request(:get, /.*rescuetime.*/).to_return(status: 400)
@@ -86,26 +87,23 @@ describe 'Error handling' do
     end
   end
 
-  describe Rescuetime::InvalidCredentialsError do
+  describe Rescuetime::InvalidCredentialsError, vcr: true do
     subject(:invalid_client) { Rescuetime::Client.new(api_key: 'invalid_key') }
     it 'is raised when credentials are invalid' do
-      VCR.use_cassette('analytic data responses (no dates)') do
-        expect { invalid_client.activities.fetch }
-          .to raise_error(Rescuetime::InvalidCredentialsError)
-      end
+      expect { invalid_client.activities.fetch }
+        .to raise_error(Rescuetime::InvalidCredentialsError)
     end
   end
 
   describe Rescuetime::InvalidQueryError do
     subject { client }
     it 'is raised when an invalid query value is submitted' do
-      VCR.use_cassette('analytic data responses (no dates)') do
-        expect { subject.overview.order_by(:invalid).fetch }
-          .to raise_error(Rescuetime::InvalidQueryError)
-      end
+      expect { subject.overview.order_by(:invalid).fetch }
+        .to raise_error(Rescuetime::InvalidQueryError)
     end
     it 'is raised when a query error is recieved from the server' do
-      error_response = '{"error": "# query error","messages": "Error: Likely a badly formatted or missing parameter"}'
+      error_response =
+        '{"error": "# query error","messages": "Error: Likely a badly formatted or missing parameter"}'
       stub_request(:get, /.*rescuetime.*/)
         .with(query: hash_including({}))
         .to_return(body: error_response, status: 200)
@@ -115,13 +113,11 @@ describe 'Error handling' do
     end
   end
 
-  describe Rescuetime::InvalidFormatError do
+  describe Rescuetime::InvalidFormatError, vcr: true do
     subject { client }
     it 'is raised when an invalid format is specified' do
-      VCR.use_cassette('analytic data responses (no dates)') do
-        expect { subject.overview.format(:invalid).fetch }
-          .to raise_error(Rescuetime::InvalidFormatError)
-      end
+      expect { subject.overview.format(:invalid).fetch }
+        .to raise_error(Rescuetime::InvalidFormatError)
     end
   end
 end
