@@ -89,7 +89,7 @@ require 'rescuetime'
 #   - Object#strftime
 @client.overview                      # Fetches results from today
 @client.overview.date('2014-12-31')   # Fetches results from Dec 31, 2014.
-@client.overview.from('2015-01-01').to('2015-02-01)         
+@client.overview.from('2015-01-01').to('2015-02-01')         
 @client.overview.from('2015-04-01')            
        
 
