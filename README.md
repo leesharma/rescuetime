@@ -122,18 +122,19 @@ require 'rescuetime'
 ##
 # Name Restrictions (:where)
 # --------------------------
-@client.activities.where(name: 'github.com')    # Fetches results where name is an exact match
-@client.categories.where(name: 'Intelligence')  # The following reports can be limited by name
-@client.overview.where(name: 'Utilities')       #   :activities, :categories, :overview
-@client.activities                              # 
-  .where(name: 'github.com',                    # For activities, you can also limit by
-         document: 'vcr/vcr')                   #   specific document title (try querying)
-                                                #   without document title to see a list of
-                                                #   valid options
-                                                #
-                                                # Names must be exact, so if you don't know 
-                                                #   the exact name, see what is returned in
-                                                #   a query
+# Fetches results where name is an exact match
+# The following reports can be limited by name:
+#   :activities, :categories, :overview
+#
+# For activities, you can also limit by specific document title
+#   (ex. document 'rails/rails' for activity 'github.com')
+#   Try the query sans document for a list of valid options
+#
+# Names must be exact matches.
+@client.activities.where(name: 'github.com')    
+@client.categories.where(name: 'Intelligence')  
+@client.overview.where(name: 'Utilities')       
+@client.activities.where(name: 'github.com', document: 'vcr/vcr')                   
 
 ##
 # Formatting options (:csv, :array)
@@ -163,9 +164,8 @@ The `Rescuetime::Client#activities` action has the following defaults:
 
 There are a number of exceptions that extend from the custom Rescuetime::Error class:
 
-* Credentials Errors
-  * **Rescuetime::MissingCredentialsError** is raised when a request is attempted by a client with no credentials. Try setting credentials with `@client.api_key = <YOUR_API_KEY>`.
-  * **Rescuetime::InvalidCredentialsError** is raised when a request is attempted by a client with invalid credentials. Double-check your API key and fix your client with `@client.api_key = <VALID_API_KEY>`.
+* * **Rescuetime::MissingCredentialsError** is raised when a request is attempted by a client with no credentials. Try setting credentials with `@client.api_key = <YOUR_API_KEY>`.
+* **Rescuetime::InvalidCredentialsError** is raised when a request is attempted by a client with invalid credentials. Double-check your API key and fix your client with `@client.api_key = <VALID_API_KEY>`.
 * **Rescuetime::InvalidQueryError** is raised if you enter an invalid value for any of the RescueTime query methods (or if the server returns a bad query error)
 * **Rescuetime::InvalidFormatError** is raised if you pass a disallowed format to the client
 * HTTP Response Errors:
