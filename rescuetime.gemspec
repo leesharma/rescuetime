@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Lee Sharma']
   spec.email         = ['lee@leesharma.com']
 
-  spec.summary       = %w(Ruby interface for RescueTime)
-  spec.description   = %w(Ruby interface for the RescueTime Data Analytics API.)
+  spec.summary       = 'Ruby interface for RescueTime'
+  spec.description   = 'Ruby interface for the RescueTime Data Analytics API.'
   spec.homepage      = 'https://github.com/leesharma/rescuetime'
   spec.license       = 'MIT'
 
