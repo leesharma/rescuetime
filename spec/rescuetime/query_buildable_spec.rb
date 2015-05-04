@@ -3,6 +3,11 @@ require 'spec_helper'
 describe Rescuetime::QueryBuildable, vcr: true do
   let(:client) { Rescuetime::Client.new(api_key: Secret::API_KEY) }
 
+  describe 'chained methods' do
+    subject { client.efficiency }
+    it { is_expected.to be_a(Rescuetime::Collection) }
+  end
+
   describe '#overview' do
     subject { collect_keys client.overview }
     it { is_expected.to include(:category) }
@@ -57,7 +62,9 @@ describe Rescuetime::QueryBuildable, vcr: true do
           end
         end
         describe ':hour' do
-          subject { client.overview.date('2015-05-02').order_by(:time, interval: :hour) }
+          subject do
+            client.overview.date('2015-05-02').order_by(:time, interval: :hour)
+          end
           it 'segmented in 1-hour chunks' do
             time = unique_dates subject
             seconds = 60 * 60
@@ -67,7 +74,7 @@ describe Rescuetime::QueryBuildable, vcr: true do
         describe ':day' do
           subject do
             client.efficiency.order_by(:time, interval: :day)
-                .from('2015-04-28').to('2015-05-03')
+              .from('2015-04-28').to('2015-05-03')
           end
           it 'segmented in 1-day chunks' do
             time = unique_dates subject
@@ -78,7 +85,7 @@ describe Rescuetime::QueryBuildable, vcr: true do
         describe ':week' do
           subject do
             client.efficiency.order_by(:time, interval: :week)
-                .from('2015-01-01')
+              .from('2015-01-01')
           end
           it 'segmented in 1-week chunks' do
             time = unique_dates subject
@@ -89,7 +96,7 @@ describe Rescuetime::QueryBuildable, vcr: true do
         describe ':month' do
           subject do
             client.efficiency.order_by(:time, interval: :month)
-                .from('2015-01-01').to('2015-05-03')
+              .from('2015-01-01').to('2015-05-03')
           end
           it 'segmented in 1-month chunks' do
             time = unique_dates subject
@@ -181,7 +188,7 @@ describe Rescuetime::QueryBuildable, vcr: true do
       subject { client.overview.order_by(:time).from(Date.today.prev_day) }
       it 'sets end date to today' do
         valid = [Date.today, Date.today.prev_day]
-                    .map { |e| e.strftime('%Y-%m-%d') }.join('|')
+                .map { |e| e.strftime('%Y-%m-%d') }.join('|')
         wrong_days = count_invalid subject, /#{valid}/, :date
         expect(wrong_days).to eq(0)
       end
@@ -200,7 +207,7 @@ describe Rescuetime::QueryBuildable, vcr: true do
         subject { client.activities.where(name: 'rubymine') }
         it 'returns documents within an activity' do
           documents = subject.collect { |e| e[:activity] }
-                          .select { |e| e =~ /\w+\.\w+ - \w+/i }
+                      .select { |e| e =~ /\w+\.\w+ - \w+/i }
           expect(documents.count).to be > 1
         end
         describe 'document: <document>' do
@@ -210,7 +217,7 @@ describe Rescuetime::QueryBuildable, vcr: true do
           subject do
             client.activities.where(date: '2015-05-03',
                                     name: 'rubymine',
-                                    document: doc_name )
+                                    document: doc_name)
           end
           its(:count) { is_expected.to eq(1) }
         end
@@ -244,7 +251,7 @@ describe Rescuetime::QueryBuildable, vcr: true do
     end
     describe ':array' do
       subject { client.overview.format(:array).all }
-      it { is_expected.to be_an Array}
+      it { is_expected.to be_an Array }
     end
     describe ':cvs' do
       subject { client.overview.format(:csv).all }

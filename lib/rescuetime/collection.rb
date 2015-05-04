@@ -5,9 +5,6 @@ module Rescuetime
     include QueryBuildable
     include Enumerable
 
-    # attr_accessor :format
-    # attr_reader :format
-
     HOST = 'https://www.rescuetime.com/anapi/data'
 
     def initialize(*terms)
@@ -29,7 +26,8 @@ module Rescuetime
 
     # TODO: Chainable to client
     def format(format)
-      @format = format
+      fail InvalidFormatError unless %w(array csv).include? format.to_s
+      @format = format.to_sym
       self
     end
 
@@ -38,16 +36,15 @@ module Rescuetime
     # @since v0.1.0
     def parse_response(body)
       report = CSV.new(body,
-                           headers: true,
-                           header_converters: :symbol,
-                           converters: :all)
+                         headers: true,
+                         header_converters: :symbol,
+                         converters: :all)
 
       case @format
-        when :array then report.to_a.map(&:to_hash)
-        when :csv   then report
-        else
-          raise InvalidFormatError,
-                "'#{@format.to_s}' is not a valid format. See documentation for valid options."
+      when :array then report.to_a.map(&:to_hash)
+      when :csv   then report
+      else
+        fail InvalidFormatError
       end
     end
   end

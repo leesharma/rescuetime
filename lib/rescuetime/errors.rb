@@ -1,7 +1,6 @@
 module Rescuetime
   # Error class for rescuing all RescueTime errors
-  class Error < StandardError
-  end
+  class Error < StandardError; end
 
   ##
   # HTTP Errors
@@ -39,21 +38,37 @@ module Rescuetime
   ##
   # Custom Errors
   # =============
-  class CredentialsError < Error; end
+  # class CredentialsError < Error; end
   # Raised when a method requires credentials but none are provided
-  class MissingCredentialsError < CredentialsError; end
+  class MissingCredentialsError < Unauthorized
+    def initialize(msg = 'No API key provided. Please provide a valid key.')
+      super
+    end
+  end
 
   # Raised when a method requires credentials but credentials are invalid
-  class InvalidCredentialsError < CredentialsError; end
+  class InvalidCredentialsError < Unauthorized
+    def initialize(msg = 'API key is invalid. Please provide a valid key.')
+      super
+    end
+  end
 
   # Raised when a user-submitted query value is invalid
-  class InvalidQueryError < Error; end
+  class InvalidQueryError < BadRequest
+    def initialize(msg = 'Likely a badly formatted or missing parameter')
+      super
+    end
+  end
 
   # Raised when a user-submitted query value is invalid
-  class InvalidFormatError < Error; end
+  class InvalidFormatError < Error
+    def initialize(msg = 'Invalid format. Please see docs for allowed formats.')
+      super
+    end
+  end
 
   class Error
-    HTTP_ERRORS = {
+    CODES = {
       400 => Rescuetime::BadRequest,
       401 => Rescuetime::Unauthorized,
       403 => Rescuetime::Forbidden,
@@ -65,7 +80,7 @@ module Rescuetime
       501 => Rescuetime::NotImplemented,
       502 => Rescuetime::BadGateway,
       503 => Rescuetime::ServiceUnavailable,
-      504 => Rescuetime::GatewayTimeout,
+      504 => Rescuetime::GatewayTimeout
     }
   end
 end

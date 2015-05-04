@@ -18,20 +18,18 @@ require 'time'
 begin
   require 'secret'
 rescue LoadError
-  require 'secret-sample'
+  require 'sample_secret'
 end
 
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/cassettes'
   config.hook_into :webmock
-  config.ignore_hosts 'codeclimate.com'
   config.default_cassette_options = { record: :once }
-
-  # Put '<RESCUETIME_API_KEY>' so API key is not committed to source control
-  config.filter_sensitive_data('<RESCUETIME_API_KEY>') { Secret::API_KEY }
   config.configure_rspec_metadata!
-end
 
+  config.ignore_hosts 'codeclimate.com'
+  config.filter_sensitive_data('<RESCUETIME_API_KEY>') { Secret::API_KEY }
+end
 
 # HELPER METHODS
 # --------------

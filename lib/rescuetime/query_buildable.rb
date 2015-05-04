@@ -45,7 +45,7 @@ module Rescuetime
       fail(InvalidQueryError, "#{order} is not a valid order") unless
           VALID[:order_by].include? order
       fail(InvalidQueryError, "#{opts[:interval]} is not a valid interval") if
-          opts[:interval] && ! VALID[:interval].include?(opts[:interval])
+          opts[:interval] && !VALID[:interval].include?(opts[:interval])
 
       add_to_query perspective: (order.to_s == 'time' ? 'interval' : order),
                    resolution_time: opts[:interval] || opts['interval']
@@ -96,18 +96,18 @@ module Rescuetime
     # @since v0.3.0
     def to_formatted_s(date)
       case
-        when date.respond_to?(:strftime)    then date.strftime('%Y-%m-%d')
-        when date =~ /\d{4}-\d{2}-\d{2}/    then date
-        when date =~ /\d{4}\/\d{2}\/\d{2}/  then date.gsub '/', '-'
-        when date =~ /\d{2}[-\/]\d{2}[-\/]\d{4}/
-          date_chunks = date.scan(/\d+/)
-          "#{ date_chunks[2] }-#{ date_chunks[0] }-#{ date_chunks[1] }"
-        when date =~ /\d{2}[-\/]\d{2}/
-          date_chunks = date.scan(/\d+/)
-          "#{ Time.now.year }-#{ date_chunks[0] }-#{ date_chunks[1] }"
-        else
-          fail InvalidQueryError,
-               'invalid date format (see documentaiton for valid formats)'
+      when date.respond_to?(:strftime)      then date.strftime('%Y-%m-%d')
+      when date =~ /\d{4}-\d{2}-\d{2}/      then date
+      when date =~ %r{\d{4}\/\d{2}\/\d{2}}  then date.gsub '/', '-'
+      when date =~ %r{\d{2}[-\/]\d{2}[-\/]\d{4}/}
+        date_chunks = date.scan(/\d+/)
+        "#{ date_chunks[2] }-#{ date_chunks[0] }-#{ date_chunks[1] }"
+      when date =~ %r{\d{2}[-\/]\d{2}}
+        date_chunks = date.scan(/\d+/)
+        "#{ Time.now.year }-#{ date_chunks[0] }-#{ date_chunks[1] }"
+      else
+        fail InvalidQueryError,
+             'Invalid date entered. Please see docs for allowed formats.'
       end
     end
   end

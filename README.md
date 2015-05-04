@@ -64,67 +64,74 @@ require 'rescuetime'
 @client.api_key?            #=> true
 @client.valid_credentials?  #=> true
 
-@client.overview.fetch      # Returns an overview report, defaulting to "rank" order
-@client.categories.fetch    # Returns a catigorical report, defaulting to "rank" order
-@client.activities.fetch    # Returns a list of activities, defaulting to "rank" order
-@client.productivity.fetch  # Returns a productivity report, defaulting to "rank" order
-@client.efficiency.fetch    # Returns an efficiency report, defaulting to "time order"
+# Rescuetime uses lazy evaluation, so until you either manipulate the collection
+# or explicitly call for it (with #all), it will remain in the Rescuetime::Collection
+# format. 
+@client.overview.class      #=> Rescuetime::Collection
+@client.overview.all.class  #=> Array
+@client.overview.map {...}  #=> Array
+
+@client.overview      # Returns an overview report, defaulting to "rank" order
+@client.categories    # Returns a catigorical report, defaulting to "rank" order
+@client.activities    # Returns a list of activities, defaulting to "rank" order
+@client.productivity  # Returns a productivity report, defaulting to "rank" order
+@client.efficiency    # Returns an efficiency report, defaulting to "time order"
 
 ##
 # Date Range (:date, :frome, :to)
 # -------------------------------
-@client.overview.fetch            # Defaults to current day (since midnight)
+@client.overview                  # Defaults to current day (since midnight)
 @client.overview                  # Fetches results from Dec 31, 2014. Valid date formats:
-  .date('2014-12-31').fetch       #   - "YYYY-MM-DD"    - "MM-DD-YYYY"    - "DD/MM"
+  .date('2014-12-31')             #   - "YYYY-MM-DD"    - "MM-DD-YYYY"    - "DD/MM"
 @client.overview                  #   - "YYYY/MM/DD"    - "MM/DD/YYYY"    - "DD-MM"
   .from('2015-01-01')             #   - Object#strftime
-  .to('2015-02-01').fetch         #
+  .to('2015-02-01')               #
 @client.overview                  # If :from is provided but :to is not, :to defaults to 
-       .from('2015-04-01')        #   current day
-       .fetch
+  .from('2015-04-01')             #   current day
+       
 
 ##
 # Report Order (:order_by)
 # ------------------------
-@client.efficiency.fetch                        # Efficiency defaults to chronological order
-@client.productivity.fetch                      # Everything else defaults to "rank" order
-                                                #
-@client.productivity.order_by(:rank).fetch      # You can order_by: 
-@client.productivity.order_by(:time).fetch      #   :rank, :time, or :member
-@client.productivity.order_by(:member).fetch    #   (note: efficiency can't be sorted by :rank)
-                                                #
-@client.productivity.order_by(:time).fetch      # When ordering by time, default interval is 1 hour
-@client.productivity                            # Options include:
-  .order_by(:time, interval: :minute).fetch     #   :minute (5-minute chunks)
-@client.productivity                            #   :hour
-  .order_by(:time, interval: :hour).fetch       #   :day
-@client.productivity                            #   :week
-  .order_by(:time, interval: :day).fetch        #   :month
-@client.productivity.order_by(:time, interval: :week).fetch
-@client.productivity.order_by(:time, interval: :month).fetch
+@client.efficiency                        # Efficiency defaults to chronological order
+@client.productivity                      # Everything else defaults to "rank" order
+                                          #
+@client.productivity.order_by(:rank)      # You can order_by: 
+@client.productivity.order_by(:time)      #   :rank, :time, or :member
+@client.productivity.order_by(:member)    #   (note: efficiency can't be sorted by :rank)
+                                          #
+@client.productivity.order_by(:time)      # When ordering by time, default interval is 1 hour
+@client.productivity                      # Options include:
+  .order_by(:time, interval: :minute)     #   :minute (5-minute chunks)
+@client.productivity                      #   :hour
+  .order_by(:time, interval: :hour)       #   :day
+@client.productivity                      #   :week
+  .order_by(:time, interval: :day)        #   :month
+@client.productivity.order_by(:time, interval: :week)
+@client.productivity.order_by(:time, interval: :month)
 
 ##
 # Name Restrictions (:where)
 # --------------------------
-@client.activities.where(name: 'github.com').fetch    # Fetches results where name is an exact match
-@client.categories.where(name: 'Intelligence').fetch  # The following reports can be limited by name
-@client.overview.where(name: 'Utilities').fetch       #   :activities, :categories, :overview
-@client.activities                                    # 
-  .where(name: 'github.com', document: 'vcr/vcr')     # For activities, you can also limit by
-  .fetch                                              #   specific document title (try querying)
-                                                      #   without document title to see a list of
-                                                      #   valid options
-                                                      #
-                                                      # Names must be exact, so if you don't know 
-                                                      #   the exact name, see what is returned in
-                                                      #   a query
+@client.activities.where(name: 'github.com')    # Fetches results where name is an exact match
+@client.categories.where(name: 'Intelligence')  # The following reports can be limited by name
+@client.overview.where(name: 'Utilities')       #   :activities, :categories, :overview
+@client.activities                              # 
+  .where(name: 'github.com',                    # For activities, you can also limit by
+         document: 'vcr/vcr')                   #   specific document title (try querying)
+                                                #   without document title to see a list of
+                                                #   valid options
+                                                #
+                                                # Names must be exact, so if you don't know 
+                                                #   the exact name, see what is returned in
+                                                #   a query
 
 ##
 # Formatting options (:csv, :array)
 # ---------------------------------
-@client.efficiency.fetch                  # Default return type is Array<Hash>
-@client.efficiency.format(:cvs).fetch     # Returns a CSV
-@client.efficiency.format(:array).fetch   # Returns Array<Hash>
+@client.efficiency                  # Default return type is Array<Hash>
+@client.efficiency.format(:cvs)     # Returns a CSV
+@client.efficiency.format(:array)   # Returns Array<Hash>
 ```
 
 ### Finding Answers (Documentation)
