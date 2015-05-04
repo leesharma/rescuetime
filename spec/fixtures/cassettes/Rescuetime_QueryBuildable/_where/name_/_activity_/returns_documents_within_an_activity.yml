@@ -1,0 +1,91 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.rescuetime.com/anapi/data?format=csv&key=<RESCUETIME_API_KEY>&operation=select&restrict_kind=activity&restrict_thing=rubymine&version=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - text/csv; charset=utf-8
+      Date:
+      - Mon, 04 May 2015 08:42:26 GMT
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 72b8e8b0-7571-46bf-aaed-94b56c63e779
+      X-Runtime:
+      - '0.055092'
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        UmFuayxUaW1lIFNwZW50IChzZWNvbmRzKSxOdW1iZXIgb2YgUGVvcGxlLEFj
+        dGl2aXR5LENhdGVnb3J5LFByb2R1Y3Rpdml0eQoxLDI2NjAsMSxyZXBvcnRh
+        YmxlX3NwZWMucmIgLSByZXNjdWV0aW1lIC0gW34vR2l0SHViL3Jlc2N1ZXRp
+        bWVdLEVkaXRpbmcgJiBJREVzLDIKMiwxMTk3LDEsY29sbGVjdGlvbi5yYiAt
+        IHJlc2N1ZXRpbWUgLSBbfi9HaXRIdWIvcmVzY3VldGltZV0sRWRpdGluZyAm
+        IElERXMsMgozLDExMzUsMSxjbGllbnRfc3BlYy5yYiAtIHJlc2N1ZXRpbWUg
+        LSBbfi9HaXRIdWIvcmVzY3VldGltZV0sRWRpdGluZyAmIElERXMsMgo0LDEw
+        NTksMSxyZXBvcnRhYmxlLnJiIC0gcmVzY3VldGltZSAtIFt+L0dpdEh1Yi9y
+        ZXNjdWV0aW1lXSxFZGl0aW5nICYgSURFcywyCjUsODkxLDEscXVlcnlfYnVp
+        bGRhYmxlLnJiIC0gcmVzY3VldGltZSAtIFt+L0dpdEh1Yi9yZXNjdWV0aW1l
+        XSxFZGl0aW5nICYgSURFcywyCjYsODA3LDEscmVxdWVzdGVyLnJiIC0gcmVz
+        Y3VldGltZSAtIFt+L0dpdEh1Yi9yZXNjdWV0aW1lXSxFZGl0aW5nICYgSURF
+        cywyCjcsNzc0LDEsY2xpZW50LnJiIC0gcmVzY3VldGltZSAtIFt+L0dpdEh1
+        Yi9yZXNjdWV0aW1lXSxFZGl0aW5nICYgSURFcywyCjgsNzIyLDEsZXJyb3Jz
+        X3NwZWMucmIgLSByZXNjdWV0aW1lIC0gW34vR2l0SHViL3Jlc2N1ZXRpbWVd
+        LEVkaXRpbmcgJiBJREVzLDIKOSw2MDksMSxObyBEZXRhaWxzLEVkaXRpbmcg
+        JiBJREVzLDIKMTAsNTUxLDEscXVlcnlfYnVpbGRhYmxlX3NwZWMucmIgLSBy
+        ZXNjdWV0aW1lIC0gW34vR2l0SHViL3Jlc2N1ZXRpbWVdLEVkaXRpbmcgJiBJ
+        REVzLDIKMTEsNDMwLDEsc3BlY19oZWxwZXIucmIgLSByZXNjdWV0aW1lIC0g
+        W34vR2l0SHViL3Jlc2N1ZXRpbWVdLEVkaXRpbmcgJiBJREVzLDIKMTIsMTQ3
+        LDEsc2VjcmV0LXNhbXBsZS5yYiAtIHJlc2N1ZXRpbWUgLSBbfi9HaXRIdWIv
+        cmVzY3VldGltZV0sRWRpdGluZyAmIElERXMsMgoxMywxMzgsMSxzZWNyZXQu
+        cmIgLSByZXNjdWV0aW1lIC0gW34vR2l0SHViL3Jlc2N1ZXRpbWVdLEVkaXRp
+        bmcgJiBJREVzLDIKMTQsNzQsMSwueW1sIC0gcmVzY3VldGltZSAtIFt+L0dp
+        dEh1Yi9yZXNjdWV0aW1lXSxFZGl0aW5nICYgSURFcywyCjE1LDQ4LDEsaHR0
+        cF9yZXF1ZXN0YWJsZS5yYiAtIHJlc2N1ZXRpbWUgLSBbfi9HaXRIdWIvcmVz
+        Y3VldGltZV0sRWRpdGluZyAmIElERXMsMgoxNiwyMSwxLHJlc2N1ZXRpbWUg
+        LSBbfi9HaXRIdWIvcmVzY3VldGltZV0sRWRpdGluZyAmIElERXMsMgoxNywx
+        NiwxLHdpdGhfdmFsaWRfY3JlZGVudGlhbHMv4oCmLy55bWwgLSByZXNjdWV0
+        aW1lIC0gW34vR2l0SHViL3Jlc2N1ZXRpbWVdLEVkaXRpbmcgJiBJREVzLDIK
+        MTgsMTQsMSxzZXRzX2VuZF9kYXRlX3RvX3RvZGF5LnltbCAtIHJlc2N1ZXRp
+        bWUgLSBbfi9HaXRIdWIvcmVzY3VldGltZV0sRWRpdGluZyAmIElERXMsMgox
+        OSwxMSwxLGh0dHBfcmVxdWVzdGFibGVfc3BlYy5yYiAtIHJlc2N1ZXRpbWUg
+        LSBbfi9HaXRIdWIvcmVzY3VldGltZV0sRWRpdGluZyAmIElERXMsMgoyMCw3
+        LDEsd2l0aF92YWxpZF9jcmVkZW50aWFscy55bWwgLSByZXNjdWV0aW1lIC0g
+        W34vR2l0SHViL3Jlc2N1ZXRpbWVdLEVkaXRpbmcgJiBJREVzLDIKMjEsNCwx
+        LHJldHVybnNfZG9jdW1lbnRzX3dpdGhpbl9hbl9hY3Rpdml0eS55bWwgLSBy
+        ZXNjdWV0aW1lIC0gW34vR2l0SHViL3Jlc2N1ZXRpbWVdLEVkaXRpbmcgJiBJ
+        REVzLDIK
+    http_version: 
+  recorded_at: Mon, 04 May 2015 08:42:26 GMT
+recorded_with: VCR 2.9.3

@@ -1,0 +1,76 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.rescuetime.com/anapi/data?format=csv&key=<RESCUETIME_API_KEY>&operation=select&restrict_kind=activity&version=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - text/csv; charset=utf-8
+      Date:
+      - Mon, 04 May 2015 08:42:18 GMT
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 432be70e-717a-4059-b5b8-51ef9266c23f
+      X-Runtime:
+      - '0.041082'
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        Rank,Time Spent (seconds),Number of People,Activity,Category,Productivity
+        1,11315,1,rubymine,Editing & IDEs,2
+        2,318,1,sublime text,Editing & IDEs,2
+        3,200,1,ruby-doc.org,Engineering & Technology,2
+        4,164,1,gist.github.com,General Software Development,2
+        5,119,1,stackoverflow.com,General Software Development,2
+        6,85,1,feedly.com,General News & Opinion,-2
+        7,83,1,Terminal,Systems Operations,2
+        8,50,1,reddit.com,General News & Opinion,-2
+        9,34,1,relishapp.com,Engineering & Technology,2
+        10,29,1,google.com,Search,1
+        11,20,1,loginwindow,General Utilities,1
+        12,19,1,iTerm,Systems Operations,2
+        13,14,1,ruby-doc.com,Uncategorized,0
+        14,14,1,Safari,Browsers,0
+        15,13,1,facebook.com,General Social Networking,0
+        16,9,1,rubygems.org,Engineering & Technology,2
+        17,2,1,codeschool.com,Engineering & Technology,2
+        18,2,1,localhost:63342,General Software Development,2
+        19,2,1,github.com,General Software Development,2
+        20,1,1,guides.rubyonrails.org,Engineering & Technology,2
+        21,1,1,API Dock,Engineering & Technology,2
+        22,1,1,rescuetime.com,Intelligence,1
+        23,1,1,betterspecs.org,Engineering & Technology,2
+    http_version: 
+  recorded_at: Mon, 04 May 2015 08:42:18 GMT
+recorded_with: VCR 2.9.3

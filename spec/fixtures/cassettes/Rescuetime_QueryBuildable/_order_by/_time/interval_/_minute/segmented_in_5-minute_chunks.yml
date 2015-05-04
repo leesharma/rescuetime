@@ -1,0 +1,115 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.rescuetime.com/anapi/data?format=csv&key=<RESCUETIME_API_KEY>&operation=select&perspective=interval&resolution_time=minute&restrict_kind=overview&version=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - text/csv; charset=utf-8
+      Date:
+      - Mon, 04 May 2015 08:42:19 GMT
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - df85fd0a-000c-4988-accf-f4a9a2ef9aba
+      X-Runtime:
+      - '0.054590'
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |
+        Date,Time Spent (seconds),Number of People,Category
+        2015-05-04T00:00:00,295,1,Software Development
+        2015-05-04T00:00:00,5,1,Reference & Learning
+        2015-05-04T00:05:00,291,1,Software Development
+        2015-05-04T00:05:00,9,1,Reference & Learning
+        2015-05-04T00:10:00,300,1,Software Development
+        2015-05-04T00:15:00,300,1,Software Development
+        2015-05-04T00:20:00,300,1,Software Development
+        2015-05-04T00:25:00,300,1,Software Development
+        2015-05-04T00:30:00,278,1,Software Development
+        2015-05-04T00:30:00,19,1,Reference & Learning
+        2015-05-04T00:30:00,2,1,Utilities
+        2015-05-04T00:35:00,135,1,News & Opinion
+        2015-05-04T00:35:00,90,1,Software Development
+        2015-05-04T00:35:00,25,1,Reference & Learning
+        2015-05-04T00:35:00,25,1,Utilities
+        2015-05-04T00:35:00,13,1,Social Networking
+        2015-05-04T00:35:00,1,1,Business
+        2015-05-04T01:45:00,85,1,Software Development
+        2015-05-04T01:50:00,300,1,Software Development
+        2015-05-04T01:55:00,300,1,Software Development
+        2015-05-04T02:00:00,299,1,Software Development
+        2015-05-04T02:05:00,293,1,Software Development
+        2015-05-04T02:05:00,7,1,Utilities
+        2015-05-04T02:10:00,299,1,Software Development
+        2015-05-04T02:15:00,300,1,Software Development
+        2015-05-04T02:20:00,291,1,Software Development
+        2015-05-04T02:20:00,3,1,Reference & Learning
+        2015-05-04T02:25:00,299,1,Software Development
+        2015-05-04T02:30:00,300,1,Software Development
+        2015-05-04T02:35:00,300,1,Software Development
+        2015-05-04T02:40:00,300,1,Software Development
+        2015-05-04T02:45:00,300,1,Software Development
+        2015-05-04T02:50:00,300,1,Software Development
+        2015-05-04T02:55:00,300,1,Software Development
+        2015-05-04T03:00:00,299,1,Software Development
+        2015-05-04T03:05:00,300,1,Software Development
+        2015-05-04T03:10:00,300,1,Software Development
+        2015-05-04T03:15:00,300,1,Software Development
+        2015-05-04T03:20:00,300,1,Software Development
+        2015-05-04T03:25:00,300,1,Software Development
+        2015-05-04T03:30:00,300,1,Software Development
+        2015-05-04T03:35:00,276,1,Software Development
+        2015-05-04T03:35:00,23,1,Reference & Learning
+        2015-05-04T03:40:00,271,1,Software Development
+        2015-05-04T03:40:00,29,1,Reference & Learning
+        2015-05-04T03:45:00,255,1,Software Development
+        2015-05-04T03:45:00,45,1,Reference & Learning
+        2015-05-04T03:50:00,299,1,Software Development
+        2015-05-04T03:55:00,300,1,Software Development
+        2015-05-04T04:00:00,300,1,Software Development
+        2015-05-04T04:05:00,298,1,Software Development
+        2015-05-04T04:05:00,2,1,Reference & Learning
+        2015-05-04T04:10:00,203,1,Software Development
+        2015-05-04T04:10:00,84,1,Reference & Learning
+        2015-05-04T04:10:00,11,1,Uncategorized
+        2015-05-04T04:15:00,264,1,Software Development
+        2015-05-04T04:15:00,33,1,Reference & Learning
+        2015-05-04T04:15:00,3,1,Uncategorized
+        2015-05-04T04:20:00,300,1,Software Development
+        2015-05-04T04:25:00,300,1,Software Development
+        2015-05-04T04:30:00,300,1,Software Development
+        2015-05-04T04:35:00,137,1,Software Development
+    http_version: 
+  recorded_at: Mon, 04 May 2015 08:42:19 GMT
+recorded_with: VCR 2.9.3
