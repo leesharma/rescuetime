@@ -185,9 +185,9 @@ describe Rescuetime::QueryBuildable, vcr: true do
       expect(wrong_days).to eq(0)
     end
     describe 'just #from' do
-      subject { client.overview.order_by(:time).from(Date.today.prev_day) }
+      subject { client.overview.order_by(:time).from('2015-05-03') }
       it 'sets end date to today' do
-        valid = [Date.today, Date.today.prev_day]
+        valid = [Date.new(2015, 05, 04), Date.new(2015, 05, 03)]
                 .map { |e| e.strftime('%Y-%m-%d') }.join('|')
         wrong_days = count_invalid subject, /#{valid}/, :date
         expect(wrong_days).to eq(0)
