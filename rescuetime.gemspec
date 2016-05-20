@@ -31,4 +31,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec-its'
   spec.add_development_dependency 'vcr', '~> 2.9', '>= 2.9.3'
   spec.add_development_dependency 'webmock', '~> 1.21', '>= 1.21.0'
+  spec.add_development_dependency 'timecop', '~> 0.8.0'
 end
