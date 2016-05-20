@@ -146,7 +146,7 @@ require 'rescuetime'
 
 ### Finding Answers (Documentation)
 
-For more details, please see [official gem documentation](http://www.rubydoc.info/gems/rescuetime/0.1.0) or [read the wiki](https://github.com/leesharma/rescuetime/wiki). 
+For more details, please see [official gem documentation](http://www.rubydoc.info/gems/rescuetime) or [read the wiki](https://github.com/leesharma/rescuetime/wiki). 
 
 ### Defaults
 
@@ -164,7 +164,7 @@ The `Rescuetime::Client#activities` action has the following defaults:
 
 There are a number of exceptions that extend from the custom Rescuetime::Error class:
 
-* * **Rescuetime::MissingCredentialsError** is raised when a request is attempted by a client with no credentials. Try setting credentials with `@client.api_key = <YOUR_API_KEY>`.
+* **Rescuetime::MissingCredentialsError** is raised when a request is attempted by a client with no credentials. Try setting credentials with `@client.api_key = <YOUR_API_KEY>`.
 * **Rescuetime::InvalidCredentialsError** is raised when a request is attempted by a client with invalid credentials. Double-check your API key and fix your client with `@client.api_key = <VALID_API_KEY>`.
 * **Rescuetime::InvalidQueryError** is raised if you enter an invalid value for any of the RescueTime query methods (or if the server returns a bad query error)
 * **Rescuetime::InvalidFormatError** is raised if you pass a disallowed format to the client
