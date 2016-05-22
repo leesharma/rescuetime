@@ -348,6 +348,7 @@ module Rescuetime
     #
     # @return [Rescuetime::Collection]  a Rescuetime Collection specifying
     #                                   category name and (optionally) document
+    # @raises [ArgumentError] if name is not set
     #
     # @see #overview
     # @see #activities
@@ -356,7 +357,10 @@ module Rescuetime
     #                                                   (see: restrict_thing,
     #                                                   restrict_thingy)
     # @since v0.3.0
-    def where(name:, document: nil)
+    def where(name: nil, document: nil)
+      # Stand-in for required keyword arguments
+      name or fail ArgumentError, 'missing keyword: name'
+
       add_to_query restrict_thing:  name,
                    restrict_thingy: document
     end
