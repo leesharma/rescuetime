@@ -20,7 +20,7 @@ module Rescuetime
       # @param  [String] host    request host
       # @param  [Hash]   params  request parameters
       # @param  [#get]   http    HTTP requester
-      # @return [Faraday::Response]
+      # @return [String]
       #
       # @raise [Rescuetime::MissingCredentialsError] if no api key is present
       # @raise [Rescuetime::InvalidCredentialsError] if api key is incorrect
@@ -29,31 +29,38 @@ module Rescuetime
       #                                              not 200
       #
       # @see Rescuetime::Client#api_key=
-      def get(host, params, http: Faraday)
+      def get(host, params, http: Net::HTTP)
         # Fail if no api key is provided
         unless params[:key] && !params[:key].to_s.empty?
           fail(Rescuetime::MissingCredentialsError)
         end
 
-        req_params = params.delete_if { |_, v| !v || v.to_s.empty? }
-        response = http.get host, req_params
+        uri = set_uri host, params
+        response = http.get_response uri
 
-        fail_or_return response
+        fail_or_return_body response
       end
 
       private
 
+      def set_uri(host, params)
+        req_params = params.delete_if { |_, v| !v || v.to_s.empty? }
+        uri = URI(host)
+        uri.query = URI.encode_www_form(req_params)
+        uri
+      end
+
       # Checks for an error in the Rescuetime response. If an error was recieved
       # raise the appropriate Rescuetime::Error. Otherwise, return the response.
       #
-      # @param  [Faraday::Response] response   HTTP response from rescuetime.com
-      # @return [Faraday::Response] 200 HTTP response from rescuetime.com
+      # @param  [Net::HTTPResponse] response   HTTP response from rescuetime.com
+      # @return [String]            valid response body
       #
       # @raise [Rescuetime::InvalidCredentialsError] if api key is incorrect
       # @raise [Rescuetime::InvalidQueryError]       if query is badly formed
       # @raise [Rescuetime::Error] an error that varies based on the
       #                             response status
-      def fail_or_return(response)
+      def fail_or_return_body(response)
         # match the response body to known error messages with 200 status
         case response.body
         when key_not_found? then fail Rescuetime::InvalidCredentialsError
@@ -61,10 +68,11 @@ module Rescuetime
         end
 
         # check the response status for errors
-        error = Rescuetime::Error::CODES[response.status.to_i]
+        status = response.code.to_i
+        error = Rescuetime::Error::CODES[status]
         fail(error) if error
 
-        response
+        response.body
       end
 
       # Returns lambda that returns true if the response body states that the

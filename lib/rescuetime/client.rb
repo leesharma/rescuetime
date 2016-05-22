@@ -1,6 +1,3 @@
-require 'faraday'
-require 'csv'
-
 require 'rescuetime/query_buildable'
 
 require 'rescuetime/requester'

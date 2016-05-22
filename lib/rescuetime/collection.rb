@@ -1,3 +1,5 @@
+require 'csv'
+
 require 'rescuetime/query_buildable'
 
 module Rescuetime
@@ -34,7 +36,9 @@ module Rescuetime
     #
     # @see Rescuetime::Requester#get
     def all
-      parse_response Requester.get(HOST, params).body
+      requester = Rescuetime::Requester
+      host      = HOST
+      parse_response requester.get(host, params)
     end
 
     # Enumerates over the collection of Rescuetime report records. Performs
