@@ -383,7 +383,7 @@ module Rescuetime
     # Returns a list of valid orders
     #
     # @return [Array<String>] a list of valid order arguments
-    # @since v0.3.3
+    # @since v0.3.2
     def valid_orders
       VALID[:order_by]
     end
@@ -391,7 +391,7 @@ module Rescuetime
     # Returns a list of valid intervals
     #
     # @return [Array<String>] a list of valid interval arguments
-    # @since v0.3.3
+    # @since v0.3.2
     def valid_intervals
       VALID[:interval]
     end
@@ -400,7 +400,7 @@ module Rescuetime
     #
     # @param  [#to_s]   order order to check for validity
     # @return [Boolean]       true if the order is valid
-    # @since v0.3.3
+    # @since v0.3.2
     def valid_order?(order)
       valid_orders.include? order.to_s
     end
@@ -409,7 +409,7 @@ module Rescuetime
     #
     # @param  [#to_s]   interval interval to check for validity
     # @return [Boolean]          true if the interval is valid
-    # @since v0.3.3
+    # @since v0.3.2
     def valid_interval?(interval)
       return true if interval.nil? # intervals aren't required
       valid_intervals.include? interval.to_s

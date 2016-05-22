@@ -100,7 +100,7 @@ module Rescuetime
     #
     # @param  [#emtpy?] obj
     # @return [Boolean]
-    # @since  v0.3.3
+    # @since  v0.3.2
     def present?(obj)
       blank = obj.respond_to?(:empty?) ? obj.empty? : obj.nil?
       !blank

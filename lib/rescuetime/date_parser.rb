@@ -1,6 +1,6 @@
 module Rescuetime
   # Responsible for formatting user-inputted dates into proper Rescuetime format
-  # @since v0.3.3
+  # @since v0.3.2
   class DateParser
     # Valid string formats for date parsing. The key is a human-readable pattern
     # (ex. 'yyyy-mm-dd'), and the value is the corresponding regular expression.

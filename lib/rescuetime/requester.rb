@@ -76,7 +76,7 @@ module Rescuetime
       # @return [Lambda] a lambda that returns true if the api key was not found
       #
       # @see Rescuetime::Requester::INVALID
-      # @since v0.3.3
+      # @since v0.3.2
       def key_not_found?
         ->(body) { body =~ /#{INVALID[:key_not_found]}/ }
       end
@@ -90,7 +90,7 @@ module Rescuetime
       # @return [Lambda] a lambda that returns true if the query was invalid
       #
       # @see Rescuetime::Requester::INVALID
-      # @since v0.3.3
+      # @since v0.3.2
       def invalid_query?
         ->(body) { body =~ /#{INVALID[:query]}/ }
       end
