@@ -215,8 +215,7 @@ describe Rescuetime::QueryBuildable, vcr: true do
             'reportable_spec.rb - rescuetime - [~/GitHub/rescuetime]'
           end
           subject do
-            client.activities.where(date: '2015-05-03',
-                                    name: 'rubymine',
+            client.activities.where(name: 'rubymine',
                                     document: doc_name)
           end
           its(:count) { is_expected.to eq(1) }

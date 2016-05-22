@@ -38,7 +38,7 @@ module Rescuetime
   ##
   # Custom Errors
   # =============
-  # class CredentialsError < Error; end
+
   # Raised when a method requires credentials but none are provided
   class MissingCredentialsError < Unauthorized
     def initialize(msg = 'No API key provided. Please provide a valid key.')
@@ -68,6 +68,8 @@ module Rescuetime
   end
 
   class Error
+    # Collection of possible return status codes and corresponding Rescuetime
+    # errors
     CODES = {
       400 => Rescuetime::BadRequest,
       401 => Rescuetime::Unauthorized,

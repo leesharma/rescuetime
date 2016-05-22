@@ -1,5 +1,4 @@
-# Contains Rescuetime::VERSION, the gem version number
 module Rescuetime
   # rescuetime gem version number
-  VERSION = '0.3.1'
+  VERSION = '0.3.3'
 end
