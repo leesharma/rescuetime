@@ -167,10 +167,10 @@ module Rescuetime
     # @example Invalid Values Raise Errors
     #   client = Rescuetime::Client.new
     #   client.order_by 'invalid'
-    #   # => Rescuetime::InvalidQueryError: invalid is not a valid order
+    #   # => Rescuetime::Errors::InvalidQueryError: invalid is not a valid order
     #
     #   client.order_by 'time', interval: 'invalid'
-    #   # => Rescuetime::InvalidQueryError: invalid is not a valid interval
+    #   # => Rescuetime::Errors::InvalidQueryError: invalid is not a valid interval
     #
     # @param  [#to_s]        order      an order for the results (ex. 'time')
     # @param  [#intern, nil] interval   a chunking interval for results
@@ -179,7 +179,7 @@ module Rescuetime
     # @return [Rescuetime::Collection]  a Rescuetime Collection specifying order
     #                                   and interval (if set)
     #
-    # @raise [Rescuetime::InvalidQueryError] if either order or interval are
+    # @raise [Rescuetime::Errors::InvalidQueryError] if either order or interval are
     #                                        invalid
     #
     # @see https://www.rescuetime.com/apidoc#paramlist  Rescuetime API docs
@@ -193,11 +193,11 @@ module Rescuetime
 
       # guards against invalid order or interval
       unless valid_order? order
-        fail InvalidQueryError, "#{order} is not a valid order"
+        fail Errors::InvalidQueryError, "#{order} is not a valid order"
       end
 
       unless valid_interval? interval
-        fail InvalidQueryError, "#{interval} is not a valid interval"
+        fail Errors::InvalidQueryError, "#{interval} is not a valid interval"
       end
 
       add_to_query perspective: (order == 'time' ? 'interval' : order),
@@ -225,7 +225,7 @@ module Rescuetime
     # @return [Rescuetime::Collection]       a Rescuetime Collection specifying
     #                                        report date
     #
-    # @raise [Rescuetime::InvalidQueryError] if the date format is invalid
+    # @raise [Rescuetime::Errors::InvalidQueryError] if the date format is invalid
     #
     # @see #from
     # @see #to
@@ -256,7 +256,7 @@ module Rescuetime
     # @return [Rescuetime::Collection]       a Rescuetime Collection specifying
     #                                        report date
     #
-    # @raise [Rescuetime::InvalidQueryError] if the date format is invalid
+    # @raise [Rescuetime::Errors::InvalidQueryError] if the date format is invalid
     #
     # @see #to
     # @see #date
@@ -286,13 +286,13 @@ module Rescuetime
     #   #=> [ ... ]
     #
     #   client.to(1.week.ago).all                   # invalid!
-    #   #=> Rescuetime::InvalidQueryError
+    #   #=> Rescuetime::Errors::InvalidQueryError
     #
     # @param  [#strftime, String]      date  a valid date-like object
     # @return [Rescuetime::Collection]       a Rescuetime Collection specifying
     #                                        report date
     #
-    # @raise [Rescuetime::InvalidQueryError] if the date format is invalid
+    # @raise [Rescuetime::Errors::InvalidQueryError] if the date format is invalid
     #
     # @see #from
     # @see #date
@@ -302,7 +302,7 @@ module Rescuetime
     #                                                   (see: restrict_end)
     # @since v0.3.0
     def to(date)
-      add_to_query restrict_end:    to_formatted_s(date)
+      add_to_query restrict_end: to_formatted_s(date)
     end
 
     # Limits the Rescuetime report to specific activities and documents.
@@ -348,7 +348,7 @@ module Rescuetime
     #
     # @return [Rescuetime::Collection]  a Rescuetime Collection specifying
     #                                   category name and (optionally) document
-    # @raises [ArgumentError] if name is not set
+    # @raise [ArgumentError] if name is not set
     #
     # @see #overview
     # @see #activities
@@ -422,7 +422,7 @@ module Rescuetime
     #                                          Rescuetime::DateParser
     # @return [String]            a string in 'YYYY-MM-DD' format
     #
-    # @raise [Rescuetime::InvalidQueryError] if the date format is invalid
+    # @raise [Rescuetime::Errors::InvalidQueryError] if the date format is invalid
     #
     # @see Rescuetime::DateParser
     # @see Rescuetime::DateParser::DATE_FORMATS         Valid date formats

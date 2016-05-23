@@ -35,13 +35,13 @@ module Rescuetime
       #   #=> '2015-12-25'
       #
       #   parser.parse 'Dec. 25, 2015'
-      #   #=> Rescuetime::InvalidQueryError: Invalid date entered. Please
+      #   #=> Rescuetime::Errors::InvalidQueryError: Invalid date entered. Please
       #   #                                  see docs for allowed formats.
       #
       # @param  [#strftime, String] date  a date to be formatted
       # @return [String]                  a date string in the YYYY-MM-DD format
       #
-      # @raise [Rescuetime::InvalidQueryError] if the date format is invalid
+      # @raise [Rescuetime::Errors::InvalidQueryError] if the date format is invalid
       def parse(date)
         if date.respond_to? :strftime
           date.strftime '%Y-%m-%d'
@@ -58,7 +58,7 @@ module Rescuetime
       # @param  [Hash]   formatted_as  A hash of date formats and patterns
       # @return [String] a string date in YYYY-MM-DD format
       #
-      # @raise [Rescuetime::InvalidQueryError] if the date format is invalid
+      # @raise [Rescuetime::Errors::InvalidQueryError] if the date format is invalid
       def reformat_string(date, formatted_as: DATE_FORMATS)
         case date
         when formatted_as['yyyy-mm-dd']  then date
@@ -75,9 +75,9 @@ module Rescuetime
         end
       end
 
-      # Raises Rescuetime::InvalidQueryError
-      # @raise [Rescuetime::InvalidQueryError]
-      def fail_date_format(exception: Rescuetime::InvalidQueryError)
+      # Raises Rescuetime::Errors::InvalidQueryError
+      # @raise [Rescuetime::Errors::InvalidQueryError]
+      def fail_date_format(exception: Rescuetime::Errors::InvalidQueryError)
         message = 'Invalid date entered. Please see docs for allowed formats.'
         fail exception, message
       end

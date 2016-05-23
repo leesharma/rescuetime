@@ -1,3 +1,4 @@
+require 'rescuetime/core_extensions/object/blank'
 require 'rescuetime/query_buildable'
 
 require 'rescuetime/requester'
@@ -61,7 +62,8 @@ module Rescuetime
     #
     # @return [Boolean]
     def api_key?
-      present? api_key
+      api_key.extend CoreExtensions::Object::Blank
+      api_key.present?
     end
 
     # Returns true if the provided api key is valid. Performs a request to the
@@ -87,21 +89,11 @@ module Rescuetime
     def valid_credentials?
       return false unless api_key?
       !activities.all.nil?
-    rescue Rescuetime::InvalidCredentialsError
+    rescue Rescuetime::Errors::InvalidCredentialsError
       false
     end
 
     private
-
-    # Returns true if the project is present and non-blank
-    #
-    # @param  [#emtpy?] obj
-    # @return [Boolean]
-    # @since  v0.3.2
-    def present?(obj)
-      blank = obj.respond_to?(:empty?) ? obj.empty? : obj.nil?
-      !blank
-    end
 
     # @return [Hash]
     def state

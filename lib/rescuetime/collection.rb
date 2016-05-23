@@ -1,6 +1,7 @@
 require 'csv'
 
 require 'rescuetime/query_buildable'
+require 'rescuetime/report_formatters'
 
 module Rescuetime
   # Represents a potential rescuetime collection. It holds the query information
@@ -52,13 +53,16 @@ module Rescuetime
       all.each &block
     end
 
+    # Sets the report format to a valid type
+    #
     # @param  [#to_s] format  desired report format (one of 'array' or 'csv')
     # @return [Rescuetime::Collection]
     #
     # @todo: make chainable to the client
     def format(format)
+      # Guard: fail if the passed format isn't on the whitelist
       format = format.to_s
-      fail InvalidFormatError unless %w(array csv).include? format
+      formatters.all.include?(format) || fail(Errors::InvalidFormatError)
 
       @format = format
       self
@@ -69,6 +73,19 @@ module Rescuetime
     # Stores the query parameters to be set to the rescuetime host
     attr_reader :params
 
+    # Returns a new collection of available report formatters (using the
+    # Rescuetime::ReportFormatters class)
+    #
+    # @param  [Class] formatter_collection  defaults to
+    #                                       Rescuetime::ReportFormatters
+    # @return [Rescuetime::ReportFormatter]
+    # @since v0.4.0
+    def formatters(formatter_collection: Rescuetime::ReportFormatters)
+      @formatters ||= formatter_collection.new
+    end
+
+    # Parses a response from the string response body to the desired format.
+    #
     # @param [String] body response body
     # @return [Array, CSV]
     def parse_response(body)
@@ -77,12 +94,10 @@ module Rescuetime
                        header_converters: :symbol,
                        converters: :all)
 
-      case @format.intern
-      when :array then report.to_a.map(&:to_hash)
-      when :csv   then report
-      else
-        fail InvalidFormatError
-      end
+      format           = @format.to_s.downcase
+      report_formatter = formatters.find(format)
+
+      report_formatter.format report
     end
   end
 end

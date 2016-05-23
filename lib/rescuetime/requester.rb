@@ -1,3 +1,5 @@
+require 'rescuetime/core_extensions/object/blank'
+
 module Rescuetime
   # The Rescuetime::Requestable module contains client methods relating to
   # sending HTTP requests
@@ -19,57 +21,74 @@ module Rescuetime
       #
       # @param  [String] host    request host
       # @param  [Hash]   params  request parameters
-      # @param  [#get]   http    HTTP requester
       # @return [String]
       #
-      # @raise [Rescuetime::MissingCredentialsError] if no api key is present
-      # @raise [Rescuetime::InvalidCredentialsError] if api key is incorrect
-      # @raise [Rescuetime::InvalidQueryError]       if query is badly formed
-      # @raise [Rescuetime::Error]                   if response HTTP status is
+      # @raise [Rescuetime::Errors::MissingCredentialsError] if no api key is present
+      # @raise [Rescuetime::Errors::InvalidCredentialsError] if api key is incorrect
+      # @raise [Rescuetime::Errors::InvalidQueryError]       if query is badly formed
+      # @raise [Rescuetime::Errors::Error]                   if response HTTP status is
       #                                              not 200
       #
+      # @see http://ruby-doc.org/stdlib/libdoc/net/http/rdoc/Net/HTTP.html#method-c-get_response
+      #      Net::HTTP.get_response
       # @see Rescuetime::Client#api_key=
-      def get(host, params, http: Net::HTTP)
-        # Fail if no api key is provided
-        unless params[:key] && !params[:key].to_s.empty?
-          fail(Rescuetime::MissingCredentialsError)
-        end
+      def get(host, params)
+        # guard clause: fail if no API key is present
+        params[:key].extend CoreExtensions::Object::Blank
+        params[:key].present? || fail(Rescuetime::Errors::MissingCredentialsError)
 
         uri = set_uri host, params
-        response = http.get_response uri
+        response = Net::HTTP.get_response uri
 
         fail_or_return_body response
       end
 
       private
 
+      # Takes a host and collection of parameters and returns the associated
+      # URI object. Required for the Net::HTTP.get_response method.
+      #
+      # @param  [String] host    target API endpoint
+      # @param  [Hash]   params  collection of query parameters
+      # @return [URI]            URI object with host and query parameters
+      #
+      # @see Requester#get
+      # @see http://ruby-doc.org/stdlib/libdoc/net/http/rdoc/Net/HTTP.html#method-c-get_response
+      #      Net::HTTP.get_response
+      # @since v0.3.3
       def set_uri(host, params)
-        req_params = params.delete_if { |_, v| !v || v.to_s.empty? }
-        uri = URI(host)
+        # delete params with empty values
+        req_params = params.delete_if do |_key, value|
+          # type conversion required because symbols/ints can't be extended
+          value = value.to_s.extend CoreExtensions::Object::Blank
+          value.blank?
+        end
+
+        uri       = URI(host)
         uri.query = URI.encode_www_form(req_params)
         uri
       end
 
       # Checks for an error in the Rescuetime response. If an error was recieved
-      # raise the appropriate Rescuetime::Error. Otherwise, return the response.
+      # raise the appropriate Rescuetime::Errors::Error. Otherwise, return the response.
       #
       # @param  [Net::HTTPResponse] response   HTTP response from rescuetime.com
       # @return [String]            valid response body
       #
-      # @raise [Rescuetime::InvalidCredentialsError] if api key is incorrect
-      # @raise [Rescuetime::InvalidQueryError]       if query is badly formed
-      # @raise [Rescuetime::Error] an error that varies based on the
+      # @raise [Rescuetime::Errors::InvalidCredentialsError] if api key is incorrect
+      # @raise [Rescuetime::Errors::InvalidQueryError]       if query is badly formed
+      # @raise [Rescuetime::Errors::Error] an error that varies based on the
       #                             response status
       def fail_or_return_body(response)
         # match the response body to known error messages with 200 status
         case response.body
-        when key_not_found? then fail Rescuetime::InvalidCredentialsError
-        when invalid_query? then fail Rescuetime::InvalidQueryError
+        when key_not_found? then fail Rescuetime::Errors::InvalidCredentialsError
+        when invalid_query? then fail Rescuetime::Errors::InvalidQueryError
         end
 
         # check the response status for errors
         status = response.code.to_i
-        error = Rescuetime::Error::CODES[status]
+        error = Rescuetime::Errors::Error::CODES[status]
         fail(error) if error
 
         response.body

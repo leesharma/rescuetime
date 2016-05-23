@@ -35,7 +35,7 @@ describe Rescuetime::QueryBuildable, vcr: true do
     context '<invalid value>' do
       subject { client.activities.order_by(:invalid) }
       it 'raises an InvalidQueryError' do
-        expect { subject }.to raise_error(Rescuetime::InvalidQueryError)
+        expect { subject }.to raise_error(Rescuetime::Errors::InvalidQueryError)
       end
     end
     context ':rank' do
@@ -50,7 +50,7 @@ describe Rescuetime::QueryBuildable, vcr: true do
         describe '<invalid value>' do
           subject { client.overview.order_by(:time, interval: :invalid) }
           it 'raises an InvalidQueryError' do
-            expect { subject }.to raise_error(Rescuetime::InvalidQueryError)
+            expect { subject }.to raise_error(Rescuetime::Errors::InvalidQueryError)
           end
         end
         describe ':minute' do
@@ -122,7 +122,7 @@ describe Rescuetime::QueryBuildable, vcr: true do
     describe '<invalid value>' do
       subject { client.overview.date('invalid date') }
       it 'raises an InvalidQueryError' do
-        expect { subject }.to raise_error(Rescuetime::InvalidQueryError)
+        expect { subject }.to raise_error(Rescuetime::Errors::InvalidQueryError)
       end
     end
     describe '<String: YYYY-MM-DD>' do
@@ -196,7 +196,7 @@ describe Rescuetime::QueryBuildable, vcr: true do
     describe '<invalid value>' do
       subject { client.overview.to('invalid').from('invalid') }
       it 'raises an InvalidQueryError' do
-        expect { subject }.to raise_error(Rescuetime::InvalidQueryError)
+        expect { subject }.to raise_error(Rescuetime::Errors::InvalidQueryError)
       end
     end
   end
@@ -245,7 +245,7 @@ describe Rescuetime::QueryBuildable, vcr: true do
     describe '<invalid value>' do
       subject { client.overview.format(:invalid).all }
       it 'raises an InvalidFormatError' do
-        expect { subject }.to raise_error(Rescuetime::InvalidFormatError)
+        expect { subject }.to raise_error(Rescuetime::Errors::InvalidFormatError)
       end
     end
     describe ':array' do

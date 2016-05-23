@@ -27,9 +27,9 @@ Timecop.freeze today
 
 # Load the testing secrets (API key, etc.) for VCR recorded requests
 begin
-  require 'secret'
+  require 'support/secret'
 rescue LoadError
-  require 'sample_secret'
+  require 'support/sample_secret'
 end
 
 VCR.configure do |config|
