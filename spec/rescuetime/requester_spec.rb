@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'support/secret'
 
 describe Rescuetime::Requester, vcr: true do
   let(:requester) { Rescuetime::Requester }
