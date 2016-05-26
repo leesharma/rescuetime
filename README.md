@@ -152,7 +152,7 @@ require 'rescuetime'
 Rescuetime ships with two report formats: CSV and Array. If you would like your
 report in a different format, don't worry–it's easy to add a custom formatter.
 
-Four things are required to add a custom formatter:
+Three things are required to add a custom formatter:
 
 1. [Write a class](#writing-a-formatter) within the module
    `Rescuetime::Formatters` that inherits from `Rescuetime::Formatters::BaseFormatter`
