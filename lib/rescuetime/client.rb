@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rescuetime/core_extensions/object/blank'
+require 'rescuetime/core_extensions/string'
 require 'rescuetime/query_buildable'
 
 require 'rescuetime/requester'
@@ -64,8 +64,8 @@ module Rescuetime
     #
     # @return [Boolean]
     def api_key?
-      api_key.extend CoreExtensions::Object::Blank
-      api_key.present?
+      key = CoreExtensions::String.new api_key.to_s
+      key.present?
     end
 
     # Returns true if the provided api key is valid. Performs a request to the

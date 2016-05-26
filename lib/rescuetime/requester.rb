@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rescuetime/core_extensions/object/blank'
+require 'rescuetime/core_extensions/string'
 
 module Rescuetime
   # The Rescuetime::Requestable module contains client methods relating to
@@ -36,8 +36,8 @@ module Rescuetime
       # @see Rescuetime::Client#api_key=
       def get(host, params)
         # guard clause: fail if no API key is present
-        params[:key].extend CoreExtensions::Object::Blank
-        params[:key].present? || raise(Rescuetime::Errors::MissingCredentialsError)
+        key = CoreExtensions::String.new params[:key].to_s # adds #present?
+        key.present? || raise(Errors::MissingCredentialsError)
 
         uri = set_uri host, params
         response = Net::HTTP.get_response uri
@@ -62,7 +62,7 @@ module Rescuetime
         # delete params with empty values
         req_params = params.delete_if do |_key, value|
           # type conversion required because symbols/ints can't be extended
-          value = value.to_s.extend CoreExtensions::Object::Blank
+          value = CoreExtensions::String.new value.to_s # add #blank?
           value.blank?
         end
 

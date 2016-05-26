@@ -2,9 +2,9 @@ begin
   # Test coverage reporters
   require 'codeclimate-test-reporter'
   CodeClimate::TestReporter.start
-  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-      SimpleCov::Formatter::HTMLFormatter,
-      CodeClimate::TestReporter::Formatter
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new [
+    SimpleCov::Formatter::HTMLFormatter,
+    CodeClimate::TestReporter::Formatter
   ]
   SimpleCov.start
 rescue LoadError
