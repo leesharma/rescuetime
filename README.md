@@ -234,6 +234,21 @@ Rescuetime.configure do |config|
 end
 ```
 
+##### Rails Example
+
+For example, in a Rails app, you could add the configuration file to `config/initializers`:
+
+```ruby
+# config/initializers/rescuetime.rb
+Rescuetime.configure do |config|
+  path = File.expand_path('../../formatters/*_formatter.rb', __FILE__)
+  config.formatter_paths += [path]
+end
+```
+
+Rails can now find any formatters ending in `_formatter.rb` in the folder `config/formatters`
+(ex. `config/formatters/xml_formatter.rb`).
+
 ### Finding Answers (Documentation)
 
 For more details, please see [official gem documentation](http://www.rubydoc.info/gems/rescuetime) or [read the wiki](https://github.com/leesharma/rescuetime/wiki).
