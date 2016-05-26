@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'csv'
 
 require 'rescuetime/query_buildable'
@@ -58,7 +60,7 @@ module Rescuetime
     # @param  [#to_s] format  desired report format (one of 'array' or 'csv')
     # @return [Rescuetime::Collection]
     #
-    # @todo: make chainable to the client
+    # TODO: make chainable to the client
     def format(format)
       # Guard: fail if the passed format isn't on the whitelist
       format = format.to_s

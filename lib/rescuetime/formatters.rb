@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rescuetime/formatters/base_formatter'
 
 module Rescuetime
@@ -8,7 +10,7 @@ module Rescuetime
     BASE_FORMATTER       = Rescuetime::Formatters::BaseFormatter
     # The path where local in-gem formatters are stored. Expands to
     # lib/rescuetime/formatters/*_formatter.rb
-    LOCAL_FORMATTER_PATH = '../formatters/*_formatter.rb'
+    LOCAL_FORMATTER_PATH = '../formatters/*_formatter.rb'.freeze
 
     # Returns a list of known formatters. A known formatter is either in the
     # local gem folder lib/rescuetime/formatters/ and ends in '_formatter.rb',

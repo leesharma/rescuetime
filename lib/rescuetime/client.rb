@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rescuetime/core_extensions/object/blank'
 require 'rescuetime/query_buildable'
 
@@ -95,6 +97,8 @@ module Rescuetime
 
     private
 
+    # Client-specific request parameters
+    #
     # @return [Hash]
     def state
       { key: api_key }

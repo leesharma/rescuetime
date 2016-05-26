@@ -39,7 +39,7 @@ describe Rescuetime::Client do
   describe '#valid_credentials?', vcr: true do
     let(:missing_key) { Rescuetime::Client.new }
     let(:invalid_key) { Rescuetime::Client.new(api_key: 'invalid_key') }
-    let(:valid_key)   { Rescuetime::Client.new(api_key: Secret::API_KEY) }
+    let(:valid_key)   { Rescuetime::Client.new(api_key: Secret::API_KEY.dup) }
 
     context 'with no credentials' do
       subject { missing_key }

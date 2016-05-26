@@ -17,12 +17,6 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Max: 13
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Performance/StringReplacement:
-  Exclude:
-    - 'lib/rescuetime/date_parser.rb'
-
 # Offense count: 8
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles, ProceduralMethods, FunctionalMethods, IgnoredMethods.
@@ -55,18 +49,6 @@ Style/ClassAndModuleChildren:
 Style/DoubleNegation:
   Exclude:
     - 'lib/rescuetime/core_extensions/object/blank.rb'
-
-# Offense count: 7
-# Cop supports --auto-correct.
-Style/MutableConstant:
-  Exclude:
-    - 'lib/rescuetime/date_parser.rb'
-    - 'lib/rescuetime/errors.rb'
-    - 'lib/rescuetime/formatters.rb'
-    - 'lib/rescuetime/requester.rb'
-    - 'lib/rescuetime/version.rb'
-    - 'spec/support/sample_secret.rb'
-    - 'spec/support/secret.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.

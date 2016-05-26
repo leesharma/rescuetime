@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Rescuetime::QueryBuildable, vcr: true do
-  let(:client) { Rescuetime::Client.new(api_key: Secret::API_KEY) }
+  let(:client) { Rescuetime::Client.new(api_key: Secret::API_KEY.dup) }
 
   describe 'chained methods' do
     subject { client.efficiency }

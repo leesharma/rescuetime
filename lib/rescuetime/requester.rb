@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rescuetime/core_extensions/object/blank'
 
 module Rescuetime
@@ -12,7 +14,7 @@ module Rescuetime
       key_not_found: '"error":"# key not found","messages":"key not found"',
       query: '"error": "# query error",'\
       '"messages": "Error: Likely a badly formatted or missing parameter"'
-    }
+    }.freeze
 
     class << self
       # Performs the GET request to the specified host. Before making the

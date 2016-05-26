@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rescuetime/date_parser'
 
 module Rescuetime

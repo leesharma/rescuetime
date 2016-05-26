@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Rescuetime
   # Contains extensions to the core classes
   # @since v0.4.0

@@ -1,4 +1,4 @@
-require 'rescuetime/errors/errors'
+# frozen_string_literal: true
 
 module Rescuetime
   # Contains all Rescuetime error classes
@@ -88,7 +88,7 @@ module Rescuetime
         502 => Rescuetime::Errors::BadGateway,
         503 => Rescuetime::Errors::ServiceUnavailable,
         504 => Rescuetime::Errors::GatewayTimeout
-      }
+      }.freeze
     end
   end
 end

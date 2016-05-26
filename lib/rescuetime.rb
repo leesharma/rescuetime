@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rescuetime/version'
 require 'rescuetime/configuration'
 require 'rescuetime/client'

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Error handling' do
-  let(:client) { Rescuetime::Client.new(api_key: Secret::API_KEY) }
+  let(:client) { Rescuetime::Client.new(api_key: Secret::API_KEY.dup) }
 
   context 'for HTTP response status' do
     describe Rescuetime::Errors::BadRequest do

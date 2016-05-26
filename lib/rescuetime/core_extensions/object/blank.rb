@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Rescuetime::CoreExtensions
   module Object
     # Includes methods that check the presence or blankness of an object.

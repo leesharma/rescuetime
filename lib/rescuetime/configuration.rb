@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Rescuetime
   # Represents a set of Rescuetime configuration settings
   #

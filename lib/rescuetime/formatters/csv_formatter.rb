@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Rescuetime::Formatters
   # Formats a rescuetime report as a CSV object
   #

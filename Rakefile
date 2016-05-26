@@ -11,7 +11,7 @@ defaults = [:spec]
 begin
   require 'rubocop/rake_task'
   RuboCop::RakeTask.new(:rubocop)
-  # defaults << :rubocop
+  defaults << :rubocop
 rescue LoadError
   puts 'Rubocop is not installed; please install it for code quality checks.'
 end

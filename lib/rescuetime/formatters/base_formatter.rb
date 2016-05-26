@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Rescuetime::Formatters
   # Base class for report formatters
   #

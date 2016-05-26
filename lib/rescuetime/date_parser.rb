@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Rescuetime
   # Responsible for formatting user-inputted dates into proper Rescuetime format
   # @since v0.3.2
@@ -9,7 +11,7 @@ module Rescuetime
       'yyyy/mm/dd'                => %r{\d{4}\/\d{2}\/\d{2}},
       'mm-dd-yyyy or mm/dd/yyyy'  => %r{\d{2}[-\/]\d{2}[-\/]\d{4}},
       'mm-dd or mm/dd'            => %r{\d{2}[-\/]\d{2}}
-    }
+    }.freeze
 
     class << self
       # Returns a date as a string in the correct Rescuetime API format
@@ -62,7 +64,7 @@ module Rescuetime
       def reformat_string(date, formatted_as: DATE_FORMATS)
         case date
         when formatted_as['yyyy-mm-dd']  then date
-        when formatted_as['yyyy/mm/dd']  then date.gsub '/', '-'
+        when formatted_as['yyyy/mm/dd']  then date.tr '/', '-'
         when formatted_as['mm-dd-yyyy or mm/dd/yyyy']
           month, day, year = date.scan(/\d+/)
           "#{year}-#{month}-#{day}"
