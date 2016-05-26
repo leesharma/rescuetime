@@ -73,8 +73,9 @@ describe Rescuetime::QueryBuildable, vcr: true do
         end
         describe ':day' do
           subject do
-            client.efficiency.order_by(:time, interval: :day)
-              .from('2015-04-28').to('2015-05-03')
+            client.efficiency
+                  .order_by(:time, interval: :day)
+                  .from('2015-04-28').to('2015-05-03')
           end
           it 'segmented in 1-day chunks' do
             time = unique_dates subject
@@ -84,8 +85,9 @@ describe Rescuetime::QueryBuildable, vcr: true do
         end
         describe ':week' do
           subject do
-            client.efficiency.order_by(:time, interval: :week)
-              .from('2015-01-01')
+            client.efficiency
+                  .order_by(:time, interval: :week)
+                  .from('2015-01-01')
           end
           it 'segmented in 1-week chunks' do
             time = unique_dates subject
@@ -95,8 +97,9 @@ describe Rescuetime::QueryBuildable, vcr: true do
         end
         describe ':month' do
           subject do
-            client.efficiency.order_by(:time, interval: :month)
-              .from('2015-01-01').to('2015-05-03')
+            client.efficiency
+                  .order_by(:time, interval: :month)
+                  .from('2015-01-01').to('2015-05-03')
           end
           it 'segmented in 1-month chunks' do
             time = unique_dates subject
@@ -206,8 +209,8 @@ describe Rescuetime::QueryBuildable, vcr: true do
       describe '<activity>' do
         subject { client.activities.where(name: 'rubymine') }
         it 'returns documents within an activity' do
-          documents = subject.collect { |e| e[:activity] }
-                      .select { |e| e =~ /\w+\.\w+ - \w+/i }
+          documents = subject.map { |e| e[:activity] }
+                             .select { |e| e =~ /\w+\.\w+ - \w+/i }
           expect(documents.count).to be > 1
         end
         describe 'document: <document>' do
@@ -224,16 +227,16 @@ describe Rescuetime::QueryBuildable, vcr: true do
       describe '<category>' do
         subject { client.categories.where(name: 'Editing & IDEs') }
         it 'returns activities within a category' do
-          expect(collect_keys subject).to include(:activity, :category,
-                                                  :productivity)
-          expect(count_invalid subject, /Editing & IDEs/, :category).to eq(0)
+          expect(collect_keys(subject)).to include(:activity, :category,
+                                                   :productivity)
+          expect(count_invalid(subject, /Editing & IDEs/, :category)).to eq(0)
         end
       end
       describe '<overview>' do
         subject { client.overview.where(name: 'Software Development') }
         it 'returns categories within an overview' do
-          expect(collect_keys subject).to include(:activity, :category,
-                                                  :productivity)
+          expect(collect_keys(subject)).to include(:activity, :category,
+                                                   :productivity)
         end
       end
     end

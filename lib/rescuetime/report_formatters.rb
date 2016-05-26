@@ -69,7 +69,7 @@ module Rescuetime
       formatter = formatters.find do |f|
         standardize(f.name) == standardize(name)
       end
-      formatter || fail(Rescuetime::Errors::InvalidFormatError)
+      formatter || raise(Rescuetime::Errors::InvalidFormatError)
     end
 
     private

@@ -13,7 +13,7 @@ module Rescuetime::Formatters
     #
     # @raise  [NotImplementedError] this method is not yet implemented
     def self.name
-      fail NotImplementedError, 'you have not defined a report name'
+      raise NotImplementedError, 'you have not defined a report name'
     end
 
     # Formats the rescuetime report from CSV to a user-defined format
@@ -23,8 +23,8 @@ module Rescuetime::Formatters
     #
     # @raise  [NotImplementedError] this method is not yet implemented
     def self.format(_report)
-      fail NotImplementedError,
-           'you have not defined report formatting instructions'
+      raise NotImplementedError,
+            'you have not defined report formatting instructions'
     end
 
     # Returns all classes descended from the current class

@@ -11,7 +11,7 @@ module Rescuetime
     include Enumerable
 
     # Rescuetime Analytics API endpoint
-    HOST = 'https://www.rescuetime.com/anapi/data'
+    HOST = 'https://www.rescuetime.com/anapi/data'.freeze
 
     # Returns a new Rescuetime collection. Default format is array.
     #
@@ -50,7 +50,7 @@ module Rescuetime
     # @see #all
     # @see http://ruby-doc.org/core/Enumerable.html Enumerable
     def each(&block)
-      all.each &block
+      all.each(&block)
     end
 
     # Sets the report format to a valid type
@@ -62,7 +62,7 @@ module Rescuetime
     def format(format)
       # Guard: fail if the passed format isn't on the whitelist
       format = format.to_s
-      formatters.all.include?(format) || fail(Errors::InvalidFormatError)
+      formatters.all.include?(format) || raise(Errors::InvalidFormatError)
 
       @format = format
       self

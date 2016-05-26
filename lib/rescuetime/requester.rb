@@ -35,7 +35,7 @@ module Rescuetime
       def get(host, params)
         # guard clause: fail if no API key is present
         params[:key].extend CoreExtensions::Object::Blank
-        params[:key].present? || fail(Rescuetime::Errors::MissingCredentialsError)
+        params[:key].present? || raise(Rescuetime::Errors::MissingCredentialsError)
 
         uri = set_uri host, params
         response = Net::HTTP.get_response uri
@@ -82,14 +82,14 @@ module Rescuetime
       def fail_or_return_body(response)
         # match the response body to known error messages with 200 status
         case response.body
-        when key_not_found? then fail Rescuetime::Errors::InvalidCredentialsError
-        when invalid_query? then fail Rescuetime::Errors::InvalidQueryError
+        when key_not_found? then raise Rescuetime::Errors::InvalidCredentialsError
+        when invalid_query? then raise Rescuetime::Errors::InvalidQueryError
         end
 
         # check the response status for errors
         status = response.code.to_i
         error = Rescuetime::Errors::Error::CODES[status]
-        fail(error) if error
+        raise(error) if error
 
         response.body
       end

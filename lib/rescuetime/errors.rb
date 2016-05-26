@@ -71,6 +71,7 @@ module Rescuetime
       end
     end
 
+    # Error class for rescuing all RescueTime errors
     class Error
       # Collection of possible return status codes and corresponding Rescuetime
       # errors

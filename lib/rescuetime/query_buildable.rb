@@ -10,14 +10,14 @@ module Rescuetime
     # Parameters that are included by default in every query
     BASE_PARAMS = { format:     'csv',
                     operation:  'select',
-                    version:    0 }
+                    version:    0 }.freeze
 
     # Valid values for the :order and :interval parameters
     # @see #order_by
     VALID = {
       order_by: %w(time rank member),
       interval: %w(minute hour day week month)
-    }
+    }.freeze
 
     # Returns a Rescuetime overview report, grouping activities into their
     # top-level categories
@@ -193,11 +193,11 @@ module Rescuetime
 
       # guards against invalid order or interval
       unless valid_order? order
-        fail Errors::InvalidQueryError, "#{order} is not a valid order"
+        raise Errors::InvalidQueryError, "#{order} is not a valid order"
       end
 
       unless valid_interval? interval
-        fail Errors::InvalidQueryError, "#{interval} is not a valid interval"
+        raise Errors::InvalidQueryError, "#{interval} is not a valid interval"
       end
 
       add_to_query perspective: (order == 'time' ? 'interval' : order),
@@ -359,7 +359,7 @@ module Rescuetime
     # @since v0.3.0
     def where(name: nil, document: nil)
       # Stand-in for required keyword arguments
-      name or fail ArgumentError, 'missing keyword: name'
+      name || raise(ArgumentError, 'missing keyword: name')
 
       add_to_query restrict_thing:  name,
                    restrict_thingy: document
@@ -372,7 +372,7 @@ module Rescuetime
     # @param  [Hash] terms             a set of terms to add to the query
     # @return [Rescuetime::Collection]
     def add_to_query(**terms)
-      if self.is_a? Rescuetime::Collection
+      if is_a? Rescuetime::Collection
         self << terms
         self
       else

@@ -7,7 +7,7 @@ module Rescuetime
     DATE_FORMATS = {
       'yyyy-mm-dd'                => /\d{4}-\d{2}-\d{2}/,
       'yyyy/mm/dd'                => %r{\d{4}\/\d{2}\/\d{2}},
-      'mm-dd-yyyy or mm/dd/yyyy'  => %r{\d{2}[-\/]\d{2}[-\/]\d{4}/},
+      'mm-dd-yyyy or mm/dd/yyyy'  => %r{\d{2}[-\/]\d{2}[-\/]\d{4}},
       'mm-dd or mm/dd'            => %r{\d{2}[-\/]\d{2}}
     }
 
@@ -79,7 +79,7 @@ module Rescuetime
       # @raise [Rescuetime::Errors::InvalidQueryError]
       def fail_date_format(exception: Rescuetime::Errors::InvalidQueryError)
         message = 'Invalid date entered. Please see docs for allowed formats.'
-        fail exception, message
+        raise exception, message
       end
     end
   end

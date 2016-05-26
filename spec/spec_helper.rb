@@ -6,6 +6,7 @@ begin
       SimpleCov::Formatter::HTMLFormatter,
       CodeClimate::TestReporter::Formatter
   ]
+  SimpleCov.start
 rescue LoadError
   puts 'Codeclimate Test Reporter not installed. '\
   'Install gem codeclimate-test-reporter for coverage data.'

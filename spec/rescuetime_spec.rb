@@ -43,4 +43,17 @@ describe Rescuetime do
       expect(config.formatter_paths).to eq []
     end
   end
+
+  describe '.configuration' do
+    it 'returns a Rescuetime::Configuration' do
+      config = Rescuetime.configuration
+      expect(config).to be_a Rescuetime::Configuration
+    end
+
+    it 'returns the configuration set by .config' do
+      Rescuetime.configure { |c| c.formatter_paths = ['path'] }
+      config = Rescuetime.configuration
+      expect(config.formatter_paths).to eq ['path']
+    end
+  end
 end
