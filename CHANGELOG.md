@@ -12,6 +12,16 @@ See also
 
 ---
 
+## [v1.0.0] - 2016-08-26
+
+Bump Version and Misc Updates
+
+### Updates
+
+The only update (aside from the version bump) is specifying that executables
+are kept in the `bin` directory, not the `exe` directory. This version bump
+is mainly to signify that the API is stable.
+
 ## [v0.4.0] - 2016-04-26
 
 Add Custom Formatters and Misc Updates
