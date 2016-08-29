@@ -301,3 +301,36 @@ See the [development page](https://github.com/leesharma/rescuetime/wiki/Developm
 ## Contributing
 
 See the [contributing page](CONTRIBUTING.md).
+
+### TODO
+
+The eventual goal of this gem is full coverage of all Rescuetime APIs.
+
+Associated issues from our issue tracker are linked when applicable. If you are interested in contributing, please feel free to work on any of these issues! If there is a feature you want that's not on the TODO list, open an issue and we can discuss it.
+
+- [x] Minimum viable functionality (in [v0.1.0])
+- [x] Add support for major query params in Data Analytic API (in [v0.2.0])
+- [x] Lazy query evaluation and method chaining (in [v0.3.0], [v0.3.1], [v0.3.2], [v0.3.3])
+- [x] Add custom report formatters (in [v0.4.0])
+- [ ] Add full coverage of Data Analytics API
+  - [ ] Restrict results by group ([#14])
+  - [ ] Restrict results by person
+- [ ] Add support for "Daily Summary API" ([#28])
+- [ ] Add support for "Alerts Feed API"
+- [ ] Add support for "Daily Highlights Feed API"
+- [ ] Add support for "Daily Highlights POST API"
+- [ ] Add OAuth2 support
+
+For details about completed items, please see [the release page][releases].
+
+[#14]: https://github.com/leesharma/rescuetime/issues/14
+[#28]: https://github.com/leesharma/rescuetime/issues/28
+
+[v0.1.0]:https://github.com/leesharma/rescuetime/releases/tag/v0.1.0
+[v0.2.0]:https://github.com/leesharma/rescuetime/releases/tag/v0.2.0
+[v0.3.0]:https://github.com/leesharma/rescuetime/releases/tag/v0.3.0
+[v0.3.1]:https://github.com/leesharma/rescuetime/releases/tag/v0.3.1
+[v0.3.2]:https://github.com/leesharma/rescuetime/releases/tag/v0.3.2
+[v0.3.3]:https://github.com/leesharma/rescuetime/releases/tag/v0.3.3
+[v0.4.0]:https://github.com/leesharma/rescuetime/releases/tag/v0.4.0
+[releases]:https://github.com/leesharma/rescuetime/releases
