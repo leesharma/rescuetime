@@ -27,6 +27,7 @@ For more information about RescueTime, visit [the RescueTime homepage](https://w
    * [Rescuetime Exceptions](#rescuetime-exceptions)
 * [Development](https://github.com/leesharma/rescuetime/wiki/Development) ([section](#development))
 * [Contributing](CONTRIBUTING.md) ([section](#contributing))
+   * [TODO](#todo)
 
 #### Useful Links
 * [RDoc](http://www.rubydoc.info/gems/rescuetime)
