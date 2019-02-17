@@ -12,6 +12,16 @@ See also
 
 ---
 
+## [v1.0.1] - 2019-02-16
+
+Mention max ruby version in gemspec
+
+### Updates
+
+No code updates. It looks like some functionality breaks under ruby 2.4+, so
+this change updates the gemspec to reflect this. A future update will probably
+resolve the bug.
+
 ## [v1.0.0] - 2016-08-26
 
 Bump Version and Misc Updates
