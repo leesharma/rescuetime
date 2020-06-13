@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.bindir        = 'bin'
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 2.0.0', '< 2.4'
+  spec.required_ruby_version = '>= 2.0.0', '< 2.5'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake', '>= 12.3.3'
