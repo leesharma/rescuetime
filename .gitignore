@@ -9,3 +9,6 @@
 /tmp/
 
 secret.rb
+
+# asdf ruby version management
+.tool-versions
